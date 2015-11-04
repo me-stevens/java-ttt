@@ -1,6 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
-
+import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -48,6 +48,22 @@ public class BoardTest {
     public void getsTheSize() {
         assertEquals(size, board.getSize());
     }
+
+    //--------------------------------
+
+    @Test
+    public void checksForFullBoard() {
+        assertFalse(board.isFull());
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                board.setCell(i, j, "X");
+            }
+        }
+
+        assertTrue(board.isFull());
+    }
+
     }
 
 }

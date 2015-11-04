@@ -44,4 +44,24 @@ public class Board {
             }
         }
     }
+
+    //---------------------------------
+    public boolean isFull() {
+        return numberOfEmpties() == 0;
+    }
+
+    private int numberOfEmpties() {
+        int empties = 0;
+
+        for (String[] row : board) {
+            for (String cell : row) {
+                if (cell.equals("")) {
+                    empties++;
+                }
+            }
+        }
+
+        return empties;
+    }
+
 }
