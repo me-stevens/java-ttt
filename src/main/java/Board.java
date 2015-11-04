@@ -64,4 +64,15 @@ public class Board {
         return empties;
     }
 
+    public boolean checkWinnerInLine(String[] line) {
+
+        for (int i=0; i<line.length-1; i++) {
+            if ( line[i].equals("") || !line[i].equals(line[i+1]) ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

@@ -64,6 +64,17 @@ public class BoardTest {
         assertTrue(board.isFull());
     }
 
+    @Test
+    public void checksWinnerInLine() {
+        String[] line = new String[size];
+
+        Arrays.fill(line, "X");
+        assertTrue(board.checkWinnerInLine(line));
+
+        line[1] = "O";
+        assertFalse(board.checkWinnerInLine(line));
+    }
+
     }
 
 }
