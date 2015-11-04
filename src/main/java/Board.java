@@ -75,4 +75,57 @@ public class Board {
         return true;
     }
 
+    public boolean checkWinnerInRow(int row) {
+        String[] line = new String[SIZE];
+
+        for (int j = 0; j < SIZE; j++) {
+            line[j] = board[row][j];
+        }
+
+        return checkWinnerInLine(line);
+    }
+
+    public boolean checkWinnerInColumn(int column) {
+        String[] line = new String[SIZE];
+
+        for (int i = 0; i < SIZE; i++) {
+            line[i] = board[i][column];
+        }
+
+        return checkWinnerInLine(line);
+    }
+
+    public boolean checkWinnerInDiagonal() {
+        String[] line = new String[SIZE];
+
+        for (int i = 0, j = 0; i < SIZE && j < SIZE; i++, j++) {
+            line[i] = board[i][j];
+        }
+        return checkWinnerInLine(line);
+    }
+
+    public boolean checkWinnerInAntiDiagonal() {
+        String[] line = new String[SIZE];
+
+        for (int i = 0, j = SIZE-1; i < SIZE && j >= 0; i++, j--) {
+            line[i] = board[i][j];
+        }
+        return checkWinnerInLine(line);
+    }
+
+    public boolean hasWinner() {
+        for (int i = 0; i < SIZE; i++) {
+            if (checkWinnerInRow(i)) {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            if (checkWinnerInColumn(i)) {
+                return true;
+            }
+        }
+
+        return checkWinnerInDiagonal() || checkWinnerInAntiDiagonal();
+    }
 }

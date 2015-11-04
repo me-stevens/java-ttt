@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -75,6 +77,58 @@ public class BoardTest {
         assertFalse(board.checkWinnerInLine(line));
     }
 
+    @Test
+    public void checksWinnerInRow() {
+        assertFalse(board.checkWinnerInRow(1));
+
+        for (int j = 0; j < size; j++) {
+            board.setCell(1, j, "X");
+        }
+
+        assertTrue(board.checkWinnerInRow(1));
     }
 
+    @Test
+    public void checksWinnerInColumn() {
+        assertFalse(board.checkWinnerInColumn(1));
+
+        for (int i = 0; i < size; i++) {
+            board.setCell(i, 1, "X");
+        }
+
+        assertTrue(board.checkWinnerInColumn(1));
+    }
+
+    @Test
+    public void checksWinnerInDiagonal() {
+        assertFalse(board.checkWinnerInDiagonal());
+
+        for (int i = 0, j = 0; i < size && j < size; i++, j++) {
+            board.setCell(i, j, "X");
+        }
+
+        assertTrue(board.checkWinnerInDiagonal());
+    }
+
+    @Test
+    public void checksWinnerInAntiDiagonal() {
+        assertFalse(board.checkWinnerInAntiDiagonal());
+
+        for (int i = 0, j = size-1; i < size && j >= 0; i++, j--) {
+            board.setCell(i, j, "X");
+        }
+
+        assertTrue(board.checkWinnerInAntiDiagonal());
+    }
+
+    @Test
+    public void checksWinner() {
+        assertFalse(board.hasWinner());
+
+        for (int i = 0; i < size; i++) {
+            board.setCell(i, 1, "X");
+        }
+
+        assertTrue(board.hasWinner());
+    }
 }
