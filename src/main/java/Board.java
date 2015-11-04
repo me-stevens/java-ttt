@@ -66,7 +66,7 @@ public class Board {
 
     public boolean checkWinnerInRow(int row) {
         for (int j = 0; j < SIZE-1; j++) {
-            if ( board[row][j].equals("") || !board[row][j].equals(board[row][j+1]) ) {
+            if ( checkCells(board[row][j], board[row][j+1]) ) {
                 return false;
             }
         }
@@ -76,7 +76,7 @@ public class Board {
 
     public boolean checkWinnerInColumn(int col) {
         for (int i = 0; i < SIZE-1; i++) {
-            if ( board[i][col].equals("") || !board[i][col].equals(board[i+1][col]) ) {
+            if ( checkCells(board[i][col], board[i+1][col]) ) {
                 return false;
             }
         }
@@ -86,7 +86,7 @@ public class Board {
 
     public boolean checkWinnerInDiagonal() {
         for (int i = 0, j = 0; i < SIZE-1 && j < SIZE-1; i++, j++) {
-            if ( board[i][j].equals("") || !board[i][j].equals(board[i+1][j+1]) ) {
+            if ( checkCells(board[i][j], board[i+1][j+1]) ) {
                 return false;
             }
         }
@@ -96,12 +96,16 @@ public class Board {
 
     public boolean checkWinnerInAntiDiagonal() {
         for (int i = 0, j = SIZE-1; i < SIZE-1 && j > 0; i++, j--) {
-            if ( board[i][j].equals("") || !board[i][j].equals(board[i+1][j-1]) ) {
+            if ( checkCells(board[i][j], board[i+1][j-1]) ) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    private boolean checkCells(String c1, String c2) {
+        return c1.equals("") || !c1.equals(c2);
     }
 
     public boolean hasWinner() {
