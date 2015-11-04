@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
 
+    int size;
     private Board board;
 
     @Before
     public void setUp() throws Exception {
-        board = new Board(3);
+        size  = 3;
+        board = new Board(size);
     }
 
     @Test (expected = IndexOutOfBoundsException.class)
@@ -44,7 +46,8 @@ public class BoardTest {
 
     @Test
     public void getsTheSize() {
-        assertEquals(3, board.getSize());
+        assertEquals(size, board.getSize());
+    }
     }
 
 }
