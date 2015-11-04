@@ -64,10 +64,9 @@ public class Board {
         return empties;
     }
 
-    public boolean checkWinnerInLine(String[] line) {
-
-        for (int i=0; i<line.length-1; i++) {
-            if ( line[i].equals("") || !line[i].equals(line[i+1]) ) {
+    public boolean checkWinnerInRow(int row) {
+        for (int j = 0; j < SIZE-1; j++) {
+            if ( board[row][j].equals("") || !board[row][j].equals(board[row][j+1]) ) {
                 return false;
             }
         }
@@ -75,45 +74,38 @@ public class Board {
         return true;
     }
 
-    public boolean checkWinnerInRow(int row) {
-        String[] line = new String[SIZE];
-
-        for (int j = 0; j < SIZE; j++) {
-            line[j] = board[row][j];
+    public boolean checkWinnerInColumn(int col) {
+        for (int i = 0; i < SIZE-1; i++) {
+            if ( board[i][col].equals("") || !board[i][col].equals(board[i+1][col]) ) {
+                return false;
+            }
         }
 
-        return checkWinnerInLine(line);
-    }
-
-    public boolean checkWinnerInColumn(int column) {
-        String[] line = new String[SIZE];
-
-        for (int i = 0; i < SIZE; i++) {
-            line[i] = board[i][column];
-        }
-
-        return checkWinnerInLine(line);
+        return true;
     }
 
     public boolean checkWinnerInDiagonal() {
-        String[] line = new String[SIZE];
-
-        for (int i = 0, j = 0; i < SIZE && j < SIZE; i++, j++) {
-            line[i] = board[i][j];
+        for (int i = 0, j = 0; i < SIZE-1 && j < SIZE-1; i++, j++) {
+            if ( board[i][j].equals("") || !board[i][j].equals(board[i+1][j+1]) ) {
+                return false;
+            }
         }
-        return checkWinnerInLine(line);
+
+        return true;
     }
 
     public boolean checkWinnerInAntiDiagonal() {
-        String[] line = new String[SIZE];
-
-        for (int i = 0, j = SIZE-1; i < SIZE && j >= 0; i++, j--) {
-            line[i] = board[i][j];
+        for (int i = 0, j = SIZE-1; i < SIZE-1 && j > 0; i++, j--) {
+            if ( board[i][j].equals("") || !board[i][j].equals(board[i+1][j-1]) ) {
+                return false;
+            }
         }
-        return checkWinnerInLine(line);
+
+        return true;
     }
 
     public boolean hasWinner() {
+
         for (int i = 0; i < SIZE; i++) {
             if (checkWinnerInRow(i)) {
                 return true;

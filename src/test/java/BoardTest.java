@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -64,17 +62,6 @@ public class BoardTest {
         }
 
         assertTrue(board.isFull());
-    }
-
-    @Test
-    public void checksWinnerInLine() {
-        String[] line = new String[size];
-
-        Arrays.fill(line, "X");
-        assertTrue(board.checkWinnerInLine(line));
-
-        line[1] = "O";
-        assertFalse(board.checkWinnerInLine(line));
     }
 
     @Test
