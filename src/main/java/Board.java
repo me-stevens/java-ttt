@@ -120,4 +120,24 @@ public class Board {
 
         return checkWinnerInDiagonal(mark) || checkWinnerInAntiDiagonal(mark);
     }
+
+    public int getRowFromIndex(int index) {
+        return (index - 1) / SIZE;
+    }
+
+    public int getColFromIndex(int index) {
+        return (index - 1) % SIZE;
+    }
+
+    public boolean isCellBusy(int i, int j) {
+        if ( board[i][j].equals("") ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isCellBusy(int index) {
+        return isCellBusy(getRowFromIndex(index), getColFromIndex(index));
+    }
 }

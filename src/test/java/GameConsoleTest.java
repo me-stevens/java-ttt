@@ -25,6 +25,6 @@ public class GameConsoleTest {
         GameConsole gameConsole = new GameConsole(null, out);
         gameConsole.write("Hello");
 
-        assertEquals("Hello\n", outputStream.toString());
+        assertEquals("Hello", outputStream.toString());
     }
 }
