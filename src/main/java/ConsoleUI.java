@@ -1,5 +1,7 @@
 public class ConsoleUI {
 
+    private static final String PROMPT   = "Choose a cell to put your mark";
+    public static final String GAMEOVER  = "GAME OVER";
     private SpyConsole console;
 
     public ConsoleUI(SpyConsole console) {
@@ -32,7 +34,12 @@ public class ConsoleUI {
     }
 
     public String getInput() {
+        print(PROMPT);
         return console.read();
+    }
+
+    public void printGameOverMessage() {
+        print(GAMEOVER);
     }
 
 }
