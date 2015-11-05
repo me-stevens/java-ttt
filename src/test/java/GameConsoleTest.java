@@ -22,8 +22,8 @@ public class GameConsoleTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outputStream);
 
-        GameConsole echoConsole = new GameConsole(null, out);
-        echoConsole.write("Hello");
+        GameConsole gameConsole = new GameConsole(null, out);
+        gameConsole.write("Hello");
 
         assertEquals("Hello\n", outputStream.toString());
     }
