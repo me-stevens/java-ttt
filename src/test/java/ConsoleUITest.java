@@ -12,7 +12,7 @@ public class ConsoleUITest {
     @Before
     public void setUp() throws Exception {
         spyConsole = new SpyConsole();
-        cui              = new ConsoleUI(spyConsole);
+        cui        = new ConsoleUI(spyConsole);
     }
     @Test
     public void anyMessageIsPrinted() {
@@ -45,6 +45,13 @@ public class ConsoleUITest {
         Board board = new Board(3);
         cui.printBoard(board);
         assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n", spyConsole.printedMessage());
+    }
+
+    @Test
+    public void readsUserInput() {
+        spyConsole.setInput("hi");
+        assertEquals("hi", cui.getInput());
+        assertTrue(spyConsole.readMethodWasCalled());
     }
 
 

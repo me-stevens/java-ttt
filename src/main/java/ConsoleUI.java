@@ -31,5 +31,8 @@ public class ConsoleUI {
         }
     }
 
+    public String getInput() {
+        return console.read();
+    }
 
 }
