@@ -120,4 +120,12 @@ public class Board {
 
         return checkWinnerInDiagonal(mark) || checkWinnerInAntiDiagonal(mark);
     }
+
+    public boolean isCellBusy(int i, int j) {
+        if ( board[i][j].equals("") ) {
+            return false;
+        }
+
+        return true;
+    }
 }

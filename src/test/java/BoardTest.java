@@ -118,4 +118,12 @@ public class BoardTest {
 
         assertTrue(board.hasWinner("X"));
     }
+
+    @Test
+    public void checksIfCellIsBusy() {
+        assertFalse(board.isCellBusy(0, 0));
+
+        board.setCell(0, 0, "X");
+        assertTrue(board.isCellBusy(0, 0));
+    }
 }
