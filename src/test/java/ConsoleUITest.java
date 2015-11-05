@@ -59,4 +59,10 @@ public class ConsoleUITest {
         cui.printGameOverMessage();
         assertEquals(ConsoleUI.GAMEOVER, spyConsole.printedMessage());
     }
+
+    @Test
+    public void repeatsUntilInputIsRight() {
+        spyConsole.setInputs("a", "20", "1");
+        assertEquals("1", cui.checkUserInput("[1-9]"));
+    }
 }
