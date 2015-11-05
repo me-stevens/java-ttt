@@ -33,12 +33,13 @@ public class Game {
     }
 
     public String returnValidCellIndex() {
-        String cellIndex = "";
+        String cellIndex = gameUI.getInput();
         String regex     = "[1-" + board.getSize()*board.getSize() + "]";
 
-        do {
-            cellIndex = gameUI.getInput();
-        } while ( !cellIndex.matches(regex) );
+         while ( !cellIndex.matches(regex) ) {
+             gameUI.printNotValidCellMessage();
+             cellIndex = gameUI.getInput();
+         }
 
         return cellIndex;
     }
@@ -46,6 +47,7 @@ public class Game {
     public String returnEmptyCellIndex(String cellIndex) {
 
         while ( board.isCellBusy(stringToNumber(cellIndex) ) ) {
+            gameUI.printCellIsBusyMessage();
             cellIndex = gameUI.getInput();
         }
 

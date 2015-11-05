@@ -53,10 +53,4 @@ public class ConsoleUITest {
         assertEquals("hi", ui.getInput());
         assertTrue(spyConsole.readMethodWasCalled());
     }
-
-    @Test
-    public void printsGameOver() {
-        ui.printGameOverMessage();
-        assertEquals(ConsoleUI.GAMEOVER, spyConsole.printedMessage());
-    }
 }

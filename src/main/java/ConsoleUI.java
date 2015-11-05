@@ -1,7 +1,9 @@
 public class ConsoleUI {
 
-    private static final String PROMPT  = "Choose a cell to put your mark: ";
-    public static final String GAMEOVER = "GAME OVER\n";
+    private static final String PROMPT       = "Choose a cell to put your mark: ";
+    private static final String NOTVALIDCELL = "Please enter a valid cell number: ";
+    private static final String CELLISBUSY   = "Please enter an empty cell number: ";
+    private static final String GAMEOVER     = "GAME OVER\n";
     private Console console;
 
     public ConsoleUI(Console console) {
@@ -36,6 +38,14 @@ public class ConsoleUI {
     public String getInput() {
         print(PROMPT);
         return console.read();
+    }
+
+    public void printNotValidCellMessage() {
+        print(NOTVALIDCELL);
+    }
+
+    public void printCellIsBusyMessage() {
+        print(CELLISBUSY);
     }
 
     public void printGameOverMessage() {
