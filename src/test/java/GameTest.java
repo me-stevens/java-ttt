@@ -47,8 +47,6 @@ public class GameTest {
 
     @Test
     public void turnReturnsFalseIfWinOrFull() {
-        assertTrue(game.nextTurn());
-
         game.updateBoard(0, 0, "X");
         game.updateBoard(0, 1, "X");
         game.updateBoard(0, 2, "X");
