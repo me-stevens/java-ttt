@@ -19,13 +19,9 @@ public class GameTest {
     }
 
     @Test
-    public void getsRowFromCellIndex() {
-        assertEquals(1 / game.getBoard().getSize(), game.getRowFromIndex(1));
     }
 
     @Test
-    public void getsColFromCellIndex() {
-        assertEquals(1 % game.getBoard().getSize(), game.getColFromIndex(1));
     }
 
     @Test
@@ -36,7 +32,7 @@ public class GameTest {
 
     @Test
     public void updatesBoard() {
-        game.updateBoard(0, 0, "X");
+        game.updateBoard(1, "X");
         assertEquals("X", game.getBoard().getCell(0, 0));
     }
 
