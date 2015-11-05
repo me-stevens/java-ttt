@@ -7,16 +7,16 @@ import static org.junit.Assert.assertTrue;
 public class ConsoleUITest {
 
     private SpyConsole spyConsole;
-    private ConsoleUI cui;
+    private ConsoleUI ui;
 
     @Before
     public void setUp() throws Exception {
         spyConsole = new SpyConsole();
-        cui        = new ConsoleUI(spyConsole);
+        ui = new ConsoleUI(spyConsole);
     }
     @Test
     public void anyMessageIsPrinted() {
-        cui.print("hi");
+        ui.print("hi");
         assertEquals("hi", spyConsole.printedMessage());
         assertTrue(spyConsole.writeMethodWasCalled());
     }
@@ -25,7 +25,7 @@ public class ConsoleUITest {
     public void printsBoard1x1() {
         Board board = new Board(1);
         board.setCell(0, 0, "X");
-        cui.printBoard(board);
+        ui.printBoard(board);
         assertEquals("X \n", spyConsole.printedMessage());
     }
 
@@ -36,33 +36,33 @@ public class ConsoleUITest {
         board.setCell(0, 1, "X");
         board.setCell(1, 0, "X");
         board.setCell(1, 1, "X");
-        cui.printBoard(board);
+        ui.printBoard(board);
         assertEquals("X X \nX X \n", spyConsole.printedMessage());
     }
 
     @Test
     public void printsCellNumberIfCellIsEmpty() {
         Board board = new Board(3);
-        cui.printBoard(board);
+        ui.printBoard(board);
         assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n", spyConsole.printedMessage());
     }
 
     @Test
     public void readsUserInput() {
         spyConsole.setInput("hi");
-        assertEquals("hi", cui.getInput());
+        assertEquals("hi", ui.getInput());
         assertTrue(spyConsole.readMethodWasCalled());
     }
 
     @Test
     public void printsGameOver() {
-        cui.printGameOverMessage();
+        ui.printGameOverMessage();
         assertEquals(ConsoleUI.GAMEOVER, spyConsole.printedMessage());
     }
 
     @Test
     public void repeatsUntilInputIsRight() {
         spyConsole.setInputs("a", "20", "1");
-        assertEquals("1", cui.checkUserInput("[1-9]"));
+        assertEquals("1", ui.checkUserInput("[1-9]"));
     }
 }
