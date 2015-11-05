@@ -1,7 +1,7 @@
 public class ConsoleUI {
 
-    private static final String PROMPT   = "Choose a cell to put your mark";
-    public static final String GAMEOVER  = "GAME OVER";
+    private static final String PROMPT  = "Choose a cell to put your mark: ";
+    public static final String GAMEOVER = "GAME OVER\n";
     private Console console;
 
     public ConsoleUI(Console console) {

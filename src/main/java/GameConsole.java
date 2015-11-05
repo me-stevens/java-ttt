@@ -17,6 +17,6 @@ public class GameConsole implements Console {
     }
 
     public void write(String message) {
-        out.println(message);
+        out.print(message);
     }
 }
