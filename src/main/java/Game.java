@@ -28,11 +28,7 @@ public class Game {
     }
 
     public int humanTurn() {
-        String cellIndex = "";
-
-        cellIndex = returnValidCellIndex();
-        cellIndex = returnEmptyCellIndex(cellIndex);
-
+        String cellIndex = returnEmptyCellIndex(returnValidCellIndex());
         return stringToNumber(cellIndex);
     }
 
