@@ -8,7 +8,15 @@ public class Game {
     }
 
     public boolean nextTurn() {
+        gameUI.printBoard(board);
+
+        int index = 1;
+        //int index = stringToNumber(humanTurn());
+
+        updateBoard(getRowFromIndex(index), getColFromIndex(index), getMark(true));
+
         if (board.hasWinner(getMark(true)) || board.isFull() ) {
+            gameUI.printGameOverMessage();
             return false;
         }
 
