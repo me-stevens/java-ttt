@@ -59,10 +59,4 @@ public class ConsoleUITest {
         ui.printGameOverMessage();
         assertEquals(ConsoleUI.GAMEOVER, spyConsole.printedMessage());
     }
-
-    @Test
-    public void repeatsUntilInputIsRight() {
-        spyConsole.setInputs("a", "20", "1");
-        assertEquals("1", ui.checkUserInput("[1-9]"));
-    }
 }

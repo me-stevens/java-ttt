@@ -1,5 +1,4 @@
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,21 +6,45 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
+    private ConsoleUI gameUI;
+    private SpyConsole spy;
+    private int size;
 
     @Before
     public void setUp() {
-        game = new Game();
+        size   = 3;
+        spy    = new SpyConsole();
+        gameUI = new ConsoleUI(spy);
+        game   = new Game(new Board(size), gameUI);
+    }
+
+    @Test
+    public void repeatsUntilCellIsNumber() {
+        spy.setInputs("a", "20", "1");
+        assertEquals("1", game.returnValidCellIndex());
+        assertEquals(3, spy.timesReadWasCalled());
+    }
+
+    @Test
+    public void repeatsUntilEmptyCellIndex() {
+        game.getBoard().setCell(0, 0, "X");
+        spy.setInputs("1", "2");
+        assertEquals("2", game.returnEmptyCellIndex("1"));
+        assertEquals(2, spy.timesReadWasCalled());
+    }
+
+
+    @Test
+    public void humanTurnReturnsRightIndex() {
+        spy.setInputs("a", "20", "1", "2");
+        game.getBoard().setCell(0, 0, "X");
+        assertEquals(2, game.humanTurn());
+        assertEquals(4, spy.timesReadWasCalled());
     }
 
     @Test
     public void convertsStringIntoNumber() {
         assertEquals(1, game.stringToNumber("1"));
-    }
-
-    @Test
-    }
-
-    @Test
     }
 
     @Test
@@ -38,22 +61,25 @@ public class GameTest {
 
     @Test
     public void turnReturnsTrueIfNotWinOrFull() {
+        spy.setInput("1");
         assertTrue(game.nextTurn());
     }
 
     @Test
-    public void turnReturnsFalseIfWinOrFull() {
-        game.updateBoard(0, 0, "X");
-        game.updateBoard(0, 1, "X");
-        game.updateBoard(0, 2, "X");
+    public void turnReturnsFalseIfWin() {
+        spy.setInputs("1", "2", "3");
+        game.nextTurn();
+        game.nextTurn();
         assertFalse(game.nextTurn());
+    }
 
-        game.updateBoard(1, 0, "X");
-        game.updateBoard(1, 1, "X");
-        game.updateBoard(1, 2, "X");
-        game.updateBoard(2, 0, "X");
-        game.updateBoard(2, 1, "X");
-        game.updateBoard(2, 2, "X");
+    @Test
+    public void turnReturnsFalseIfFull() {
+        spy.setInputs("1", "2", "3", "4", "5", "6", "7", "8", "9");
+        for (int i = 1; i < size*size; i++) {
+            game.nextTurn();
+        }
+
         assertFalse(game.nextTurn());
     }
 }

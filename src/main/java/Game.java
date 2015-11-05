@@ -1,7 +1,12 @@
 public class Game {
 
-    private Board board      = new Board(3);
-    private ConsoleUI gameUI = new ConsoleUI(new GameConsole(System.in, System.out));
+    private Board board;
+    private ConsoleUI gameUI;
+
+    public Game(Board board, ConsoleUI gameUI) {
+        this.board  = board;
+        this.gameUI = gameUI;
+    }
 
     public Board getBoard() {
         return board;
@@ -10,8 +15,7 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        int index = 1;
-        //int index = stringToNumber(humanTurn());
+        int index = humanTurn();
 
         updateBoard(index, getMark(true));
 
@@ -23,12 +27,37 @@ public class Game {
         return true;
     }
 
+    public int humanTurn() {
+        String cellIndex = "";
+
+        cellIndex = returnValidCellIndex();
+        cellIndex = returnEmptyCellIndex(cellIndex);
+
+        return stringToNumber(cellIndex);
+    }
+
+    public String returnValidCellIndex() {
+        String cellIndex = "";
+        String regex     = "[1-" + board.getSize()*board.getSize() + "]";
+
+        do {
+            cellIndex = gameUI.getInput();
+        } while ( !cellIndex.matches(regex) );
+
+        return cellIndex;
+    }
+
+    public String returnEmptyCellIndex(String cellIndex) {
+
+        while ( board.isCellBusy(stringToNumber(cellIndex) ) ) {
+            cellIndex = gameUI.getInput();
+        }
+
+        return cellIndex;
+    }
+
     public int stringToNumber(String cellIndex) {
         return Integer.parseInt(cellIndex);
-    }
-
-    }
-
     }
 
     public String getMark(boolean first) {

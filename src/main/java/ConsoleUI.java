@@ -41,15 +41,4 @@ public class ConsoleUI {
     public void printGameOverMessage() {
         print(GAMEOVER);
     }
-
-
-    public String checkUserInput(String regex) {
-        String cellNumber = "";
-
-        while( !cellNumber.matches(regex) ) {
-            cellNumber = getInput();
-        }
-
-        return cellNumber;
-    }
 }
