@@ -1,4 +1,4 @@
-public class SpyConsole {
+public class SpyConsole implements Console {
 
     private boolean wasReadMethodCalled  = false;
     private boolean wasWriteMethodCalled = false;

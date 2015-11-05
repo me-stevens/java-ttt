@@ -2,9 +2,9 @@ public class ConsoleUI {
 
     private static final String PROMPT   = "Choose a cell to put your mark";
     public static final String GAMEOVER  = "GAME OVER";
-    private SpyConsole console;
+    private Console console;
 
-    public ConsoleUI(SpyConsole console) {
+    public ConsoleUI(Console console) {
         this.console = console;
     }
 
