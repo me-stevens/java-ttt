@@ -7,6 +7,12 @@ public class Game {
         return board;
     }
 
+    public boolean nextTurn() {
+        if (board.hasWinner(getMark(true)) || board.isFull() ) {
+            return false;
+        }
+
+        return true;
     }
 
     public int stringToNumber(String cellIndex) {
