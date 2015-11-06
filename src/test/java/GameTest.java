@@ -76,7 +76,7 @@ public class GameTest {
 
     @Test
     public void turnReturnsFalseIfFull() {
-        spy.setInputs("1", "2", "3", "4", "5", "6", "7", "8", "9");
+        spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
         for (int i = 1; i < size*size; i++) {
             game.nextTurn();
         }

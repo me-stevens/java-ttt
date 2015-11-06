@@ -25,9 +25,7 @@ public class Game {
 
     public boolean nextTurn() {
         gameUI.printBoard(board);
-
         int index = humanTurn();
-
         updateBoard(index, getMark(first));
 
         return updateGameStatus();
