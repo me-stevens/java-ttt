@@ -14,25 +14,25 @@ public class ConsoleUI {
         console.write(message);
     }
 
-    public void printBoard(Board board) {
-        int cellIndex = 0;
+    public String printBoard(Board board) {
+        int cellIndex   = 0;
+        String boardStr = "";
 
         for (String[] row : board.copy()) {
             for (String cell : row) {
                 cellIndex++;
-                printCell(cellIndex, cell);
+                boardStr += makeCell(cellIndex, cell);
             }
-            print("\n");
+
+            boardStr += "\n";
         }
+
+        print(boardStr);
+        return boardStr;
     }
 
-    private void printCell(int cellIndex, String cell) {
-        if (cell.equals("")) {
-            print(cellIndex + " ");
-        }
-        else {
-            print(cell + " ");
-        }
+    private String makeCell(int cellIndex, String cell) {
+        return (cell.equals("")) ? cellIndex + " " : cell + " ";
     }
 
     public String getInput() {
