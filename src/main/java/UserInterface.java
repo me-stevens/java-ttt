@@ -37,13 +37,13 @@ public class UserInterface {
         return (cell.equals("")) ? cellIndex + " " : cell + " ";
     }
 
-    public String getInput(String playerName) {
-        print(playerName + ": " + PROMPT);
-        return console.read();
-    }
-
     public void printWelcomeMessage() {
         print(WELCOME);
+    }
+
+    public String getInput() {
+        print(PROMPT);
+        return console.read();
     }
 
     public void printNotValidCellMessage() {
