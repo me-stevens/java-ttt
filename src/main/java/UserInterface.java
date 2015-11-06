@@ -1,4 +1,4 @@
-public class ConsoleUI {
+public class UserInterface {
 
     private static final String PROMPT       = "Choose a cell to put your mark: ";
     private static final String NOTVALIDCELL = "Please enter a valid cell number: ";
@@ -6,7 +6,7 @@ public class ConsoleUI {
     private static final String GAMEOVER     = "GAME OVER\n";
     private Console console;
 
-    public ConsoleUI(Console console) {
+    public UserInterface(Console console) {
         this.console = console;
     }
 

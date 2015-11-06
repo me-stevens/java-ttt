@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
-    private ConsoleUI gameUI;
+    private UserInterface gameUI;
     private SpyConsole spy;
     private int size;
 
@@ -14,7 +14,7 @@ public class GameTest {
     public void setUp() {
         size   = 3;
         spy    = new SpyConsole();
-        gameUI = new ConsoleUI(spy);
+        gameUI = new UserInterface(spy);
         game   = new Game(new Board(size), gameUI);
     }
 

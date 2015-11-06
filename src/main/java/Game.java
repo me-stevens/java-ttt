@@ -1,10 +1,10 @@
 public class Game {
 
     private Board board;
-    private ConsoleUI gameUI;
+    private UserInterface gameUI;
     private boolean first;
 
-    public Game(Board board, ConsoleUI gameUI) {
+    public Game(Board board, UserInterface gameUI) {
         this.board  = board;
         this.gameUI = gameUI;
         first       = true;

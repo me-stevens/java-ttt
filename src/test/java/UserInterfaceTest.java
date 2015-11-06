@@ -4,16 +4,17 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ConsoleUITest {
+public class UserInterfaceTest {
 
     private SpyConsole spyConsole;
-    private ConsoleUI ui;
+    private UserInterface ui;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         spyConsole = new SpyConsole();
-        ui = new ConsoleUI(spyConsole);
+        ui = new UserInterface(spyConsole);
     }
+
     @Test
     public void anyMessageIsPrinted() {
         ui.print("hi");
