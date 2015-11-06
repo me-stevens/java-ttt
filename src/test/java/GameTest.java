@@ -42,12 +42,6 @@ public class GameTest {
     }
 
     @Test
-    public void buildsTheRightRegex() {
-        assertEquals("[1-9]",      game.buildRegex(3*3));
-        assertEquals("[0-1][0-6]", game.buildRegex(4*4));
-    }
-
-    @Test
     public void convertsStringIntoNumber() {
         assertEquals(1, game.stringToNumber("1"));
     }

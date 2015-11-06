@@ -52,10 +52,10 @@ public class Game {
     }
 
     public String returnValidCellIndex() {
-        String cellIndex = gameUI.getInput();
-        String regex     = buildRegex(board.getSize()*board.getSize());
+        String cellIndex      = gameUI.getInput();
+        String validCellIndex = "[1-9]";
 
-        while ( !cellIndex.matches(regex) ) {
+        while ( !cellIndex.matches(validCellIndex) ) {
              gameUI.printNotValidCellMessage();
              cellIndex = gameUI.getInput();
         }
@@ -70,12 +70,6 @@ public class Game {
         }
 
         return cellIndex;
-    }
-
-    public String buildRegex(int size) {
-        return (size < 10) ?
-                "[1-" + size + "]" :
-                "[0-" + (size/10) + "][0-" + (size%10) + "]";
     }
 
     public int stringToNumber(String cellIndex) {
