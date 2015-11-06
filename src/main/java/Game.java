@@ -57,6 +57,12 @@ public class Game {
         return cellIndex;
     }
 
+    public String buildRegex(int size) {
+        return (size < 10) ?
+                "[1-" + size + "]" :
+                "[0-" + (size/10) + "][0-" + (size%10) + "]";
+    }
+
     public int stringToNumber(String cellIndex) {
         return Integer.parseInt(cellIndex);
     }
