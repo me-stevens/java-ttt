@@ -22,14 +22,12 @@ public class Game {
         updateBoard(index, getMark(first));
 
         if (board.hasWinner(getMark(first)) || board.isFull() ) {
+            gameUI.printBoard(board);
             gameUI.printGameOverMessage();
             return false;
         }
 
-        else {
-            first = !first;
-        }
-
+        first = !first;
         return true;
     }
 
@@ -40,19 +38,18 @@ public class Game {
 
     public String returnValidCellIndex() {
         String cellIndex = gameUI.getInput();
-        String regex     = "[1-" + board.getSize()*board.getSize() + "]";
+        String regex     = buildRegex(board.getSize()*board.getSize());
 
-         while ( !cellIndex.matches(regex) ) {
+        while ( !cellIndex.matches(regex) ) {
              gameUI.printNotValidCellMessage();
              cellIndex = gameUI.getInput();
-         }
+        }
 
         return cellIndex;
     }
 
     public String returnEmptyCellIndex(String cellIndex) {
-
-        while ( board.isCellBusy(stringToNumber(cellIndex) ) ) {
+        while ( board.isCellBusy(stringToNumber(cellIndex)) ) {
             gameUI.printCellIsBusyMessage();
             cellIndex = gameUI.getInput();
         }
