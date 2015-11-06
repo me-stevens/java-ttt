@@ -14,10 +14,17 @@ public class Game {
         return board;
     }
 
+    public void run() {
+        do {
+            board.reset();
+            start();
+        } while(gameUI.replay().equals("y"));
+    }
+
     public void start() {
         gameUI.printWelcomeMessage();
-        boolean play = true;
 
+        boolean play = true;
         while (play) {
             play = nextTurn();
         }

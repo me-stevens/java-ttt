@@ -54,4 +54,11 @@ public class UserInterfaceTest {
         assertEquals("hi", ui.getInput());
         assertTrue(spyConsole.readMethodWasCalled());
     }
+
+    @Test
+    public void readsReplayAnswer() {
+        spyConsole.setInput("y");
+        assertEquals("y", ui.replay());
+        assertTrue(spyConsole.readMethodWasCalled());
+    }
 }

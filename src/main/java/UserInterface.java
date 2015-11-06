@@ -5,6 +5,7 @@ public class UserInterface {
     private static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
     private static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
     public  static final String GAMEOVER     = "\nGAME OVER\n";
+    public  static final String REPLAY       = "\nReplay? ";
 
     private Console console;
 
@@ -56,5 +57,10 @@ public class UserInterface {
 
     public void printGameOverMessage() {
         print(GAMEOVER);
+    }
+
+    public String replay() {
+        print(REPLAY);
+        return console.read();
     }
 }

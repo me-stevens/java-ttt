@@ -107,4 +107,11 @@ public class GameTest {
         game.start();
         assertEquals(gameUI.GAMEOVER, spy.lastPrintedMessage());
     }
+
+    @Test
+    public void replaysGameUntilNo() {
+        spy.setInputs("1", "4", "2", "5", "3", "y", "1", "4", "2", "5", "3", "n");
+        game.run();
+        assertEquals(gameUI.REPLAY, spy.lastPrintedMessage());
+    }
 }
