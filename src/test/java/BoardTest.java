@@ -49,8 +49,6 @@ public class BoardTest {
         assertEquals(size, board.getSize());
     }
 
-    //--------------------------------
-
     @Test
     public void checksForFullBoard() {
         assertFalse(board.isFull());
@@ -62,61 +60,6 @@ public class BoardTest {
         }
 
         assertTrue(board.isFull());
-    }
-
-    @Test
-    public void checksWinnerInRow() {
-        assertFalse(board.checkWinnerInRow(1, "X"));
-
-        for (int j = 0; j < size; j++) {
-            board.setCell(1, j, "X");
-        }
-
-        assertTrue(board.checkWinnerInRow(1, "X"));
-    }
-
-    @Test
-    public void checksWinnerInColumn() {
-        assertFalse(board.checkWinnerInColumn(1, "X"));
-
-        for (int i = 0; i < size; i++) {
-            board.setCell(i, 1, "X");
-        }
-
-        assertTrue(board.checkWinnerInColumn(1, "X"));
-    }
-
-    @Test
-    public void checksWinnerInDiagonal() {
-        assertFalse(board.checkWinnerInDiagonal("X"));
-
-        for (int i = 0, j = 0; i < size && j < size; i++, j++) {
-            board.setCell(i, j, "X");
-        }
-
-        assertTrue(board.checkWinnerInDiagonal("X"));
-    }
-
-    @Test
-    public void checksWinnerInAntiDiagonal() {
-        assertFalse(board.checkWinnerInAntiDiagonal("X"));
-
-        for (int i = 0, j = size-1; i < size && j >= 0; i++, j--) {
-            board.setCell(i, j, "X");
-        }
-
-        assertTrue(board.checkWinnerInAntiDiagonal("X"));
-    }
-
-    @Test
-    public void checksWinner() {
-        assertFalse(board.hasWinner("X"));
-
-        for (int i = 0; i < size; i++) {
-            board.setCell(i, 1, "X");
-        }
-
-        assertTrue(board.hasWinner("X"));
     }
 
     @Test

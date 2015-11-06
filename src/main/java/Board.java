@@ -45,7 +45,6 @@ public class Board {
         }
     }
 
-    //---------------------------------
     public boolean isFull() {
         return numberOfEmpties() == 0;
     }
@@ -62,63 +61,6 @@ public class Board {
         }
 
         return empties;
-    }
-
-    public boolean checkWinnerInRow(int row, String mark) {
-        for (int j = 0; j < SIZE; j++) {
-            if ( !board[row][j].equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInColumn(int col, String mark) {
-        for (int i = 0; i < SIZE; i++) {
-            if ( !board[i][col].equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInDiagonal(String mark) {
-        for (int i = 0, j = 0; i < SIZE && j < SIZE; i++, j++) {
-            if ( !board[i][j].equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInAntiDiagonal(String mark) {
-        for (int i = 0, j = SIZE-1; i < SIZE && j >= 0; i++, j--) {
-            if ( !board[i][j].equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean hasWinner(String mark) {
-
-        for (int i = 0; i < SIZE; i++) {
-            if (checkWinnerInRow(i, mark)) {
-                return true;
-            }
-        }
-
-        for (int i = 0; i < SIZE; i++) {
-            if (checkWinnerInColumn(i, mark)) {
-                return true;
-            }
-        }
-
-        return checkWinnerInDiagonal(mark) || checkWinnerInAntiDiagonal(mark);
     }
 
     public int getRowFromIndex(int index) {

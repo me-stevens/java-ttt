@@ -30,7 +30,8 @@ public class Game {
 
         updateBoard(index, getMark(first));
 
-        if (board.hasWinner(getMark(first)) || board.isFull() ) {
+        BoardChecker checker = new BoardChecker(board);
+        if (checker.hasWinner(getMark(first)) || board.isFull() ) {
             gameUI.printBoard(board);
             gameUI.printGameOverMessage();
             return false;
