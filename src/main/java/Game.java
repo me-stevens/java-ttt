@@ -2,10 +2,12 @@ public class Game {
 
     private Board board;
     private ConsoleUI gameUI;
+    private boolean first;
 
     public Game(Board board, ConsoleUI gameUI) {
         this.board  = board;
         this.gameUI = gameUI;
+        first       = true;
     }
 
     public Board getBoard() {
@@ -17,11 +19,15 @@ public class Game {
 
         int index = humanTurn();
 
-        updateBoard(index, getMark(true));
+        updateBoard(index, getMark(first));
 
-        if (board.hasWinner(getMark(true)) || board.isFull() ) {
+        if (board.hasWinner(getMark(first)) || board.isFull() ) {
             gameUI.printGameOverMessage();
             return false;
+        }
+
+        else {
+            first = !first;
         }
 
         return true;
