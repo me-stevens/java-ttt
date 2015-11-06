@@ -93,4 +93,18 @@ public class GameTest {
 
         assertEquals("X O X \n4 5 6 \n7 8 9 \n", gameUI.printBoard(game.getBoard()));
     }
+
+    @Test
+    public void startsAndEndsTheGameIfWin() {
+        spy.setInputs("1", "4", "2", "5", "3");
+        game.start();
+        assertEquals(gameUI.GAMEOVER, spy.lastPrintedMessage());
+    }
+
+    @Test
+    public void startsAndEndsTheGameIfFull() {
+        spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
+        game.start();
+        assertEquals(gameUI.GAMEOVER, spy.lastPrintedMessage());
+    }
 }
