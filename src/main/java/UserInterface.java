@@ -1,9 +1,10 @@
 public class UserInterface {
 
-    private static final String PROMPT       = "Choose a cell to put your mark: ";
-    private static final String NOTVALIDCELL = "Please enter a valid cell number: ";
-    private static final String CELLISBUSY   = "Please enter an empty cell number: ";
-    private static final String GAMEOVER     = "GAME OVER\n";
+    private static final String PROMPT       = "\nChoose a cell to put your mark: ";
+    private static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
+    private static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
+    private static final String GAMEOVER     = "\nGAME OVER\n";
+
     private Console console;
 
     public UserInterface(Console console) {
