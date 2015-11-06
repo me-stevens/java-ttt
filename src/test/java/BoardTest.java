@@ -15,22 +15,12 @@ public class BoardTest {
     }
 
     @Test
-    public void getsCellContent() {
-        board.setCell(1, 1, "X");
-        assertEquals("X", board.getCell(1, 1));
-    }
-    @Test
     public void resetsBoard() {
         board.setCell(1, 1, "asdf");
         board.reset();
 
         for (String[] row: board.copy())
             assertArrayEquals(new String[]{"", "", ""}, row);
-    }
-
-    @Test
-    public void getsTheSize() {
-        assertEquals(size, board.getSize());
     }
 
     @Test
@@ -47,16 +37,6 @@ public class BoardTest {
     }
 
     @Test
-    public void checksIfCellIsBusy() {
-        assertFalse(board.isCellBusy(0, 0));
-        assertFalse(board.isCellBusy(1));
-
-        board.setCell(0, 0, "X");
-        assertTrue(board.isCellBusy(0, 0));
-        assertTrue(board.isCellBusy(1));
-    }
-
-    @Test
     public void getsRowFromCellIndex() {
         assertEquals((1 - 1) / size, board.getRowFromIndex(1));
     }
@@ -64,5 +44,15 @@ public class BoardTest {
     @Test
     public void getsColFromCellIndex() {
         assertEquals((1 - 1) % size, board.getColFromIndex(1));
+    }
+
+    @Test
+    public void checksIfCellIsBusy() {
+        assertFalse(board.isCellBusy(0, 0));
+        assertFalse(board.isCellBusy(1));
+
+        board.setCell(0, 0, "X");
+        assertTrue(board.isCellBusy(0, 0));
+        assertTrue(board.isCellBusy(1));
     }
 }

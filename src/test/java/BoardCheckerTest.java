@@ -11,7 +11,7 @@ public class BoardCheckerTest {
     private BoardChecker checker;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         size    = 3;
         board   = new Board(size);
         checker = new BoardChecker(board);
