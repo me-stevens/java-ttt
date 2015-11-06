@@ -37,8 +37,8 @@ public class UserInterface {
         return (cell.equals("")) ? cellIndex + " " : cell + " ";
     }
 
-    public String getInput() {
-        print(PROMPT);
+    public String getInput(String playerName) {
+        print(playerName + ": " + PROMPT);
         return console.read();
     }
 

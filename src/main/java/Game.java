@@ -50,12 +50,12 @@ public class Game {
     }
 
     public String returnValidCellIndex() {
-        String cellIndex      = gameUI.getInput();
+        String cellIndex      = gameUI.getInput("name");
         String validCellIndex = "[1-9]";
 
         while ( !cellIndex.matches(validCellIndex) ) {
              gameUI.printNotValidCellMessage();
-             cellIndex = gameUI.getInput();
+             cellIndex = gameUI.getInput("name");
         }
 
         return cellIndex;
@@ -64,7 +64,7 @@ public class Game {
     public String returnEmptyCellIndex(String cellIndex) {
         while ( board.isCellBusy(stringToNumber(cellIndex)) ) {
             gameUI.printCellIsBusyMessage();
-            cellIndex = gameUI.getInput();
+            cellIndex = gameUI.getInput("name");
         }
 
         return cellIndex;
