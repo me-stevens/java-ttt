@@ -9,15 +9,11 @@ public class Board {
         reset();
     }
 
-    public void setCell(int i, int j, String cellContent) throws IndexOutOfBoundsException, NullPointerException {
-        if (cellContent == null) {
-            throw new NullPointerException();
-        }
-
+    public void setCell(int i, int j, String cellContent) {
         board[i][j] = cellContent;
     }
 
-    public String getCell(int i, int j) throws IndexOutOfBoundsException {
+    public String getCell(int i, int j) {
         return board[i][j];
     }
 

@@ -14,27 +14,11 @@ public class BoardTest {
         board = new Board(size);
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
-    public void ifSetCellAtPositionBiggerThanSizeThrowsException() {
-        board.setCell(1000, 1000, "X");
-    }
-
-    @Test (expected = IndexOutOfBoundsException.class)
-    public void ifGetCellAtPositionBiggerThanSizeThrowsException() {
-        board.getCell(1000, 1000);
-    }
-
-    @Test (expected = NullPointerException.class)
-    public void ifSetCellWithNullThrowsException() {
-        board.setCell(1, 1, null);
-    }
-
     @Test
     public void getsCellContent() {
         board.setCell(1, 1, "X");
         assertEquals("X", board.getCell(1, 1));
     }
-
     @Test
     public void resetsBoard() {
         board.setCell(1, 1, "asdf");
