@@ -33,7 +33,6 @@ public class GameTest {
         assertEquals(2, spy.timesReadWasCalled());
     }
 
-
     @Test
     public void humanTurnReturnsRightIndex() {
         spy.setInputs("a", "20", "1", "2");

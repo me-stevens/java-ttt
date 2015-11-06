@@ -14,6 +14,15 @@ public class Game {
         return board;
     }
 
+    public void start() {
+        gameUI.printWelcomeMessage();
+        boolean play = true;
+
+        while (play) {
+            play = nextTurn();
+        }
+    }
+
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
