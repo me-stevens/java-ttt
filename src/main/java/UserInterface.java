@@ -22,7 +22,7 @@ public class UserInterface {
         for (String[] row : board.copy()) {
             for (String cell : row) {
                 cellIndex++;
-                boardStr += makeCell(cellIndex, cell);
+                boardStr += formatCell(cellIndex, cell);
             }
 
             boardStr += "\n";
@@ -32,7 +32,7 @@ public class UserInterface {
         return boardStr;
     }
 
-    private String makeCell(int cellIndex, String cell) {
+    private String formatCell(int cellIndex, String cell) {
         return (cell.equals("")) ? cellIndex + " " : cell + " ";
     }
 
