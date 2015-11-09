@@ -19,26 +19,6 @@ public class UserInterfaceTest {
     public void anyMessageIsPrinted() {
         ui.print("hi");
         assertEquals("hi", spyConsole.printedMessage());
-        assertTrue(spyConsole.writeMethodWasCalled());
-    }
-
-    @Test
-    public void printsBoard1x1() {
-        Board board = new Board(1);
-        board.setCell(0, 0, "X");
-        ui.printBoard(board);
-        assertEquals("X \n", spyConsole.printedMessage());
-    }
-
-    @Test
-    public void printsBoard2x2() {
-        Board board = new Board(2);
-        board.setCell(0, 0, "X");
-        board.setCell(0, 1, "X");
-        board.setCell(1, 0, "X");
-        board.setCell(1, 1, "X");
-        ui.printBoard(board);
-        assertEquals("X X \nX X \n", spyConsole.printedMessage());
     }
 
     @Test
@@ -49,10 +29,24 @@ public class UserInterfaceTest {
     }
 
     @Test
+    public void promptsTheUserForInput() {
+        spyConsole.setInput("");
+        ui.getInput();
+        assertEquals(ui.PROMPT, spyConsole.lastPrintedMessage());
+    }
+
+    @Test
     public void readsUserInput() {
         spyConsole.setInput("hi");
         assertEquals("hi", ui.getInput());
         assertTrue(spyConsole.readMethodWasCalled());
+    }
+
+    @Test
+    public void printsReplayMessage() {
+        spyConsole.setInput("");
+        ui.replay();
+        assertEquals(ui.REPLAY, spyConsole.lastPrintedMessage());
     }
 
     @Test
