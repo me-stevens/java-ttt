@@ -1,11 +1,11 @@
 public class UserInterface {
 
-    private static final String WELCOME      = "\n --- WELCOME ---\n";
-    private static final String PROMPT       = "\nChoose a cell to put your mark: ";
-    private static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
-    private static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
-    public  static final String GAMEOVER     = "\nGAME OVER\n";
-    public  static final String REPLAY       = "\nReplay? ";
+    public static final String WELCOME      = "\n --- WELCOME ---\n";
+    public static final String PROMPT       = "\nChoose a cell to put your mark: ";
+    public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
+    public static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
+    public static final String GAMEOVER     = "\nGAME OVER\n";
+    public static final String REPLAY       = "\nReplay? ";
 
     private Console console;
 

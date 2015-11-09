@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
-    private UserInterface gameUI;
     private SpyConsole spy;
     private int size;
 
@@ -14,8 +13,7 @@ public class GameTest {
     public void setUp() {
         size   = 3;
         spy    = new SpyConsole();
-        gameUI = new UserInterface(spy);
-        game   = new Game(new Board(size), gameUI);
+        game   = new Game(new Board(size), new UserInterface(spy));
     }
 
     @Test
@@ -88,20 +86,21 @@ public class GameTest {
     public void startsAndEndsTheGameIfWin() {
         spy.setInputs("1", "4", "2", "5", "3");
         game.start();
-        assertEquals(gameUI.GAMEOVER, spy.lastPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void startsAndEndsTheGameIfFull() {
         spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
         game.start();
-        assertEquals(gameUI.GAMEOVER, spy.lastPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void replaysGameUntilNo() {
         spy.setInputs("1", "4", "2", "5", "3", "y", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertEquals(gameUI.REPLAY, spy.lastPrintedMessage());
+        assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
+    }
     }
 }
