@@ -21,7 +21,7 @@ public class UserInterface {
         int cellIndex   = 0;
         String boardStr = "";
 
-        for (String[] row : board.copy()) {
+        for (String[] row : board.getContents()) {
             for (String cell : row) {
                 cellIndex++;
                 boardStr += formatCell(cellIndex, cell);

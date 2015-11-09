@@ -21,7 +21,7 @@ public class Board {
         return SIZE;
     }
 
-    public String[][] copy() {
+    public String[][] getContents() {
         String[][] copy = new String[SIZE][SIZE];
 
         for(int row=0; row<SIZE; row++) {

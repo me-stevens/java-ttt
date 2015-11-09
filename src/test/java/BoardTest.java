@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -9,14 +11,14 @@ public class BoardTest {
     private Board board;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         size  = 3;
         board = new Board(size);
     }
 
     @Test
     public void resetsBoard() {
-        board.setCell(1, "asdf");
+        board.setCell(1, "hi");
         board.reset();
 
         for (int index = 1; index <= size*size; index++) {
@@ -32,7 +34,7 @@ public class BoardTest {
     @Test
     public void checksThatBoardIsFull() {
         for (int index = 1; index <= size*size; index++) {
-            board.setCell(index, "X");
+            board.setCell(index, "hi");
         }
 
         assertTrue(board.isFull());
@@ -60,7 +62,21 @@ public class BoardTest {
 
     @Test
     public void checksIfCellIsBusy() {
-        board.setCell(1, "X");
+        board.setCell(1, "hi");
         assertTrue(board.isCellBusy(1));
+    }
+
+    @Test
+    public void getsTheContentsOfTheBoard() {
+        String[][] expected = new String[size][size];
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                expected[row][col] = "";
+            }
+        }
+
+        expected[0][0] = "hi";
+        board.setCell(1, "hi");
+        assertTrue( Arrays.deepEquals(expected, board.getContents()) );
     }
 }
