@@ -47,12 +47,6 @@ public class GameTest {
     }
 
     @Test
-    public void getsMark() {
-        assertEquals("X", game.getMark(true));
-        assertEquals("O", game.getMark(false));
-    }
-
-    @Test
     public void updatesBoard() {
         game.updateBoard(1, "X");
         assertEquals("X", game.getBoard().getCell(1));

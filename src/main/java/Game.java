@@ -2,12 +2,12 @@ public class Game {
 
     private Board board;
     private UserInterface gameUI;
-    private boolean first;
+    private String currentPlayer;
 
     public Game(Board board, UserInterface gameUI) {
-        this.board  = board;
-        this.gameUI = gameUI;
-        first       = true;
+        this.board    = board;
+        this.gameUI   = gameUI;
+        currentPlayer = "X";
     }
 
     public Board getBoard() {
@@ -33,7 +33,7 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
         int index = humanTurn();
-        updateBoard(index, getMark(first));
+        updateBoard(index, currentPlayer);
 
         return updateGameStatus();
     }
@@ -41,13 +41,13 @@ public class Game {
     private boolean updateGameStatus() {
         BoardChecker checker = new BoardChecker(board);
 
-        if (checker.hasWinner(getMark(first)) || board.isFull() ) {
+        if (checker.hasWinner(currentPlayer) || board.isFull() ) {
             gameUI.printBoard(board);
             gameUI.printGameOverMessage();
             return false;
         }
 
-        first = !first;
+        currentPlayer = (currentPlayer == "X") ? "O" : "X";
         return true;
     }
 
@@ -79,10 +79,6 @@ public class Game {
 
     public int stringToNumber(String cellIndex) {
         return Integer.parseInt(cellIndex);
-    }
-
-    public String getMark(boolean first) {
-        return first ? "X" : "O";
     }
 
     public void updateBoard(int index, String mark) {
