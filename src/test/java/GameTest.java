@@ -53,9 +53,7 @@ public class GameTest {
     @Test
     public void turnReturnsFalseIfWin() {
         spy.setInputs("1", "4", "2", "5", "3");
-        for (int i = 0; i < 4; i++) {
-            game.nextTurn();
-        }
+        playTurns(4);
 
         assertFalse(game.nextTurn());
     }
@@ -63,9 +61,7 @@ public class GameTest {
     @Test
     public void turnReturnsFalseIfFull() {
         spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
-        for (int i = 1; i < size*size; i++) {
-            game.nextTurn();
-        }
+        playTurns(size*size - 1);
 
         assertFalse(game.nextTurn());
     }
@@ -73,9 +69,7 @@ public class GameTest {
     @Test
     public void markIsSwappedInEveryTurn() {
         spy.setInputs("1", "2", "3");
-        for (int i = 0; i < 3; i++) {
-            game.nextTurn();
-        }
+        playTurns(3);
 
         assertEquals("X", game.getBoard().getCell(1));
         assertEquals("O", game.getBoard().getCell(2));
@@ -102,5 +96,10 @@ public class GameTest {
         game.run();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
+
+    private void playTurns(int times) {
+        for (int i = 0; i < times; i++) {
+            game.nextTurn();
+        }
     }
 }
