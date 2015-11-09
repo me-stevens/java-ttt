@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -45,6 +47,22 @@ public class GameTest {
     }
 
     @Test
+    public void printsTheBoardInEveryTurn() {
+        spy.setInputs("1");
+        game.nextTurn();
+        assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n" + UserInterface.PROMPT, spy.printedMessage());
+    }
+
+    @Test
+    public void updatesTheBoardInEveryTurn() {
+        String[][] old = game.getBoard().getContents();
+        spy.setInput("1");
+        game.nextTurn();
+
+        assertFalse(Arrays.deepEquals(old, game.getBoard().getContents()));
+    }
+
+    @Test
     public void turnReturnsTrueIfNotWinOrFull() {
         spy.setInput("1");
         assertTrue(game.nextTurn());
@@ -74,6 +92,13 @@ public class GameTest {
         assertEquals("X", game.getBoard().getCell(1));
         assertEquals("O", game.getBoard().getCell(2));
         assertEquals("X", game.getBoard().getCell(3));
+    }
+
+    @Test
+    public void startPrintsWelcomeMessage() {
+        spy.setInputs("1", "4", "2", "5", "3");
+        game.start();
+        assertEquals(UserInterface.WELCOME, spy.firstPrintedMessage());
     }
 
     @Test

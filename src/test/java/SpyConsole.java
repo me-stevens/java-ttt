@@ -7,9 +7,11 @@ public class SpyConsole implements Console {
     private boolean wasReadMethodCalled  = false;
     private boolean wasWriteMethodCalled = false;
     private String printedMessage        = "";
+    private String firstPrintedMessage   = "";
     private String lastPrintedMessage    = "";
     private List<String> inputMessages   = new ArrayList<String>();
     private int timesReadWasCalled       = 0;
+    private int timesWriteWasCalled      = 0;
 
     public void setInput(String message) {
         inputMessages.add(message);
@@ -31,8 +33,14 @@ public class SpyConsole implements Console {
 
     public void write(String message) {
         wasWriteMethodCalled = true;
+        timesWriteWasCalled++;
+
         printedMessage      += message;
         lastPrintedMessage   = message;
+
+        if (timesWriteWasCalled == 1) {
+            firstPrintedMessage = message;
+        }
     }
 
     public boolean writeMethodWasCalled() {
@@ -45,6 +53,10 @@ public class SpyConsole implements Console {
 
     public int timesReadWasCalled() {
         return timesReadWasCalled;
+    }
+
+    public String firstPrintedMessage() {
+        return firstPrintedMessage;
     }
 
     public String lastPrintedMessage() {
