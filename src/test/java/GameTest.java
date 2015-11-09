@@ -85,7 +85,9 @@ public class GameTest {
             game.nextTurn();
         }
 
-        assertEquals("X O X \n4 5 6 \n7 8 9 \n", gameUI.printBoard(game.getBoard()));
+        assertEquals("X", game.getBoard().getCell(1));
+        assertEquals("O", game.getBoard().getCell(2));
+        assertEquals("X", game.getBoard().getCell(3));
     }
 
     @Test

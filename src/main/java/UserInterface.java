@@ -17,21 +17,17 @@ public class UserInterface {
         console.write(message);
     }
 
-    public String printBoard(Board board) {
-        int cellIndex   = 0;
-        String boardStr = "";
+    public void printBoard(Board board) {
+        int cellIndex = 0;
 
         for (String[] row : board.getContents()) {
             for (String cell : row) {
                 cellIndex++;
-                boardStr += formatCell(cellIndex, cell);
+                print(formatCell(cellIndex, cell));
             }
 
-            boardStr += "\n";
+            print("\n");
         }
-
-        print(boardStr);
-        return boardStr;
     }
 
     private String formatCell(int cellIndex, String cell) {
