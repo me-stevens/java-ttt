@@ -33,7 +33,7 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
         int index = humanTurn();
-        updateBoard(index, currentPlayer);
+        board.setCell(index, currentPlayer);
 
         return updateGameStatus();
     }
@@ -79,9 +79,5 @@ public class Game {
 
     public int stringToNumber(String cellIndex) {
         return Integer.parseInt(cellIndex);
-    }
-
-    public void updateBoard(int index, String mark) {
-        board.setCell(index, mark);
     }
 }

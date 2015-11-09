@@ -47,12 +47,6 @@ public class GameTest {
     }
 
     @Test
-    public void updatesBoard() {
-        game.updateBoard(1, "X");
-        assertEquals("X", game.getBoard().getCell(1));
-    }
-
-    @Test
     public void turnReturnsTrueIfNotWinOrFull() {
         spy.setInput("1");
         assertTrue(game.nextTurn());
