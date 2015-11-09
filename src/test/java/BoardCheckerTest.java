@@ -18,55 +18,42 @@ public class BoardCheckerTest {
     }
 
     @Test
-    public void checksWinnerInRow() {
-        assertFalse(checker.checkWinnerInRow(1, "X"));
+    public void thereIsNoWinnerIfEmptyBoard() {
+        assertFalse(checker.hasWinner("X"));
+        assertFalse(checker.hasWinner("O"));
+    }
 
-        for (int j = 0; j < size; j++) {
-            board.setCell(1, j, "X");
+    @Test
+    public void checksWinnerInRow() {
+        for (int col = 0; col < size; col++) {
+            board.setCell(board.getIndexFromCoords(0, col), "X");
         }
 
-        assertTrue(checker.checkWinnerInRow(1, "X"));
+        assertTrue(checker.hasWinner("X"));
     }
 
     @Test
     public void checksWinnerInColumn() {
-        assertFalse(checker.checkWinnerInColumn(1, "X"));
-
-        for (int i = 0; i < size; i++) {
-            board.setCell(i, 1, "X");
+        for (int row = 0; row < size; row++) {
+            board.setCell(board.getIndexFromCoords(row, 0), "X");
         }
 
-        assertTrue(checker.checkWinnerInColumn(1, "X"));
+        assertTrue(checker.hasWinner("X"));
     }
 
     @Test
     public void checksWinnerInDiagonal() {
-        assertFalse(checker.checkWinnerInDiagonal("X"));
-
-        for (int i = 0, j = 0; i < size && j < size; i++, j++) {
-            board.setCell(i, j, "X");
+        for (int row = 0, col = 0; row < size && col < size; row++, col++) {
+            board.setCell(board.getIndexFromCoords(row, col), "X");
         }
 
-        assertTrue(checker.checkWinnerInDiagonal("X"));
+        assertTrue(checker.hasWinner("X"));
     }
 
     @Test
     public void checksWinnerInAntiDiagonal() {
-        assertFalse(checker.checkWinnerInAntiDiagonal("X"));
-
-        for (int i = 0, j = size-1; i < size && j >= 0; i++, j--) {
-            board.setCell(i, j, "X");
-        }
-
-        assertTrue(checker.checkWinnerInAntiDiagonal("X"));
-    }
-
-    @Test
-    public void checksWinner() {
-        assertFalse(checker.hasWinner("X"));
-
-        for (int i = 0; i < size; i++) {
-            board.setCell(i, 1, "X");
+        for (int row = 0, col = size-1; row < size && col >= 0; row++, col--) {
+            board.setCell(board.getIndexFromCoords(row, col), "X");
         }
 
         assertTrue(checker.hasWinner("X"));

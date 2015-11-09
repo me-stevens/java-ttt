@@ -8,60 +8,64 @@ public class BoardChecker {
         size       = board.getSize();
     }
 
-    public boolean checkWinnerInRow(int row, String mark) {
-        for (int j = 0; j < size; j++) {
-            if ( !board.getCell(row, j).equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInColumn(int col, String mark) {
-        for (int i = 0; i < size; i++) {
-            if ( !board.getCell(i, col).equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInDiagonal(String mark) {
-        for (int i = 0, j = 0; i < size && j < size; i++, j++) {
-            if ( !board.getCell(i, j).equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkWinnerInAntiDiagonal(String mark) {
-        for (int i = 0, j = size-1; i < size && j >= 0; i++, j--) {
-            if ( !board.getCell(i, j).equals(mark) ) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public boolean hasWinner(String mark) {
 
-        for (int i = 0; i < size; i++) {
-            if (checkWinnerInRow(i, mark)) {
+        for (int row = 0; row < size; row++) {
+            if (checkWinnerInRow(row, mark)) {
                 return true;
             }
         }
 
-        for (int i = 0; i < size; i++) {
-            if (checkWinnerInColumn(i, mark)) {
+        for (int col = 0; col < size; col++) {
+            if (checkWinnerInColumn(col, mark)) {
                 return true;
             }
         }
 
         return checkWinnerInDiagonal(mark) || checkWinnerInAntiDiagonal(mark);
+    }
+
+    private boolean checkWinnerInRow(int row, String mark) {
+        for (int col = 0; col < size; col++) {
+            if (cellIsNotMark(row, col, mark)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean checkWinnerInColumn(int col, String mark) {
+        for (int row = 0; row < size; row++) {
+            if (cellIsNotMark(row, col, mark)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean checkWinnerInDiagonal(String mark) {
+        for (int row = 0, col = 0; row < size && col < size; row++, col++) {
+            if (cellIsNotMark(row, col, mark)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean checkWinnerInAntiDiagonal(String mark) {
+        for (int row = 0, col = size-1; row < size && col >= 0; row++, col--) {
+            if (cellIsNotMark(row, col, mark)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean cellIsNotMark(int row, int col, String mark) {
+        return !board.getCell(board.getIndexFromCoords(row, col)).equals(mark);
     }
 }

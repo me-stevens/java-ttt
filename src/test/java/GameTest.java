@@ -27,7 +27,7 @@ public class GameTest {
 
     @Test
     public void repeatsUntilEmptyCellIndex() {
-        game.getBoard().setCell(0, 0, "X");
+        game.getBoard().setCell(1, "X");
         spy.setInputs("1", "2");
         assertEquals("2", game.returnEmptyCellIndex("1"));
         assertEquals(2, spy.timesReadWasCalled());
@@ -36,7 +36,7 @@ public class GameTest {
     @Test
     public void humanTurnReturnsRightIndex() {
         spy.setInputs("a", "20", "1", "2");
-        game.getBoard().setCell(0, 0, "X");
+        game.getBoard().setCell(1, "X");
         assertEquals(2, game.humanTurn());
         assertEquals(4, spy.timesReadWasCalled());
     }
@@ -55,7 +55,7 @@ public class GameTest {
     @Test
     public void updatesBoard() {
         game.updateBoard(1, "X");
-        assertEquals("X", game.getBoard().getCell(0, 0));
+        assertEquals("X", game.getBoard().getCell(1));
     }
 
     @Test

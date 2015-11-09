@@ -16,21 +16,23 @@ public class BoardTest {
 
     @Test
     public void resetsBoard() {
-        board.setCell(1, 1, "asdf");
+        board.setCell(1, "asdf");
         board.reset();
 
-        for (String[] row: board.copy())
-            assertArrayEquals(new String[]{"", "", ""}, row);
+        for (int index = 1; index <= size*size; index++) {
+            assertEquals("", board.getCell(index));
+        }
     }
 
     @Test
-    public void checksForFullBoard() {
+    public void newBoardIsNotFull() {
         assertFalse(board.isFull());
+    }
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                board.setCell(i, j, "X");
-            }
+    @Test
+    public void checksThatBoardIsFull() {
+        for (int index = 1; index <= size*size; index++) {
+            board.setCell(index, "X");
         }
 
         assertTrue(board.isFull());
@@ -47,12 +49,18 @@ public class BoardTest {
     }
 
     @Test
-    public void checksIfCellIsBusy() {
-        assertFalse(board.isCellBusy(0, 0));
-        assertFalse(board.isCellBusy(1));
+    public void getsIndexFromCoords() {
+        assertEquals(1, board.getIndexFromCoords(0, 0));
+    }
 
-        board.setCell(0, 0, "X");
-        assertTrue(board.isCellBusy(0, 0));
+    @Test
+    public void checksThatCellIsNotBusy() {
+        assertFalse(board.isCellBusy(1));
+    }
+
+    @Test
+    public void checksIfCellIsBusy() {
+        board.setCell(1, "X");
         assertTrue(board.isCellBusy(1));
     }
 }

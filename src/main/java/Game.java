@@ -86,6 +86,6 @@ public class Game {
     }
 
     public void updateBoard(int index, String mark) {
-        board.setCell(board.getRowFromIndex(index), board.getColFromIndex(index), mark);
+        board.setCell(index, mark);
     }
 }

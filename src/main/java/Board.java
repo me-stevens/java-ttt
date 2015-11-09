@@ -9,12 +9,12 @@ public class Board {
         reset();
     }
 
-    public void setCell(int i, int j, String cellContent) {
-        board[i][j] = cellContent;
+    public void setCell(int index, String cellContent) {
+        board[getRowFromIndex(index)][getColFromIndex(index)] = cellContent;
     }
 
-    public String getCell(int i, int j) {
-        return board[i][j];
+    public String getCell(int index) {
+        return board[getRowFromIndex(index)][getColFromIndex(index)];
     }
 
     public int getSize() {
@@ -24,9 +24,9 @@ public class Board {
     public String[][] copy() {
         String[][] copy = new String[SIZE][SIZE];
 
-        for(int i=0; i<SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                copy[i][j] = board[i][j];
+        for(int row=0; row<SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                copy[row][col] = board[row][col];
             }
         }
 
@@ -34,9 +34,9 @@ public class Board {
     }
 
     public void reset() {
-        for (int i=0; i<SIZE; i++) {
-            for (int j=0; j<SIZE; j++) {
-                board[i][j] = "";
+        for (int row=0; row<SIZE; row++) {
+            for (int col=0; col<SIZE; col++) {
+                board[row][col] = "";
             }
         }
     }
@@ -67,15 +67,15 @@ public class Board {
         return (index - 1) % SIZE;
     }
 
-    public boolean isCellBusy(int i, int j) {
-        if ( board[i][j].equals("") ) {
+    public int getIndexFromCoords(int row, int col) {
+        return 1 + row*SIZE + col;
+    }
+
+    public boolean isCellBusy(int index) {
+        if ( board[getRowFromIndex(index)][getColFromIndex(index)].equals("") ) {
             return false;
         }
 
         return true;
-    }
-
-    public boolean isCellBusy(int index) {
-        return isCellBusy(getRowFromIndex(index), getColFromIndex(index));
     }
 }
