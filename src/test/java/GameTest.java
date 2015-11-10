@@ -19,30 +19,6 @@ public class GameTest {
     }
 
     @Test
-    public void repeatsUntilCellIsNumber() {
-        spy.setInputs("a", "20", "1");
-        assertEquals("1", game.returnValidCellIndex());
-        assertEquals(3, spy.timesReadWasCalled());
-    }
-
-    @Test
-    public void repeatsUntilEmptyCellIndex() {
-        game.getBoard().setCell(1, "X");
-        spy.setInputs("1", "2");
-        assertEquals("2", game.returnEmptyCellIndex("1"));
-        assertEquals(2, spy.timesReadWasCalled());
-    }
-
-    @Test
-    public void humanTurnReturnsRightIndex() {
-        spy.setInputs("a", "20", "1", "2");
-        game.getBoard().setCell(1, "X");
-        assertEquals(2, game.humanTurn());
-        assertEquals(4, spy.timesReadWasCalled());
-    }
-
-
-    @Test
     public void checkForWinnerPrintsBoardAndMsgs() {
         for (int index = 1; index <= size; index++) {
             game.getBoard().setCell(index, "X");
@@ -60,11 +36,6 @@ public class GameTest {
 
         game.checkForFull();
         assertEquals("X X X \nX X X \nX X X \n" + UserInterface.ISFULL + UserInterface.GAMEOVER, spy.printedMessage());
-    }
-
-    @Test
-    public void convertsStringIntoNumber() {
-        assertEquals(1, game.stringToNumber("1"));
     }
 
     @Test
