@@ -8,6 +8,7 @@ public class UserInterface {
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
     public static final String REPLAY       = "\nReplay? ";
     public static final String HASWINNER    = "\nCongratulations, ";
+    public static final String ROBOTPROMT   = "\nComputer chooses a cell...";
 
     private Console console;
 
@@ -51,6 +52,10 @@ public class UserInterface {
 
     public void printCellIsBusyMessage() {
         print(CELLISBUSY);
+    }
+
+    public void printRobotPrompt() {
+        print(ROBOTPROMT);
     }
 
     public void printHasWinnerMessage(String currentPlayer) {

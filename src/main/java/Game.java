@@ -16,10 +16,14 @@ public class Game {
 
     public void run() {
         do {
-            board.reset();
-            currentPlayer = "X";
+            resetGame();
             start();
         } while (gameUI.replay().equals("y"));
+    }
+
+    private void resetGame() {
+        board.reset();
+        currentPlayer = "X";
     }
 
     public void start() {
@@ -75,5 +79,8 @@ public class Game {
         return human.getCellIndex();
     }
 
+    public int robotTurn() {
+        RobotTurn robot = new RobotTurn(board, gameUI);
+        return robot.getCellIndex();
     }
 }

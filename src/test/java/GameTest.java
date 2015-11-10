@@ -115,6 +115,15 @@ public class GameTest {
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
 
+    @Test
+    public void computerPlays() {
+        spy.setInput("1");
+        assertEquals(1, game.robotTurn());
+        assertTrue(spy.writeMethodWasCalled());
+        assertEquals(1, spy.timesWriteWasCalled());
+    }
+
+
     private void playTurns(int times) {
         for (int i = 0; i < times; i++) {
             game.nextTurn();
