@@ -43,6 +43,20 @@ public class UserInterfaceTest {
     }
 
     @Test
+    public void printsWinnerMessage() {
+        ui.printHasWinnerMessage("foo");
+        assertEquals(UserInterface.HASWINNER + "foo", spyConsole.firstPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spyConsole.lastPrintedMessage());
+    }
+
+    @Test
+    public void printsIsFullMessage() {
+        ui.printIsFullMessage();
+        assertEquals(UserInterface.ISFULL,   spyConsole.firstPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spyConsole.lastPrintedMessage());
+    }
+
+    @Test
     public void printsReplayMessage() {
         spyConsole.setInput("");
         ui.replay();

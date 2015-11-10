@@ -55,6 +55,10 @@ public class SpyConsole implements Console {
         return timesReadWasCalled;
     }
 
+    public int timesWriteWasCalled() {
+        return timesWriteWasCalled;
+    }
+
     public String firstPrintedMessage() {
         return firstPrintedMessage;
     }

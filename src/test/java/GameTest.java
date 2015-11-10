@@ -13,9 +13,9 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        size   = 3;
-        spy    = new SpyConsole();
-        game   = new Game(new Board(size), new UserInterface(spy));
+        size = 3;
+        spy  = new SpyConsole();
+        game = new Game(new Board(size), new UserInterface(spy));
     }
 
     @Test
@@ -41,25 +41,47 @@ public class GameTest {
         assertEquals(4, spy.timesReadWasCalled());
     }
 
+
+    @Test
+    public void checkForWinnerPrintsBoardAndMsgs() {
+        for (int index = 1; index <= size; index++) {
+            game.getBoard().setCell(index, "X");
+        }
+
+        game.checkForWinner();
+        assertEquals("X X X \n4 5 6 \n7 8 9 \n" + UserInterface.HASWINNER + "X" + UserInterface.GAMEOVER, spy.printedMessage());
+    }
+
+    @Test
+    public void checkForFullPrintsBoardAndMsgs() {
+        for (int index = 1; index <= size*size; index++) {
+            game.getBoard().setCell(index, "X");
+        }
+
+        game.checkForFull();
+        assertEquals("X X X \nX X X \nX X X \n" + UserInterface.ISFULL + UserInterface.GAMEOVER, spy.printedMessage());
+    }
+
     @Test
     public void convertsStringIntoNumber() {
         assertEquals(1, game.stringToNumber("1"));
     }
 
     @Test
-    public void printsTheBoardInEveryTurn() {
+    public void turnPrintsTheBoardInEveryTurn() {
         spy.setInputs("1");
         game.nextTurn();
         assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n" + UserInterface.PROMPT, spy.printedMessage());
     }
 
     @Test
-    public void updatesTheBoardInEveryTurn() {
+    public void turnUpdatesTheBoardInEveryTurn() {
         String[][] old = game.getBoard().getContents();
         spy.setInput("1");
         game.nextTurn();
 
         assertFalse(Arrays.deepEquals(old, game.getBoard().getContents()));
+        assertEquals("X", game.getBoard().getCell(1));
     }
 
     @Test

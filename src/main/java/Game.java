@@ -17,8 +17,9 @@ public class Game {
     public void run() {
         do {
             board.reset();
+            currentPlayer = "X";
             start();
-        } while(gameUI.replay().equals("y"));
+        } while (gameUI.replay().equals("y"));
     }
 
     public void start() {
@@ -39,16 +40,34 @@ public class Game {
     }
 
     private boolean updateGameStatus() {
-        BoardChecker checker = new BoardChecker(board);
-
-        if (checker.hasWinner(currentPlayer) || board.isFull() ) {
-            gameUI.printBoard(board);
-            gameUI.printGameOverMessage();
+        if (checkForWinner() || checkForFull()) {
             return false;
         }
 
         currentPlayer = (currentPlayer == "X") ? "O" : "X";
         return true;
+    }
+
+    public boolean checkForWinner() {
+        BoardChecker checker = new BoardChecker(board);
+
+        if (checker.hasWinner(currentPlayer)) {
+            gameUI.printBoard(board);
+            gameUI.printHasWinnerMessage(currentPlayer);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean checkForFull() {
+        if (board.isFull()) {
+            gameUI.printBoard(board);
+            gameUI.printIsFullMessage();
+            return true;
+        }
+
+        return false;
     }
 
     public int humanTurn() {
@@ -60,16 +79,16 @@ public class Game {
         String cellIndex      = gameUI.getInput();
         String validCellIndex = "[1-9]";
 
-        while ( !cellIndex.matches(validCellIndex) ) {
-             gameUI.printNotValidCellMessage();
-             cellIndex = gameUI.getInput();
+        while (!cellIndex.matches(validCellIndex)) {
+            gameUI.printNotValidCellMessage();
+            cellIndex = gameUI.getInput();
         }
 
         return cellIndex;
     }
 
     public String returnEmptyCellIndex(String cellIndex) {
-        while ( board.isCellBusy(stringToNumber(cellIndex)) ) {
+        while (board.isCellBusy(stringToNumber(cellIndex))) {
             gameUI.printCellIsBusyMessage();
             cellIndex = gameUI.getInput();
         }

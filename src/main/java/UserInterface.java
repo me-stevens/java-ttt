@@ -4,8 +4,10 @@ public class UserInterface {
     public static final String PROMPT       = "\nChoose a cell to put your mark: ";
     public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
     public static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
-    public static final String GAMEOVER     = "\nGAME OVER\n";
+    public static final String ISFULL       = "\nIt's a draw!";
+    public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
     public static final String REPLAY       = "\nReplay? ";
+    public static final String HASWINNER    = "\nCongratulations, ";
 
     private Console console;
 
@@ -51,7 +53,13 @@ public class UserInterface {
         print(CELLISBUSY);
     }
 
-    public void printGameOverMessage() {
+    public void printHasWinnerMessage(String currentPlayer) {
+        print(HASWINNER + currentPlayer);
+        print(GAMEOVER);
+    }
+
+    public void printIsFullMessage() {
+        print(ISFULL);
         print(GAMEOVER);
     }
 
