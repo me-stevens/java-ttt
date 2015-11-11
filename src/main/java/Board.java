@@ -24,7 +24,7 @@ public class Board {
     public String[][] getContents() {
         String[][] copy = new String[SIZE][SIZE];
 
-        for(int row=0; row<SIZE; row++) {
+        for(int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 copy[row][col] = board[row][col];
             }
@@ -34,8 +34,8 @@ public class Board {
     }
 
     public void reset() {
-        for (int row=0; row<SIZE; row++) {
-            for (int col=0; col<SIZE; col++) {
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
                 board[row][col] = "";
             }
         }

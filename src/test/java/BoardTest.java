@@ -20,10 +20,8 @@ public class BoardTest {
     public void resetsBoard() {
         board.setCell(1, "hi");
         board.reset();
-
-        for (int index = 1; index <= size*size; index++) {
-            assertEquals("", board.getCell(index));
-        }
+        Board expected = setAllCellsTo("");
+        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
     }
 
     @Test
@@ -33,10 +31,7 @@ public class BoardTest {
 
     @Test
     public void checksThatBoardIsFull() {
-        for (int index = 1; index <= size*size; index++) {
-            board.setCell(index, "hi");
-        }
-
+        board = setAllCellsTo("hi");
         assertTrue(board.isFull());
     }
 
@@ -68,15 +63,18 @@ public class BoardTest {
 
     @Test
     public void getsTheContentsOfTheBoard() {
-        String[][] expected = new String[size][size];
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                expected[row][col] = "";
-            }
+        Board expected = setAllCellsTo("");
+        expected.setCell(1, "hi");
+        board.setCell(1, "hi");
+        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
+    }
+
+    private Board setAllCellsTo(String cellContent) {
+        Board expected = new Board(size);
+        for (int index = 1; index <= size*size; index++) {
+            expected.setCell(index, cellContent);
         }
 
-        expected[0][0] = "hi";
-        board.setCell(1, "hi");
-        assertTrue( Arrays.deepEquals(expected, board.getContents()) );
+        return expected;
     }
 }
