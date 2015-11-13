@@ -25,8 +25,8 @@ public class BoardCheckerTest {
 
     @Test
     public void checksWinnerInRow() {
-        for (int col = 0; col < size; col++) {
-            board.setCell(board.getIndexFromCoords(0, col), "X");
+        for (int index = 1; index <= size; index++) {
+            board.setCell(index, "X");
         }
 
         assertTrue(checker.hasWinner("X"));

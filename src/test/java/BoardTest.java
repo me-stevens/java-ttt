@@ -2,7 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -17,11 +19,34 @@ public class BoardTest {
     }
 
     @Test
+    public void getsTheContentsOfTheBoard() {
+        Board expected = setAllCellsTo("");
+        expected.setCell(1, "hi");
+        board.setCell(1, "hi");
+        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
+    }
+
+    @Test
+    public void setsTheContentsOfTheBoard() {
+        board = setAllCellsTo("");
+        Board expected = setAllCellsTo("hi");
+        board.setContents(expected.getContents());
+        assertTrue(Arrays.deepEquals(expected.getContents(), board.getContents()));
+    }
+
+    @Test
     public void resetsBoard() {
         board.setCell(1, "hi");
         board.reset();
         Board expected = setAllCellsTo("");
         assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
+    }
+
+    @Test
+    public void getsTheEmptyCellIndexes() {
+        board.setCell(1, "hi");
+        List<Integer> expected = asList(2, 3, 4, 5, 6, 7, 8, 9);
+        assertEquals(expected, board.getEmptyCellIndexes());
     }
 
     @Test
@@ -59,14 +84,6 @@ public class BoardTest {
     public void checksIfCellIsBusy() {
         board.setCell(1, "hi");
         assertTrue(board.isCellBusy(1));
-    }
-
-    @Test
-    public void getsTheContentsOfTheBoard() {
-        Board expected = setAllCellsTo("");
-        expected.setCell(1, "hi");
-        board.setCell(1, "hi");
-        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
     }
 
     private Board setAllCellsTo(String cellContent) {

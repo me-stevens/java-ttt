@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Board {
 
     private final int SIZE;
@@ -33,30 +35,34 @@ public class Board {
         return copy;
     }
 
-    public void reset() {
-        for (int row = 0; row < SIZE; row++) {
+    public void setContents(String[][] contents) {
+        for(int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
-                board[row][col] = "";
+                board[row][col] = contents[row][col];
             }
         }
     }
 
-    public boolean isFull() {
-        return numberOfEmpties() == 0;
+    public void reset() {
+        for (int index = 1; index <= SIZE*SIZE; index++) {
+            setCell(index, "");
+        }
     }
 
-    private int numberOfEmpties() {
-        int empties = 0;
+    public ArrayList<Integer> getEmptyCellIndexes() {
+        ArrayList<Integer> empties = new ArrayList();
 
-        for (String[] row : board) {
-            for (String cell : row) {
-                if (cell.equals("")) {
-                    empties++;
-                }
+        for (int index = 1; index <= SIZE*SIZE; index++) {
+            if (getCell(index).equals("")) {
+                empties.add(index);
             }
         }
 
         return empties;
+    }
+
+    public boolean isFull() {
+        return getEmptyCellIndexes().size() == 0;
     }
 
     public int getRowFromIndex(int index) {
