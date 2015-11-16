@@ -6,66 +6,81 @@ import static org.junit.Assert.assertTrue;
 
 public class UserInterfaceTest {
 
-    private SpyConsole spyConsole;
+    private SpyConsole spy;
     private UserInterface ui;
 
     @Before
     public void setUp() {
-        spyConsole = new SpyConsole();
-        ui = new UserInterface(spyConsole);
+        spy = new SpyConsole();
+        ui  = new UserInterface(spy);
     }
 
     @Test
     public void anyMessageIsPrinted() {
         ui.print("hi");
-        assertEquals("hi", spyConsole.printedMessage());
+        assertEquals("hi", spy.printedMessage());
     }
 
     @Test
     public void printsCellNumberIfCellIsEmpty() {
         Board board = new Board(3);
         ui.printBoard(board);
+        assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n", spy.printedMessage());
+    }
+
+    @Test
+    public void printsMenu() {
+        spy.setInput("");
+        ui.printPlayersMenu();
+        assertEquals(ui.PLAYERSMENU, spy.lastPrintedMessage());
+    }
+
+    @Test
+    public void choosesTwoHumansFromMenu() {
+        spy.setInput("1");
+        assertEquals("1", ui.printPlayersMenu());
+        assertTrue(spy.readMethodWasCalled());
     }
 
     @Test
     public void promptsTheUserForInput() {
-        spyConsole.setInput("");
+        spy.setInput("");
         ui.getInput();
-        assertEquals(ui.PROMPT, spyConsole.lastPrintedMessage());
+        assertEquals(ui.PROMPT, spy.lastPrintedMessage());
     }
 
     @Test
     public void readsUserInput() {
-        spyConsole.setInput("hi");
+        spy.setInput("hi");
         assertEquals("hi", ui.getInput());
-        assertTrue(spyConsole.readMethodWasCalled());
+        assertTrue(spy.readMethodWasCalled());
     }
 
     @Test
     public void printsWinnerMessage() {
         ui.printHasWinnerMessage("foo");
-        assertEquals(UserInterface.HASWINNER + "foo", spyConsole.firstPrintedMessage());
-        assertEquals(UserInterface.GAMEOVER, spyConsole.lastPrintedMessage());
+        assertEquals(UserInterface.HASWINNER + "foo", spy.firstPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void printsIsFullMessage() {
         ui.printIsFullMessage();
-        assertEquals(UserInterface.ISFULL,   spyConsole.firstPrintedMessage());
-        assertEquals(UserInterface.GAMEOVER, spyConsole.lastPrintedMessage());
+        assertEquals(UserInterface.ISFULL, spy.firstPrintedMessage());
+        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void printsReplayMessage() {
-        spyConsole.setInput("");
+        spy.setInput("");
         ui.replay();
-        assertEquals(ui.REPLAY, spyConsole.lastPrintedMessage());
+        assertEquals(ui.REPLAY, spy.lastPrintedMessage());
     }
 
     @Test
     public void readsReplayAnswer() {
-        spyConsole.setInput("y");
+        spy.setInput("y");
         assertEquals("y", ui.replay());
-        assertTrue(spyConsole.readMethodWasCalled());
+        assertTrue(spy.readMethodWasCalled());
     }
 }
