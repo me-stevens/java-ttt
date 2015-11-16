@@ -89,7 +89,7 @@ public class Game {
             return false;
         }
 
-        currentPlayer = (currentPlayer == "X") ? "O" : "X";
+        swapPlayer();
         return true;
     }
 
@@ -115,9 +115,8 @@ public class Game {
         return false;
     }
 
-    public int humanTurn() {
-        HumanTurn human = new HumanTurn(board, gameUI);
-        return human.getCellIndex();
+    private void swapPlayer() {
+        currentPlayer = (currentPlayer == "X") ? "O" : "X";
     }
 
     public boolean getHumanity1() {
