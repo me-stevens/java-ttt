@@ -18,8 +18,8 @@ public class RobotTurnTest {
 
     @Test
     public void promptMessageIsPrinted() {
-        board     = new Board(size);
-        robotTurn = new RobotTurn(board, new UserInterface(spy), "O");
+        board    = new Board(size);
+        int temp = new RobotTurn(board, new UserInterface(spy), "O").getCellIndex();
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
