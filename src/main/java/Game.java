@@ -94,9 +94,7 @@ public class Game {
     }
 
     public boolean checkForWinner() {
-        BoardChecker checker = new BoardChecker(board);
-
-        if (checker.hasWinner(currentPlayer)) {
+        if (new BoardChecker(board).hasWinner(currentPlayer)) {
             gameUI.printBoard(board);
             gameUI.printHasWinnerMessage(currentPlayer);
             return true;

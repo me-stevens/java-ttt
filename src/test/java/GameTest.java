@@ -41,7 +41,7 @@ public class GameTest {
     @Test
     public void turnPrintsTheBoardInEveryTurn() {
         spy.setInputs("1");
-        game.nextTurn();
+        playTurns(1);
         assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n" + UserInterface.PROMPT, spy.printedMessage());
     }
 
@@ -49,7 +49,7 @@ public class GameTest {
     public void turnUpdatesTheBoardInEveryTurn() {
         String[][] old = game.getBoard().getContents();
         spy.setInput("1");
-        game.nextTurn();
+        playTurns(1);
 
         assertFalse(Arrays.deepEquals(old, game.getBoard().getContents()));
         assertEquals("X", game.getBoard().getCell(1));
@@ -144,7 +144,7 @@ public class GameTest {
     }
 
     @Test
-    public void computerPlays() {
+    public void robotPlays() {
         spy.setInput("1");
         game.setHumanity2(false);
         playTurns(2);

@@ -35,8 +35,8 @@ public class SpyConsole implements Console {
         wasWriteMethodCalled = true;
         timesWriteWasCalled++;
 
-        printedMessage      += message;
-        lastPrintedMessage   = message;
+        printedMessage    += message;
+        lastPrintedMessage = message;
 
         if (timesWriteWasCalled == 1) {
             firstPrintedMessage = message;
