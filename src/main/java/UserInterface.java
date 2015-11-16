@@ -8,7 +8,12 @@ public class UserInterface {
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
     public static final String REPLAY       = "\nReplay? ";
     public static final String HASWINNER    = "\nCongratulations, ";
-    public static final String ROBOTPROMT   = "\nComputer chooses a cell...";
+    public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
+    public static final String PLAYERSMENU  = "\nChoose an option:\n" +
+                                              " 1) Human vs. human\n" +
+                                              " 2) Human vs. robot\n" +
+                                              " 3) Robot vs. robot\n" +
+                                              "1, 2 or 3? ";
 
     private Console console;
 
@@ -39,6 +44,11 @@ public class UserInterface {
 
     public void printWelcomeMessage() {
         print(WELCOME);
+    }
+
+    public String printPlayersMenu() {
+        print(PLAYERSMENU);
+        return console.read();
     }
 
     public String getInput() {

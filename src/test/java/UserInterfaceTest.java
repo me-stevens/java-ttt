@@ -25,7 +25,6 @@ public class UserInterfaceTest {
     public void printsCellNumberIfCellIsEmpty() {
         Board board = new Board(3);
         ui.printBoard(board);
-        assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n", spyConsole.printedMessage());
     }
 
     @Test

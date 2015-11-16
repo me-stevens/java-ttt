@@ -88,29 +88,57 @@ public class GameTest {
     }
 
     @Test
+    public void showPlayersMenuUntilRightOption() {
+        spy.setInputs("khgj", "0", "1");
+        assertEquals("1", game.showPlayersMenu());
+        assertEquals(3, spy.timesReadWasCalled());
+    }
+
+    @Test
+    public void setsTwoHumanPlayers() {
+        game.setPlayers("1");
+        assertTrue(game.getHumanity1());
+        assertTrue(game.getHumanity2());
+    }
+
+    @Test
+    public void setsOneRobotPlayer() {
+        game.setPlayers("2");
+        assertTrue( game.getHumanity1());
+        assertFalse(game.getHumanity2());
+    }
+
+    @Test
+    public void setsTwoRobotPlayers() {
+        game.setPlayers("3");
+        assertFalse(game.getHumanity1());
+        assertFalse(game.getHumanity2());
+    }
+
+    @Test
     public void startPrintsWelcomeMessage() {
-        spy.setInputs("1", "4", "2", "5", "3");
+        spy.setInputs("1", "1", "4", "2", "5", "3");
         game.start();
         assertEquals(UserInterface.WELCOME, spy.firstPrintedMessage());
     }
 
     @Test
     public void startsAndEndsTheGameIfWin() {
-        spy.setInputs("1", "4", "2", "5", "3");
+        spy.setInputs("1", "1", "4", "2", "5", "3");
         game.start();
         assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void startsAndEndsTheGameIfFull() {
-        spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
+        spy.setInputs("1", "1", "2", "3", "4", "5", "6", "8", "7", "9");
         game.start();
         assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void replaysGameUntilNo() {
-        spy.setInputs("1", "4", "2", "5", "3", "y", "1", "4", "2", "5", "3", "n");
+        spy.setInputs("1", "1", "4", "2", "5", "3", "y", "1", "1", "4", "2", "5", "3", "n");
         game.run();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
@@ -118,11 +146,10 @@ public class GameTest {
     @Test
     public void computerPlays() {
         spy.setInput("1");
-        assertEquals(1, game.robotTurn());
-        assertTrue(spy.writeMethodWasCalled());
-        assertEquals(1, spy.timesWriteWasCalled());
+        game.setHumanity2(false);
+        playTurns(2);
+        assertEquals("O", game.getBoard().getCell(5));
     }
-
 
     private void playTurns(int times) {
         for (int i = 0; i < times; i++) {
