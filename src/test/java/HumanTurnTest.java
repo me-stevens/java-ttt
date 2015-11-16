@@ -13,8 +13,8 @@ public class HumanTurnTest {
     @Before
     public void setUp() {
         size      = 3;
-        spy       = new SpyConsole();
         board     = new Board(size);
+        spy       = new SpyConsole();
         humanTurn = new HumanTurn(board, new UserInterface(spy));
     }
 

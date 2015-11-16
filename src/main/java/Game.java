@@ -80,7 +80,7 @@ public class Game {
     }
 
     public int robotTurn() {
-        RobotTurn robot = new RobotTurn(board, currentPlayer);
+        RobotTurn robot = new RobotTurn(board, gameUI, currentPlayer);
         return robot.getCellIndex();
     }
 
