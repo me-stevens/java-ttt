@@ -1,14 +1,19 @@
+import java.util.List;
+
 public class RobotTurn {
 
-    private final Board board;
-    private final UserInterface gameUI;
+    private Board tempBoard;
+    private final String playerToOptimize;
+    private int size;
 
-    public RobotTurn(Board board, UserInterface gameUI) {
-        this.board  = board;
-        this.gameUI = gameUI;
+    public RobotTurn(Board board, String currentPlayer) {
+        tempBoard        = board;
+        playerToOptimize = currentPlayer;
+        size             = board.getSize();
     }
 
     public int getCellIndex() {
+        UserInterface gameUI = new UserInterface(new GameConsole(System.in, System.out));
         gameUI.printRobotPrompt();
         return 1;
     }
