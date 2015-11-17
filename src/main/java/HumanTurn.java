@@ -1,14 +1,14 @@
 public class HumanTurn implements Player {
 
-    private final Board board;
-    private final UserInterface gameUI;
+    private Board board;
+    private UserInterface gameUI;
 
-    public HumanTurn(Board board, UserInterface ui, String mark) {
-        this.board  = board;
+    public HumanTurn(UserInterface ui, String mark) {
         this.gameUI = ui;
     }
 
-    public int getCellIndex() {
+    public int getCellIndex(Board board) {
+        this.board = board;
         String cellIndex = returnEmptyCellIndex(returnValidCellIndex());
         return stringToNumber(cellIndex);
     }

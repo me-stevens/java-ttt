@@ -1,4 +1,4 @@
 public interface Player {
 
-    int getCellIndex();
+    int getCellIndex(Board board);
 }
