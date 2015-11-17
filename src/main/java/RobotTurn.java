@@ -1,17 +1,17 @@
 import java.util.List;
 
-public class RobotTurn {
+public class RobotTurn implements Player {
 
     private Board tempBoard;
     private int size;
     private UserInterface gameUI;
     private final String playerToOptimize;
 
-    public RobotTurn(Board board, UserInterface ui, String currentPlayer) {
+    public RobotTurn(Board board, UserInterface ui, String mark) {
         tempBoard        = board;
         size             = board.getSize();
         gameUI           = ui;
-        playerToOptimize = currentPlayer;
+        playerToOptimize = mark;
     }
 
     public int getCellIndex() {

@@ -1,9 +1,9 @@
-public class HumanTurn {
+public class HumanTurn implements Player {
 
     private final Board board;
     private final UserInterface gameUI;
 
-    public HumanTurn(Board board, UserInterface ui) {
+    public HumanTurn(Board board, UserInterface ui, String mark) {
         this.board  = board;
         this.gameUI = ui;
     }
