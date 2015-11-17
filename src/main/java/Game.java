@@ -73,7 +73,7 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        int index = (isHuman()) ? humanTurn() : robotTurn();
+        int index = (isHuman()) ? playTurn(player1) : playTurn(player2);
         board.setCell(index, currentPlayer);
 
         return updateGameStatus();
@@ -84,14 +84,8 @@ public class Game {
                 (currentPlayer.equals("O") && isHuman2));
     }
 
-    public int humanTurn() {
-        Player human = new HumanTurn(gameUI, currentPlayer);
-        return human.getCellIndex(board);
-    }
-
-    public int robotTurn() {
-        Player robot = new RobotTurn(gameUI, currentPlayer);
-        return robot.getCellIndex(board);
+    public int playTurn(Player player) {
+        return player.getCellIndex(board);
     }
 
     private boolean updateGameStatus() {
@@ -133,9 +127,5 @@ public class Game {
 
     public boolean getHumanity2() {
         return isHuman2;
-    }
-
-    public void setHumanity2 (boolean isHuman2) {
-        this.isHuman2 = isHuman2;
     }
 }
