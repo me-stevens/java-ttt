@@ -75,12 +75,12 @@ public class Game {
     }
 
     public int humanTurn() {
-        HumanTurn human = new HumanTurn(board, gameUI);
+        Player human = new HumanTurn(board, gameUI, currentPlayer);
         return human.getCellIndex();
     }
 
     public int robotTurn() {
-        RobotTurn robot = new RobotTurn(board, gameUI, currentPlayer);
+        Player robot = new RobotTurn(board, gameUI, currentPlayer);
         return robot.getCellIndex();
     }
 

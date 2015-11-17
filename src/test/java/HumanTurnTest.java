@@ -15,7 +15,7 @@ public class HumanTurnTest {
         size      = 3;
         board     = new Board(size);
         spy       = new SpyConsole();
-        humanTurn = new HumanTurn(board, new UserInterface(spy));
+        humanTurn = new HumanTurn(board, new UserInterface(spy), "X");
     }
 
     @Test
