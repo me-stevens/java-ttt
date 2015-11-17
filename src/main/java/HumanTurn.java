@@ -13,7 +13,7 @@ public class HumanTurn {
         return stringToNumber(cellIndex);
     }
 
-    public String returnValidCellIndex() {
+    private String returnValidCellIndex() {
         String cellIndex      = gameUI.getInput();
         String validCellIndex = "[1-9]";
 
@@ -25,7 +25,7 @@ public class HumanTurn {
         return cellIndex;
     }
 
-    public String returnEmptyCellIndex(String cellIndex) {
+    private String returnEmptyCellIndex(String cellIndex) {
         while (board.isCellBusy(stringToNumber(cellIndex))) {
             gameUI.printCellIsBusyMessage();
             cellIndex = gameUI.getInput();
@@ -34,7 +34,7 @@ public class HumanTurn {
         return cellIndex;
     }
 
-    public int stringToNumber(String cellIndex) {
+    private int stringToNumber(String cellIndex) {
         return Integer.parseInt(cellIndex);
     }
 }
