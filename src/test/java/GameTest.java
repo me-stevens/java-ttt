@@ -41,6 +41,7 @@ public class GameTest {
     @Test
     public void turnPrintsTheBoardInEveryTurn() {
         spy.setInputs("1");
+        game.setPlayers("1");
         playTurns(1);
         assertEquals("1 2 3 \n4 5 6 \n7 8 9 \n" + UserInterface.PROMPT, spy.printedMessage());
     }
@@ -49,6 +50,7 @@ public class GameTest {
     public void turnUpdatesTheBoardInEveryTurn() {
         Board old = game.getBoard().getCopy();
         spy.setInput("1");
+        game.setPlayers("1");
         playTurns(1);
 
         assertNotEquals(old, game.getBoard());
@@ -58,12 +60,14 @@ public class GameTest {
     @Test
     public void turnReturnsTrueIfNotWinOrFull() {
         spy.setInput("1");
+        game.setPlayers("1");
         assertTrue(game.nextTurn());
     }
 
     @Test
     public void turnReturnsFalseIfWin() {
         spy.setInputs("1", "4", "2", "5", "3");
+        game.setPlayers("1");
         playTurns(4);
 
         assertFalse(game.nextTurn());
@@ -72,6 +76,7 @@ public class GameTest {
     @Test
     public void turnReturnsFalseIfFull() {
         spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
+        game.setPlayers("1");
         playTurns(size*size - 1);
 
         assertFalse(game.nextTurn());
@@ -80,6 +85,7 @@ public class GameTest {
     @Test
     public void markIsSwappedInEveryTurn() {
         spy.setInputs("1", "2", "3");
+        game.setPlayers("1");
         playTurns(3);
 
         assertEquals("X", game.getBoard().getCell(1));
@@ -146,7 +152,7 @@ public class GameTest {
     @Test
     public void robotPlays() {
         spy.setInput("1");
-        game.setHumanity2(false);
+        game.setPlayers("2");
         playTurns(2);
         assertEquals("O", game.getBoard().getCell(5));
     }
