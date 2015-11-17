@@ -58,8 +58,7 @@ public class RobotTurn {
     }
 
     private void placeMark(Board currentBoard, int tempIndex, String currentPlayer) {
-        tempBoard = new Board(size);
-        tempBoard.setContents(currentBoard.getContents());
+        tempBoard = currentBoard.getCopy();
         tempBoard.setCell(tempIndex, currentPlayer);
     }
 

@@ -26,20 +26,19 @@ public class UserInterface {
     }
 
     public void printBoard(Board board) {
-        int cellIndex = 0;
 
-        for (String[] row : board.getContents()) {
-            for (String cell : row) {
-                cellIndex++;
-                print(formatCell(cellIndex, cell));
+        int size = board.getSize();
+        for (int index = 1; index<= size * size; index++) {
+            print(formatCell(index, board.getCell(index)));
+
+            if (index % size == 0) {
+                print("\n");
             }
-
-            print("\n");
         }
     }
 
-    private String formatCell(int cellIndex, String cell) {
-        return (cell.equals("")) ? cellIndex + " " : cell + " ";
+    private String formatCell(int index, String cell) {
+        return (cell.equals("")) ? index + " " : cell + " ";
     }
 
     public void printWelcomeMessage() {

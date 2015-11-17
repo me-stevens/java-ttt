@@ -23,24 +23,14 @@ public class Board {
         return SIZE;
     }
 
-    public String[][] getContents() {
-        String[][] copy = new String[SIZE][SIZE];
+    public Board getCopy() {
+        Board copy = new Board(SIZE);
 
-        for(int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                copy[row][col] = board[row][col];
-            }
+        for(int index = 1; index <= SIZE*SIZE; index++) {
+            copy.setCell(index, this.getCell(index));
         }
 
         return copy;
-    }
-
-    public void setContents(String[][] contents) {
-        for(int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                board[row][col] = contents[row][col];
-            }
-        }
     }
 
     public void reset() {
