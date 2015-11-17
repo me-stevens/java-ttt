@@ -1,12 +1,12 @@
 import java.util.List;
 
-public class RobotTurn implements Player {
+public class RobotPlayer implements Player {
 
     private Board tempBoard;
     private UserInterface gameUI;
     private final String playerToOptimize;
 
-    public RobotTurn(UserInterface ui, String mark) {
+    public RobotPlayer(UserInterface ui, String mark) {
         gameUI           = ui;
         playerToOptimize = mark;
     }

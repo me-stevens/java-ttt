@@ -7,7 +7,7 @@ public class RobotTurnTest {
 
     private int size;
     private Board board;
-    private RobotTurn robotTurn;
+    private RobotPlayer robotPlayer;
     private SpyConsole spy;
 
     @Before
@@ -19,7 +19,7 @@ public class RobotTurnTest {
     @Test
     public void promptMessageIsPrinted() {
         board    = new Board(size);
-        int temp = new RobotTurn(new UserInterface(spy), "O").getCellIndex(board);
+        int temp = new RobotPlayer(new UserInterface(spy), "O").getCellIndex(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
@@ -29,8 +29,8 @@ public class RobotTurnTest {
                          "X", "X", "",
                           "",  "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(3, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -39,8 +39,8 @@ public class RobotTurnTest {
                          "X", "O", "",
                           "",  "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(7, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -49,8 +49,8 @@ public class RobotTurnTest {
                          "X", "O", "X",
                          "X",  "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(9, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -59,8 +59,8 @@ public class RobotTurnTest {
                          "X", "O", "X",
                          "",  "", "X");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(7, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class RobotTurnTest {
                           "", "O", "",
                           "",  "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(3, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -79,8 +79,8 @@ public class RobotTurnTest {
                          "", "O", "",
                          "", "", "X");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(6, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(6, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -89,8 +89,8 @@ public class RobotTurnTest {
                          "", "X", "",
                          "O", "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(9, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -99,8 +99,8 @@ public class RobotTurnTest {
                          "O", "", "",
                          "X", "", "");
 
-        robotTurn = new RobotTurn(new UserInterface(spy), "O");
-        assertEquals(5, robotTurn.getCellIndex(board));
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        assertEquals(5, robotPlayer.getCellIndex(board));
     }
 
     private Board setBoard(String... cellContents) {
