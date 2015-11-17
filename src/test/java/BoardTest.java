@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -19,19 +18,10 @@ public class BoardTest {
     }
 
     @Test
-    public void getsTheContentsOfTheBoard() {
-        Board expected = setAllCellsTo("");
-        expected.setCell(1, "hi");
+    public void getsACopyOfTheBoard() {
         board.setCell(1, "hi");
-        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
-    }
-
-    @Test
-    public void setsTheContentsOfTheBoard() {
-        board = setAllCellsTo("");
-        Board expected = setAllCellsTo("hi");
-        board.setContents(expected.getContents());
-        assertTrue(Arrays.deepEquals(expected.getContents(), board.getContents()));
+        Board copy = board.getCopy();
+        assertEquals( getContentsAsString(board), getContentsAsString(copy) );
     }
 
     @Test
@@ -39,7 +29,7 @@ public class BoardTest {
         board.setCell(1, "hi");
         board.reset();
         Board expected = setAllCellsTo("");
-        assertTrue( Arrays.deepEquals(expected.getContents(), board.getContents()) );
+        assertEquals(getContentsAsString(expected), getContentsAsString(board));
     }
 
     @Test
@@ -93,5 +83,13 @@ public class BoardTest {
         }
 
         return expected;
+    }
+
+    private String getContentsAsString(Board board) {
+        String boardContents = "";
+        for (int index = 1; index <= size*size; index++) {
+            boardContents = board.getCell(index);
+        }
+        return boardContents;
     }
 }

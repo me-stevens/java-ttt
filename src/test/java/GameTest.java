@@ -47,11 +47,11 @@ public class GameTest {
 
     @Test
     public void turnUpdatesTheBoardInEveryTurn() {
-        String[][] old = game.getBoard().getContents();
+        Board old = game.getBoard().getCopy();
         spy.setInput("1");
         playTurns(1);
 
-        assertFalse(Arrays.deepEquals(old, game.getBoard().getContents()));
+        assertNotEquals(old, game.getBoard());
         assertEquals("X", game.getBoard().getCell(1));
     }
 
