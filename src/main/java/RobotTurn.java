@@ -3,18 +3,16 @@ import java.util.List;
 public class RobotTurn implements Player {
 
     private Board tempBoard;
-    private int size;
     private UserInterface gameUI;
     private final String playerToOptimize;
 
-    public RobotTurn(Board board, UserInterface ui, String mark) {
-        tempBoard        = board;
-        size             = board.getSize();
+    public RobotTurn(UserInterface ui, String mark) {
         gameUI           = ui;
         playerToOptimize = mark;
     }
 
-    public int getCellIndex() {
+    public int getCellIndex(Board board) {
+        tempBoard = board;
         gameUI.printRobotPrompt();
 
         int[] result = miniMax(tempBoard, playerToOptimize);
