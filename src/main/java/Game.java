@@ -5,8 +5,6 @@ public class Game {
     private String currentPlayer;
     private Player player1;
     private Player player2;
-    private boolean isHuman1;
-    private boolean isHuman2;
 
     public Game(Board board, UserInterface gameUI) {
         this.board  = board;
@@ -28,8 +26,6 @@ public class Game {
     private void resetGame() {
         board.reset();
         currentPlayer = "X";
-        isHuman1      = true;
-        isHuman2      = true;
     }
 
     public void start() {
@@ -57,15 +53,12 @@ public class Game {
                 player2 = new HumanTurn(gameUI, "O");
                 break;
             case '2':
-                player1  = new HumanTurn(gameUI, "X");
-                player2  = new RobotTurn(gameUI, "O");
-                isHuman2 = false;
+                player1 = new HumanTurn(gameUI, "X");
+                player2 = new RobotTurn(gameUI, "O");
                 break;
             case '3':
-                player1  = new RobotTurn(gameUI, "X");
-                player2  = new RobotTurn(gameUI, "O");
-                isHuman1 = false;
-                isHuman2 = false;
+                player1 = new RobotTurn(gameUI, "X");
+                player2 = new RobotTurn(gameUI, "O");
                 break;
         }
     }
@@ -73,19 +66,10 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        int index = (isHuman()) ? playTurn(player1) : playTurn(player2);
+        int index = (currentPlayer.equals("X")) ? player1.getCellIndex(board) : player2.getCellIndex(board);
         board.setCell(index, currentPlayer);
 
         return updateGameStatus();
-    }
-
-    private boolean isHuman() {
-        return ((currentPlayer.equals("X") && isHuman1) ||
-                (currentPlayer.equals("O") && isHuman2));
-    }
-
-    public int playTurn(Player player) {
-        return player.getCellIndex(board);
     }
 
     private boolean updateGameStatus() {
@@ -121,11 +105,11 @@ public class Game {
         currentPlayer = (currentPlayer == "X") ? "O" : "X";
     }
 
-    public boolean getHumanity1() {
-        return isHuman1;
+    public Player getPlayer1() {
+        return player1;
     }
 
-    public boolean getHumanity2() {
-        return isHuman2;
+    public Player getPlayer2() {
+        return player2;
     }
 }

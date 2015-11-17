@@ -103,22 +103,22 @@ public class GameTest {
     @Test
     public void setsTwoHumanPlayers() {
         game.setPlayers("1");
-        assertTrue(game.getHumanity1());
-        assertTrue(game.getHumanity2());
+        assertTrue(game.getPlayer1() instanceof HumanTurn);
+        assertTrue(game.getPlayer2() instanceof HumanTurn);
     }
 
     @Test
     public void setsOneRobotPlayer() {
         game.setPlayers("2");
-        assertTrue( game.getHumanity1());
-        assertFalse(game.getHumanity2());
+        assertTrue(game.getPlayer1() instanceof HumanTurn);
+        assertTrue(game.getPlayer2() instanceof RobotTurn);
     }
 
     @Test
     public void setsTwoRobotPlayers() {
         game.setPlayers("3");
-        assertFalse(game.getHumanity1());
-        assertFalse(game.getHumanity2());
+        assertTrue(game.getPlayer1() instanceof RobotTurn);
+        assertTrue(game.getPlayer2() instanceof RobotTurn);
     }
 
     @Test
