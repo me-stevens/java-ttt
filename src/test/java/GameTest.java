@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -103,22 +101,22 @@ public class GameTest {
     @Test
     public void setsTwoHumanPlayers() {
         game.setPlayers("1");
-        assertTrue(game.getPlayer1() instanceof HumanTurn);
-        assertTrue(game.getPlayer2() instanceof HumanTurn);
+        assertTrue(game.getPlayer1() instanceof HumanPlayer);
+        assertTrue(game.getPlayer2() instanceof HumanPlayer);
     }
 
     @Test
     public void setsOneRobotPlayer() {
         game.setPlayers("2");
-        assertTrue(game.getPlayer1() instanceof HumanTurn);
-        assertTrue(game.getPlayer2() instanceof RobotTurn);
+        assertTrue(game.getPlayer1() instanceof HumanPlayer);
+        assertTrue(game.getPlayer2() instanceof RobotPlayer);
     }
 
     @Test
     public void setsTwoRobotPlayers() {
         game.setPlayers("3");
-        assertTrue(game.getPlayer1() instanceof RobotTurn);
-        assertTrue(game.getPlayer2() instanceof RobotTurn);
+        assertTrue(game.getPlayer1() instanceof RobotPlayer);
+        assertTrue(game.getPlayer2() instanceof RobotPlayer);
     }
 
     @Test
