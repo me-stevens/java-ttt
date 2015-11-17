@@ -3,6 +3,8 @@ public class Game {
     private Board board;
     private UserInterface gameUI;
     private String currentPlayer;
+    private Player player1;
+    private Player player2;
     private boolean isHuman1;
     private boolean isHuman2;
 
@@ -50,10 +52,18 @@ public class Game {
 
     public void setPlayers(String option) {
         switch (option.charAt(0)) {
+            case '1':
+                player1 = new HumanTurn(gameUI, "X");
+                player2 = new HumanTurn(gameUI, "O");
+                break;
             case '2':
+                player1  = new HumanTurn(gameUI, "X");
+                player2  = new RobotTurn(gameUI, "O");
                 isHuman2 = false;
                 break;
             case '3':
+                player1  = new RobotTurn(gameUI, "X");
+                player2  = new RobotTurn(gameUI, "O");
                 isHuman1 = false;
                 isHuman2 = false;
                 break;
