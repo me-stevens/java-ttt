@@ -49,16 +49,16 @@ public class Game {
     public void setPlayers(String option) {
         switch (option.charAt(0)) {
             case '1':
-                player1 = new HumanTurn(gameUI, "X");
-                player2 = new HumanTurn(gameUI, "O");
+                player1 = new HumanPlayer(gameUI, "X");
+                player2 = new HumanPlayer(gameUI, "O");
                 break;
             case '2':
-                player1 = new HumanTurn(gameUI, "X");
-                player2 = new RobotTurn(gameUI, "O");
+                player1 = new HumanPlayer(gameUI, "X");
+                player2 = new RobotPlayer(gameUI, "O");
                 break;
             case '3':
-                player1 = new RobotTurn(gameUI, "X");
-                player2 = new RobotTurn(gameUI, "O");
+                player1 = new RobotPlayer(gameUI, "X");
+                player2 = new RobotPlayer(gameUI, "O");
                 break;
         }
     }
