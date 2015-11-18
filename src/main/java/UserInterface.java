@@ -2,13 +2,14 @@ public class UserInterface {
 
     public static final String WELCOME      = "\n --- WELCOME ---\n";
     public static final String PROMPT       = "\nChoose a cell to put your mark: ";
+    public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
+    public static final String ALIENPROMPT  = "\nAlien chooses a cell\n";
     public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
     public static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
     public static final String ISFULL       = "\nIt's a draw!";
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
-    public static final String REPLAY       = "\nReplay? ";
+    public static final String REPLAY       = "\nReplay? (y/n): ";
     public static final String HASWINNER    = "\nCongratulations, ";
-    public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
     public static final String PLAYERSMENU  = "\nChoose an option:\n" +
                                               " 1) Human vs. human\n" +
                                               " 2) Human vs. robot\n" +
@@ -65,6 +66,10 @@ public class UserInterface {
 
     public void printRobotPrompt() {
         print(ROBOTPROMT);
+    }
+
+    public void printAlienPrompt() {
+        print(ALIENPROMPT);
     }
 
     public void printHasWinnerMessage(String currentPlayer) {

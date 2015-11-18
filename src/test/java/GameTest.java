@@ -155,6 +155,13 @@ public class GameTest {
         assertEquals("O", game.getBoard().getCell(5));
     }
 
+    @Test
+    public void alienPlays() {
+        spy.setInput("1");
+        game.setPlayers("2");
+        playTurns(2);
+    }
+
     private void playTurns(int times) {
         for (int i = 0; i < times; i++) {
             game.nextTurn();
