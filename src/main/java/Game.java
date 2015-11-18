@@ -2,7 +2,7 @@ public class Game {
 
     private Board board;
     private UserInterface gameUI;
-    private String currentPlayer;
+    private String currentMark;
     private Player player1;
     private Player player2;
 
@@ -25,7 +25,7 @@ public class Game {
 
     private void resetGame() {
         board.reset();
-        currentPlayer = "X";
+        currentMark = "X";
     }
 
     public void start() {
@@ -70,8 +70,9 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        int index = (currentPlayer.equals("X")) ? player1.getCellIndex(board) : player2.getCellIndex(board);
-        board.setCell(index, currentPlayer);
+        Player currentPlayer = (currentMark.equals("X")) ? player1 : player2;
+        int index            = currentPlayer.getCellIndex(board);
+        board.setCell(index, currentMark);
 
         return updateGameStatus();
     }
@@ -86,9 +87,9 @@ public class Game {
     }
 
     public boolean checkForWinner() {
-        if (new BoardChecker(board).hasWinner(currentPlayer)) {
+        if (new BoardChecker(board).hasWinner(currentMark)) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentPlayer);
+            gameUI.printHasWinnerMessage(currentMark);
             return true;
         }
 
@@ -106,7 +107,7 @@ public class Game {
     }
 
     private void swapPlayer() {
-        currentPlayer = (currentPlayer == "X") ? "O" : "X";
+        currentMark = (currentMark == "X") ? "O" : "X";
     }
 
     public Player getPlayer1() {
