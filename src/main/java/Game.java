@@ -38,12 +38,8 @@ public class Game {
         }
     }
 
-    public String showPlayersMenu() {
-        String option = "";
-        while (!option.matches("[1-4]")) {
-            option = gameUI.printPlayersMenu();
-        }
-        return option;
+    private String showPlayersMenu() {
+        return new Menu(gameUI).setOption();
     }
 
     public void setPlayers(String option) {

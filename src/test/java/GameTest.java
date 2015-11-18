@@ -92,13 +92,6 @@ public class GameTest {
     }
 
     @Test
-    public void showPlayersMenuUntilRightOption() {
-        spy.setInputs("khgj", "0", "1");
-        assertEquals("1", game.showPlayersMenu());
-        assertEquals(3, spy.timesReadWasCalled());
-    }
-
-    @Test
     public void setsTwoHumanPlayers() {
         game.setPlayers("1");
         assertTrue(game.getPlayer1() instanceof HumanPlayer);
