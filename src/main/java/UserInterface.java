@@ -14,7 +14,8 @@ public class UserInterface {
                                               " 1) Human vs. human\n" +
                                               " 2) Human vs. robot\n" +
                                               " 3) Robot vs. robot\n" +
-                                              "1, 2 or 3? ";
+                                              " 4) Human vs. alien\n" +
+                                              "1, 2, 3 or 4? ";
 
     private Console console;
 
