@@ -43,24 +43,9 @@ public class Game {
     }
 
     public void setPlayers(String option) {
-        switch (option.charAt(0)) {
-            case '1':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new HumanPlayer(gameUI, "O");
-                break;
-            case '2':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new RobotPlayer(gameUI, "O");
-                break;
-            case '3':
-                player1 = new RobotPlayer(gameUI, "X");
-                player2 = new RobotPlayer(gameUI, "O");
-                break;
-            case '4':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new AlienPlayer(gameUI, "O");
-                break;
-        }
+        Player[] players = new Menu(gameUI).setPlayers(option);
+        player1          = players[0];
+        player2          = players[1];
     }
 
     public boolean nextTurn() {
