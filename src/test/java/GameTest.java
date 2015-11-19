@@ -92,34 +92,6 @@ public class GameTest {
     }
 
     @Test
-    public void setsTwoHumanPlayers() {
-        game.setPlayers("1");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof HumanPlayer);
-    }
-
-    @Test
-    public void setsOneRobotPlayer() {
-        game.setPlayers("2");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof RobotPlayer);
-    }
-
-    @Test
-    public void setsTwoRobotPlayers() {
-        game.setPlayers("3");
-        assertTrue(game.getPlayer1() instanceof RobotPlayer);
-        assertTrue(game.getPlayer2() instanceof RobotPlayer);
-    }
-
-    @Test
-    public void setsOneAlienPlayer() {
-        game.setPlayers("4");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof AlienPlayer);
-    }
-
-    @Test
     public void startPrintsWelcomeMessage() {
         spy.setInputs("1", "1", "4", "2", "5", "3");
         game.start();
