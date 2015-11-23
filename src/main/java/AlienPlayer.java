@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Random;
 
-public class AlienPlayer implements Player{
+public class AlienPlayer implements Player {
     private final UserInterface gameUI;
 
     public AlienPlayer(UserInterface gameUI, String mark) {
