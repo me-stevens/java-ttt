@@ -40,7 +40,7 @@ public class Game {
 
     public String showPlayersMenu() {
         String option = "";
-        while (!option.matches("[1-3]")) {
+        while (!option.matches("[1-4]")) {
             option = gameUI.printPlayersMenu();
         }
         return option;
@@ -59,6 +59,10 @@ public class Game {
             case '3':
                 player1 = new RobotPlayer(gameUI, "X");
                 player2 = new RobotPlayer(gameUI, "O");
+                break;
+            case '4':
+                player1 = new HumanPlayer(gameUI, "X");
+                player2 = new AlienPlayer(gameUI, "O");
                 break;
         }
     }
