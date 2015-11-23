@@ -3,6 +3,7 @@ public class Game {
     private Board board;
     private UserInterface gameUI;
     private String currentMark;
+    private Player currentPlayer;
     private Player player1;
     private Player player2;
 
@@ -51,8 +52,8 @@ public class Game {
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        Player currentPlayer = (currentMark.equals("X")) ? player1 : player2;
-        int index            = currentPlayer.getCellIndex(board);
+        currentPlayer = (currentMark.equals("X")) ? player1 : player2;
+        int index     = currentPlayer.getCellIndex(board);
         board.setCell(index, currentMark);
 
         return updateGameStatus();
