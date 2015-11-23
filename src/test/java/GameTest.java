@@ -120,6 +120,13 @@ public class GameTest {
     }
 
     @Test
+    public void setsOneAlienPlayer() {
+        game.setPlayers("4");
+        assertTrue(game.getPlayer1() instanceof HumanPlayer);
+        assertTrue(game.getPlayer2() instanceof AlienPlayer);
+    }
+
+    @Test
     public void startPrintsWelcomeMessage() {
         spy.setInputs("1", "1", "4", "2", "5", "3");
         game.start();
@@ -153,6 +160,13 @@ public class GameTest {
         game.setPlayers("2");
         playTurns(2);
         assertEquals("O", game.getBoard().getCell(5));
+    }
+
+    @Test
+    public void alienPlays() {
+        spy.setInput("1");
+        game.setPlayers("4");
+        playTurns(2);
     }
 
     private void playTurns(int times) {
