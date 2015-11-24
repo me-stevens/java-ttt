@@ -11,41 +11,46 @@ public class MenuTest {
 
     @Before
     public void setUp() {
+        int size = 3;
         spy  = new SpyConsole();
-        menu = new Menu(new UserInterface(spy));
+        menu = new Menu(new UserInterface(spy), size);
     }
 
     @Test
     public void showPlayersMenuUntilRightOption() {
         spy.setInputs("khgj", "0", "1");
-        assertEquals("1", menu.setOption());
+        menu.createPlayers();
         assertEquals(3, spy.timesReadWasCalled());
     }
 
     @Test
     public void setsTwoHumanPlayers() {
-        Player[] players = menu.setPlayers("1");
+        spy.setInput("1");
+        Player[] players = menu.createPlayers();
         assertTrue(players[0] instanceof HumanPlayer);
         assertTrue(players[1] instanceof HumanPlayer);
     }
 
     @Test
     public void setsOneRobotPlayer() {
-        Player[] players = menu.setPlayers("2");
+        spy.setInput("2");
+        Player[] players = menu.createPlayers();
         assertTrue(players[0] instanceof HumanPlayer);
         assertTrue(players[1] instanceof RobotPlayer);
     }
 
     @Test
     public void setsTwoRobotPlayers() {
-        Player[] players = menu.setPlayers("3");
+        spy.setInput("3");
+        Player[] players = menu.createPlayers();
         assertTrue(players[0] instanceof RobotPlayer);
         assertTrue(players[1] instanceof RobotPlayer);
     }
 
     @Test
     public void setsOneAlienPlayer() {
-        Player[] players = menu.setPlayers("4");
+        spy.setInput("4");
+        Player[] players = menu.createPlayers();
         assertTrue(players[0] instanceof HumanPlayer);
         assertTrue(players[1] instanceof AlienPlayer);
     }
