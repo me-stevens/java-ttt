@@ -12,7 +12,6 @@ public class AlienPlayer implements Player {
         gameUI.printAlienPrompt();
 
         List<Integer> empties = board.getEmptyCellIndexes();
-        Random random         = new Random();
-        return empties.get(random.nextInt(empties.size()));
+        return empties.get(new Random().nextInt(empties.size()));
     }
 }

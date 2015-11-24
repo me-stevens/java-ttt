@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class RobotTurnTest {
+public class RobotPlayerTest {
 
     private int size;
     private Board board;
@@ -12,14 +12,16 @@ public class RobotTurnTest {
 
     @Before
     public void setUp() {
-        size = 3;
-        spy  = new SpyConsole();
+        size        = 3;
+        spy         = new SpyConsole();
+        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+
     }
 
     @Test
     public void promptMessageIsPrinted() {
-        board    = new Board(size);
-        int temp = new RobotPlayer(new UserInterface(spy), "O").getCellIndex(board);
+        board = new Board(size);
+        robotPlayer.getCellIndex(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
@@ -28,8 +30,6 @@ public class RobotTurnTest {
         board = setBoard("O", "O", "",
                          "X", "X", "",
                           "",  "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
@@ -38,8 +38,6 @@ public class RobotTurnTest {
         board = setBoard("X", "O", "",
                          "X", "O", "",
                           "",  "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
@@ -48,8 +46,6 @@ public class RobotTurnTest {
         board = setBoard("O", "X", "X",
                          "X", "O", "X",
                          "X",  "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
@@ -58,8 +54,6 @@ public class RobotTurnTest {
         board = setBoard("X", "X", "O",
                          "X", "O", "X",
                          "",  "", "X");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
@@ -68,8 +62,6 @@ public class RobotTurnTest {
         board = setBoard("X", "X", "",
                           "", "O", "",
                           "",  "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
@@ -78,8 +70,6 @@ public class RobotTurnTest {
         board = setBoard("", "", "X",
                          "", "O", "",
                          "", "", "X");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(6, robotPlayer.getCellIndex(board));
     }
 
@@ -88,8 +78,6 @@ public class RobotTurnTest {
         board = setBoard("X", "", "",
                          "", "X", "",
                          "O", "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
@@ -98,8 +86,6 @@ public class RobotTurnTest {
         board = setBoard("",  "", "X",
                          "O", "", "",
                          "X", "", "");
-
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
         assertEquals(5, robotPlayer.getCellIndex(board));
     }
 
