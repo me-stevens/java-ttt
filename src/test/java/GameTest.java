@@ -6,14 +6,16 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
+    Board board;
     private SpyConsole spy;
     private int size;
 
     @Before
     public void setUp() {
         size = 3;
+        board = new Board(size);
         spy  = new SpyConsole();
-        game = new Game(new Board(size), new UserInterface(spy));
+        game = new Game(board, new UserInterface(spy));
     }
 
     @Test
