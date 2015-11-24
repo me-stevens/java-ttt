@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HumanTurnTest {
+public class HumanPlayerTest {
 
     private HumanPlayer humanPlayer;
     private SpyConsole spy;
