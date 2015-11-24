@@ -7,14 +7,11 @@ public class Game {
     private Player player1;
     private Player player2;
 
+
     public Game(Board board, UserInterface gameUI) {
         this.board  = board;
         this.gameUI = gameUI;
         resetGame();
-    }
-
-    public Board getBoard() {
-        return board;
     }
 
     public void run() {
