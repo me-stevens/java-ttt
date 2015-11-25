@@ -10,12 +10,6 @@ public class UserInterface {
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
     public static final String REPLAY       = "\nReplay? (y/n): ";
     public static final String HASWINNER    = "\nCongratulations, ";
-    public static final String PLAYERSMENU  = "\nChoose an option:\n" +
-                                              " 1) Human vs. human\n" +
-                                              " 2) Human vs. robot\n" +
-                                              " 3) Robot vs. robot\n" +
-                                              " 4) Human vs. alien\n" +
-                                              "1, 2, 3 or 4? ";
 
     private Console console;
 
@@ -47,8 +41,8 @@ public class UserInterface {
         print(WELCOME);
     }
 
-    public String printPlayersMenu() {
-        print(PLAYERSMENU);
+    public String printMenuAndGetOption(String menu) {
+        print(menu);
         return console.read();
     }
 
