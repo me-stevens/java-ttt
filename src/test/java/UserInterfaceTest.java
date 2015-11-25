@@ -30,15 +30,15 @@ public class UserInterfaceTest {
 
     @Test
     public void printsMenu() {
-        spy.setInput("");
-        ui.printPlayersMenu();
-        assertEquals(ui.PLAYERSMENU, spy.lastPrintedMessage());
+        spy.setInput("1");
+        ui.printMenuAndGetOption("menu");
+        assertEquals("menu", spy.lastPrintedMessage());
     }
 
     @Test
-    public void choosesTwoHumansFromMenu() {
+    public void getsOptionFromMenu() {
         spy.setInput("1");
-        assertEquals("1", ui.printPlayersMenu());
+        assertEquals("1", ui.printMenuAndGetOption("menu"));
         assertTrue(spy.readMethodWasCalled());
     }
 

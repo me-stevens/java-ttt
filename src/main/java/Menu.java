@@ -1,17 +1,17 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class Menu {
 
     private UserInterface gameUI;
     private HashMap<String, Supplier<List<Player>>> menuOptions;
+    private ArrayList<String> printedMenuOptions;
 
     public Menu(UserInterface gameUI) {
-        this.gameUI      = gameUI;
-        this.menuOptions = new HashMap<>();
+        this.gameUI        = gameUI;
+        menuOptions        = new HashMap<>();
+        printedMenuOptions = new ArrayList<>();
+
         initializeOptions();
     }
 
@@ -22,10 +22,16 @@ public class Menu {
 
     private void initializeOptions() {
         menuOptions.put("1", this::twoHumans);
-        menuOptions.put("2", this::humanAndRobot);
-        menuOptions.put("3", this::twoRobots);
-        menuOptions.put("4", this::humanAndAlien);
+        printedMenuOptions.add(" 1) Human vs. human\n");
 
+        menuOptions.put("2", this::humanAndRobot);
+        printedMenuOptions.add(" 2) Human vs. robot\n");
+
+        menuOptions.put("3", this::twoRobots);
+        printedMenuOptions.add(" 3) Robot vs. robot\n");
+
+        menuOptions.put("4", this::humanAndAlien);
+        printedMenuOptions.add(" 4) Human vs. alien\n");
     }
 
     private List<Player> twoHumans() {
@@ -56,7 +62,7 @@ public class Menu {
         String option = "";
 
         while (isInvalidOption(option)) {
-            option = gameUI.printPlayersMenu();
+            option = printPlayersMenu();
         }
 
         return option;
@@ -64,11 +70,19 @@ public class Menu {
 
     private boolean isInvalidOption(String option) {
         ArrayList<String> validIndexes = new ArrayList();
-
         for (int index = 1; index <= menuOptions.size(); index++) {
             validIndexes.add(Integer.toString(index));
         }
 
         return !validIndexes.contains(option);
+    }
+
+    private String printPlayersMenu() {
+        String menu = "\nChoose an option:\n";
+        for (String printedMenuOption : printedMenuOptions) {
+            menu += printedMenuOption;
+        }
+
+        return gameUI.printMenuAndGetOption(menu);
     }
 }

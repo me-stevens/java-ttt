@@ -66,7 +66,7 @@ public class Game {
     private boolean checkForWinner() {
         if (new BoardChecker(board).hasWinner(currentMark)) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage("X");
+            gameUI.printHasWinnerMessage(currentMark);
             return true;
         }
 
