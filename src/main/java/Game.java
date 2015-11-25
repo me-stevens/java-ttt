@@ -28,7 +28,7 @@ public class Game {
         currentMark = "X";
     }
 
-    public void start() {
+    private void start() {
         gameUI.printWelcomeMessage();
         setPlayers();
 
@@ -44,7 +44,7 @@ public class Game {
         player2 = players.get(1);
     }
 
-    public boolean nextTurn() {
+    private boolean nextTurn() {
         gameUI.printBoard(board);
 
         currentPlayer = (currentMark.equals("X")) ? player1 : player2;
@@ -63,17 +63,17 @@ public class Game {
         return true;
     }
 
-    public boolean checkForWinner() {
+    private boolean checkForWinner() {
         if (new BoardChecker(board).hasWinner(currentMark)) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentMark);
+            gameUI.printHasWinnerMessage("X");
             return true;
         }
 
         return false;
     }
 
-    public boolean checkForFull() {
+    private boolean checkForFull() {
         if (board.isFull()) {
             gameUI.printBoard(board);
             gameUI.printIsFullMessage();
@@ -85,13 +85,5 @@ public class Game {
 
     private void swapPlayer() {
         currentMark = (currentMark == "X") ? "O" : "X";
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
     }
 }
