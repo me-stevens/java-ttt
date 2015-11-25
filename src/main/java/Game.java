@@ -1,19 +1,19 @@
+import java.util.List;
+
 public class Game {
 
     private Board board;
     private UserInterface gameUI;
-    private String currentPlayer;
+    private String currentMark;
+    private Player currentPlayer;
     private Player player1;
     private Player player2;
+
 
     public Game(Board board, UserInterface gameUI) {
         this.board  = board;
         this.gameUI = gameUI;
         resetGame();
-    }
-
-    public Board getBoard() {
-        return board;
     }
 
     public void run() {
@@ -25,12 +25,12 @@ public class Game {
 
     private void resetGame() {
         board.reset();
-        currentPlayer = "X";
+        currentMark = "X";
     }
 
     public void start() {
         gameUI.printWelcomeMessage();
-        setPlayers(showPlayersMenu());
+        setPlayers();
 
         boolean play = true;
         while (play) {
@@ -38,40 +38,18 @@ public class Game {
         }
     }
 
-    public String showPlayersMenu() {
-        String option = "";
-        while (!option.matches("[1-4]")) {
-            option = gameUI.printPlayersMenu();
-        }
-        return option;
-    }
-
-    public void setPlayers(String option) {
-        switch (option.charAt(0)) {
-            case '1':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new HumanPlayer(gameUI, "O");
-                break;
-            case '2':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new RobotPlayer(gameUI, "O");
-                break;
-            case '3':
-                player1 = new RobotPlayer(gameUI, "X");
-                player2 = new RobotPlayer(gameUI, "O");
-                break;
-            case '4':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new AlienPlayer(gameUI, "O");
-                break;
-        }
+    private void setPlayers() {
+        List<Player> players = new Menu(gameUI).createPlayers();
+        player1 = players.get(0);
+        player2 = players.get(1);
     }
 
     public boolean nextTurn() {
         gameUI.printBoard(board);
 
-        int index = (currentPlayer.equals("X")) ? player1.getCellIndex(board) : player2.getCellIndex(board);
-        board.setCell(index, currentPlayer);
+        currentPlayer = (currentMark.equals("X")) ? player1 : player2;
+        int index     = currentPlayer.getCellIndex(board);
+        board.setCell(index, currentMark);
 
         return updateGameStatus();
     }
@@ -86,9 +64,9 @@ public class Game {
     }
 
     public boolean checkForWinner() {
-        if (new BoardChecker(board).hasWinner(currentPlayer)) {
+        if (new BoardChecker(board).hasWinner(currentMark)) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentPlayer);
+            gameUI.printHasWinnerMessage(currentMark);
             return true;
         }
 
@@ -106,7 +84,7 @@ public class Game {
     }
 
     private void swapPlayer() {
-        currentPlayer = (currentPlayer == "X") ? "O" : "X";
+        currentMark = (currentMark == "X") ? "O" : "X";
     }
 
     public Player getPlayer1() {
