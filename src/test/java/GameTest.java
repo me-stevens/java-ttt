@@ -6,14 +6,16 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
+    Board board;
     private SpyConsole spy;
     private int size;
 
     @Before
     public void setUp() {
         size = 3;
+        board = new Board(size);
         spy  = new SpyConsole();
-        game = new Game(new Board(size), new UserInterface(spy));
+        game = new Game(board, new UserInterface(spy));
     }
 
     @Test
@@ -89,41 +91,6 @@ public class GameTest {
         assertEquals("X", game.getBoard().getCell(1));
         assertEquals("O", game.getBoard().getCell(2));
         assertEquals("X", game.getBoard().getCell(3));
-    }
-
-    @Test
-    public void showPlayersMenuUntilRightOption() {
-        spy.setInputs("khgj", "0", "1");
-        assertEquals("1", game.showPlayersMenu());
-        assertEquals(3, spy.timesReadWasCalled());
-    }
-
-    @Test
-    public void setsTwoHumanPlayers() {
-        game.setPlayers("1");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof HumanPlayer);
-    }
-
-    @Test
-    public void setsOneRobotPlayer() {
-        game.setPlayers("2");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof RobotPlayer);
-    }
-
-    @Test
-    public void setsTwoRobotPlayers() {
-        game.setPlayers("3");
-        assertTrue(game.getPlayer1() instanceof RobotPlayer);
-        assertTrue(game.getPlayer2() instanceof RobotPlayer);
-    }
-
-    @Test
-    public void setsOneAlienPlayer() {
-        game.setPlayers("4");
-        assertTrue(game.getPlayer1() instanceof HumanPlayer);
-        assertTrue(game.getPlayer2() instanceof AlienPlayer);
     }
 
     @Test

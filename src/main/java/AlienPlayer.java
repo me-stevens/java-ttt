@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Random;
 
-public class AlienPlayer implements Player{
+public class AlienPlayer implements Player {
     private final UserInterface gameUI;
 
     public AlienPlayer(UserInterface gameUI, String mark) {
@@ -12,7 +12,6 @@ public class AlienPlayer implements Player{
         gameUI.printAlienPrompt();
 
         List<Integer> empties = board.getEmptyCellIndexes();
-        Random random         = new Random();
-        return empties.get(random.nextInt(empties.size()));
+        return empties.get(new Random().nextInt(empties.size()));
     }
 }
