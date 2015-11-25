@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -11,9 +13,8 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        int size = 3;
         spy  = new SpyConsole();
-        menu = new Menu(new UserInterface(spy), size);
+        menu = new Menu(new UserInterface(spy));
     }
 
     @Test
@@ -26,32 +27,32 @@ public class MenuTest {
     @Test
     public void setsTwoHumanPlayers() {
         spy.setInput("1");
-        Player[] players = menu.createPlayers();
-        assertTrue(players[0] instanceof HumanPlayer);
-        assertTrue(players[1] instanceof HumanPlayer);
+        List<Player> players = menu.createPlayers();
+        assertTrue(players.get(0) instanceof HumanPlayer);
+        assertTrue(players.get(1) instanceof HumanPlayer);
     }
 
     @Test
     public void setsOneRobotPlayer() {
         spy.setInput("2");
-        Player[] players = menu.createPlayers();
-        assertTrue(players[0] instanceof HumanPlayer);
-        assertTrue(players[1] instanceof RobotPlayer);
+        List<Player> players = menu.createPlayers();
+        assertTrue(players.get(0) instanceof HumanPlayer);
+        assertTrue(players.get(1) instanceof RobotPlayer);
     }
 
     @Test
     public void setsTwoRobotPlayers() {
         spy.setInput("3");
-        Player[] players = menu.createPlayers();
-        assertTrue(players[0] instanceof RobotPlayer);
-        assertTrue(players[1] instanceof RobotPlayer);
+        List<Player> players = menu.createPlayers();
+        assertTrue(players.get(0) instanceof RobotPlayer);
+        assertTrue(players.get(1) instanceof RobotPlayer);
     }
 
     @Test
     public void setsOneAlienPlayer() {
         spy.setInput("4");
-        Player[] players = menu.createPlayers();
-        assertTrue(players[0] instanceof HumanPlayer);
-        assertTrue(players[1] instanceof AlienPlayer);
+        List<Player> players = menu.createPlayers();
+        assertTrue(players.get(0) instanceof HumanPlayer);
+        assertTrue(players.get(1) instanceof AlienPlayer);
     }
 }

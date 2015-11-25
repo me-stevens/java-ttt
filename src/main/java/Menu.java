@@ -1,25 +1,26 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Menu {
 
     private UserInterface gameUI;
-    private int size;
 
-    public Menu(UserInterface gameUI, int size) {
-        this.gameUI = gameUI;
-        this.size   = size;
+    public enum Options {
+        TWO_HUMANS, HUMAN_AND_ROBOT, TWO_ROBOTS, HUMAN_AND_ALIEN
     }
 
-    public Player[] createPlayers() {
-        Player player1;
-        Player player2;
+    public Menu(UserInterface gameUI) {
+        this.gameUI = gameUI;
+    }
+
+    public List<Player> createPlayers() {
+        Player player1 = new HumanPlayer(gameUI, "X");
+        Player player2 = new HumanPlayer(gameUI, "O");
+
         char option = setOption().charAt(0);
 
         switch (option) {
-            case '1':
-                player1 = new HumanPlayer(gameUI, "X");
-                player2 = new HumanPlayer(gameUI, "O");
-                break;
             case '2':
                 player1 = new HumanPlayer(gameUI, "X");
                 player2 = new RobotPlayer(gameUI, "O");
@@ -32,13 +33,9 @@ public class Menu {
                 player1 = new HumanPlayer(gameUI, "X");
                 player2 = new AlienPlayer(gameUI, "O");
                 break;
-            default:
-                player1 = null;
-                player2 = null;
-                break;
         }
 
-        return new Player[] {player1, player2};
+        return Arrays.asList(player1, player2);
     }
 
     private String setOption() {
@@ -54,7 +51,7 @@ public class Menu {
     private boolean isInvalidOption(String option) {
         ArrayList<String> validIndexes = new ArrayList();
 
-        for (int index = 1; index <= size*size; index++) {
+        for (int index = 1; index <= Options.values().length; index++) {
             validIndexes.add(Integer.toString(index));
         }
 

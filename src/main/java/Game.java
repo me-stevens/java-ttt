@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Game {
 
     private Board board;
@@ -28,7 +30,7 @@ public class Game {
 
     public void start() {
         gameUI.printWelcomeMessage();
-        setPlayers(showPlayersMenu());
+        setPlayers();
 
         boolean play = true;
         while (play) {
@@ -36,14 +38,10 @@ public class Game {
         }
     }
 
-    private String showPlayersMenu() {
-        return new Menu(gameUI).setOption();
-    }
-
-    public void setPlayers(String option) {
-        Player[] players = new Menu(gameUI).setPlayers(option);
-        player1          = players[0];
-        player2          = players[1];
+    private void setPlayers() {
+        List<Player> players = new Menu(gameUI).createPlayers();
+        player1 = players.get(0);
+        player2 = players.get(1);
     }
 
     public boolean nextTurn() {
