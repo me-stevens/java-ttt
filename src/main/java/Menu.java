@@ -2,49 +2,50 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Menu {
 
     private UserInterface gameUI;
-    private HashMap<String, List<Player>> options;
+    private HashMap<String, Supplier<List<Player>>> playerFunctions = new HashMap<>();
 
     public Menu(UserInterface gameUI) {
         this.gameUI = gameUI;
-        options     = new HashMap<String, List<Player>>();
-        twoHumans();
-        humanAndRobot();
-        twoRobots();
-        humanAndAlien();
+
+        playerFunctions = new HashMap<>();
+        playerFunctions.put("1", this::twoHumans);
+        playerFunctions.put("2", this::humanAndRobot);
+        playerFunctions.put("3", this::twoRobots);
+        playerFunctions.put("4", this::humanAndAlien);
     }
 
     public List<Player> createPlayers() {
         String option = setOption();
-
-        return options.get(option);
+        return playerFunctions.get(option).get();
     }
 
-    private void twoHumans() {
+    private List<Player> twoHumans() {
         Player player1 = new HumanPlayer(gameUI, "X");
         Player player2 = new HumanPlayer(gameUI, "O");
-        options.put("1", Arrays.asList(player1, player2));
+      return  Arrays.asList(player1, player2);
     }
 
-    private void humanAndRobot() {
+    private List<Player> humanAndRobot() {
         Player player1 = new HumanPlayer(gameUI, "X");
         Player player2 = new RobotPlayer(gameUI, "O");
-        options.put("2", Arrays.asList(player1, player2));
+        return  Arrays.asList(player1, player2);
     }
 
-    private void twoRobots() {
+    private List<Player> twoRobots() {
         Player player1 = new RobotPlayer(gameUI, "X");
         Player player2 = new RobotPlayer(gameUI, "O");
-        options.put("3", Arrays.asList(player1, player2));
+        return  Arrays.asList(player1, player2);
     }
 
-    private void humanAndAlien() {
+    private List<Player> humanAndAlien() {
         Player player1 = new HumanPlayer(gameUI, "X");
         Player player2 = new AlienPlayer(gameUI, "O");
-        options.put("4", Arrays.asList(player1, player2));
+        return  Arrays.asList(player1, player2);
     }
 
     private String setOption() {
@@ -60,7 +61,7 @@ public class Menu {
     private boolean isInvalidOption(String option) {
         ArrayList<String> validIndexes = new ArrayList();
 
-        for (int index = 1; index <= options.size(); index++) {
+        for (int index = 1; index <= playerFunctions.size(); index++) {
             validIndexes.add(Integer.toString(index));
         }
 
