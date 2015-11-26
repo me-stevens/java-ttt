@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 public class Menu {
 
     private UserInterface gameUI;
-    private HashMap<String, Supplier<List<Player>>> menuOptions;
-    private ArrayList<String> printedMenuOptions;
+    private Map<String, Supplier<List<Player>>> menuOptions;
+    private List<String> printedMenuOptions;
 
     public Menu(UserInterface gameUI) {
         this.gameUI        = gameUI;
@@ -83,6 +83,6 @@ public class Menu {
             menu += printedMenuOption;
         }
 
-        return gameUI.printMenuAndGetOption(menu);
+        return gameUI.getMenuOption(menu);
     }
 }

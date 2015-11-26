@@ -24,7 +24,7 @@ public class AlienPlayerTest {
     }
 
     @Test
-    public void getsTheEmptyCells() {
+    public void getsAnExistingEmptyIndex() {
         assertTrue(board.getEmptyCellIndexes().contains(alienPlayer.getCellIndex(board)));
     }
 }

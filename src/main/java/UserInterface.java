@@ -41,7 +41,7 @@ public class UserInterface {
         print(WELCOME);
     }
 
-    public String printMenuAndGetOption(String menu) {
+    public String getMenuOption(String menu) {
         print(menu);
         return console.read();
     }

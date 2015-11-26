@@ -31,14 +31,14 @@ public class UserInterfaceTest {
     @Test
     public void printsMenu() {
         spy.setInput("1");
-        ui.printMenuAndGetOption("menu");
+        ui.getMenuOption("menu");
         assertEquals("menu", spy.lastPrintedMessage());
     }
 
     @Test
     public void getsOptionFromMenu() {
         spy.setInput("1");
-        assertEquals("1", ui.printMenuAndGetOption("menu"));
+        assertEquals("1", ui.getMenuOption("menu"));
         assertTrue(spy.readMethodWasCalled());
     }
 
