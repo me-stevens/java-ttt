@@ -19,7 +19,6 @@ public class GameTest {
         game = new Game(board, new UserInterface(spy));
     }
 
-
     @Test
     public void runPrintsWelcomeMessage() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "n");
