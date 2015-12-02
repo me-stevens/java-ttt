@@ -1,3 +1,9 @@
+package com.mael.ttt;
+
+import com.mael.ttt.players.Player;
+import com.mael.ttt.ui.Menu;
+import com.mael.ttt.ui.UserInterface;
+
 import java.util.List;
 
 public class Game {

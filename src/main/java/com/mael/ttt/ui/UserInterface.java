@@ -1,3 +1,7 @@
+package com.mael.ttt.ui;
+
+import com.mael.ttt.Board;
+
 public class UserInterface {
 
     public static final String WELCOME      = "\n --- WELCOME ---\n";

@@ -1,3 +1,8 @@
+package com.mael.ttt.players;
+
+import com.mael.ttt.Board;
+import com.mael.ttt.ui.UserInterface;
+
 public class HumanPlayer implements Player {
 
     private Board board;

@@ -1,8 +1,13 @@
+package com.mael.ttt;
+
+import com.mael.ttt.ui.SpyConsole;
+import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class GameTest {
 
