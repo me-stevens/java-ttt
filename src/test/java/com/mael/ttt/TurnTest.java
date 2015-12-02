@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,13 +15,13 @@ public class TurnTest {
     public void turnPrintsTheBoardInEveryTurn() {
         spy.setInputs("1", "1");
         game.run();
-        assertTrue(spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n" + UserInterface.PROMPT));
+        assertTrue(spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n" + com.mael.ttt.ui.UserInterface.PROMPT));
     }
 
     @Ignore
     @Test
     public void turnUpdatesTheBoardInEveryTurn() {
-        Board old = board.getCopy();
+        com.mael.ttt.Board old = board.getCopy();
         spy.setInput("1");
         playTurns(1);
 
