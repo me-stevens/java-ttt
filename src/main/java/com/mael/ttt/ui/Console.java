@@ -1,4 +1,4 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
 public interface Console {
 

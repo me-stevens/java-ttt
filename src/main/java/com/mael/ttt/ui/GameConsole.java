@@ -1,4 +1,4 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;

@@ -1,5 +1,6 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
+import com.mael.ttt.ui.GameConsole;
 import org.junit.Assert;
 import org.junit.Test;
 

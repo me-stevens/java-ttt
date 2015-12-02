@@ -1,9 +1,8 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.SpyConsole;
-import com.mael.ttt.UserInterface;
-import com.mael.ttt.players.AlienPlayer;
+import com.mael.ttt.ui.SpyConsole;
+import com.mael.ttt.ui.UserInterface;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

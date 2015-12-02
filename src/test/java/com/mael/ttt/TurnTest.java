@@ -15,7 +15,7 @@ public class TurnTest {
     public void turnPrintsTheBoardInEveryTurn() {
         spy.setInputs("1", "1");
         game.run();
-        assertTrue(spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n" + com.mael.ttt.UserInterface.PROMPT));
+        assertTrue(spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n" + com.mael.ttt.ui.UserInterface.PROMPT));
     }
 
     @Ignore

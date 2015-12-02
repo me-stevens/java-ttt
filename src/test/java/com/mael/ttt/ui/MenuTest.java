@@ -1,4 +1,4 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
 import com.mael.ttt.players.AlienPlayer;
 import com.mael.ttt.players.HumanPlayer;

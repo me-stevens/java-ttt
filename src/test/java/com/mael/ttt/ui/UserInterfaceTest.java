@@ -1,5 +1,6 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
+import com.mael.ttt.Board;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

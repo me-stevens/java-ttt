@@ -1,9 +1,10 @@
-package com.mael.ttt;
+package com.mael.ttt.ui;
 
 import com.mael.ttt.players.AlienPlayer;
 import com.mael.ttt.players.HumanPlayer;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.players.RobotPlayer;
+import com.mael.ttt.ui.UserInterface;
 
 import java.util.*;
 import java.util.function.Supplier;
