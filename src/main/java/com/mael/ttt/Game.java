@@ -1,5 +1,6 @@
 package com.mael.ttt;
 
+import com.mael.ttt.players.Player;
 import java.util.List;
 
 public class Game {

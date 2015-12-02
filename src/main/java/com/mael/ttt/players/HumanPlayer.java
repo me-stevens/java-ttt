@@ -1,4 +1,7 @@
-package com.mael.ttt;
+package com.mael.ttt.players;
+
+import com.mael.ttt.Board;
+import com.mael.ttt.UserInterface;
 
 public class HumanPlayer implements Player {
 

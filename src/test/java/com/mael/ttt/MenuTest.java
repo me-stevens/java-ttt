@@ -1,5 +1,9 @@
 package com.mael.ttt;
 
+import com.mael.ttt.players.AlienPlayer;
+import com.mael.ttt.players.HumanPlayer;
+import com.mael.ttt.players.Player;
+import com.mael.ttt.players.RobotPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
