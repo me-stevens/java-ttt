@@ -3,7 +3,6 @@ package com.mael.ttt.players;
 import com.mael.ttt.Board;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +25,7 @@ public class AlienPlayerTest {
     @Test
     public void printsPromptMessage() {
         alienPlayer.getCellIndex(board);
-        Assert.assertEquals(UserInterface.ALIENPROMPT, spy.lastPrintedMessage());
+        assertEquals(UserInterface.ALIENPROMPT, spy.lastPrintedMessage());
     }
 
     @Test

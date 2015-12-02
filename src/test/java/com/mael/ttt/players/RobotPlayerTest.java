@@ -3,11 +3,10 @@ package com.mael.ttt.players;
 import com.mael.ttt.Board;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 public class RobotPlayerTest {
 
@@ -28,7 +27,7 @@ public class RobotPlayerTest {
     public void promptMessageIsPrinted() {
         board = new Board(size);
         robotPlayer.getCellIndex(board);
-        Assert.assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
+        assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
     @Test
@@ -36,7 +35,7 @@ public class RobotPlayerTest {
         board = setBoard("O", "O", "",
                          "X", "X", "",
                           "",  "", "");
-        Assert.assertEquals(3, robotPlayer.getCellIndex(board));
+        assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -44,7 +43,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "O", "",
                          "X", "O", "",
                           "",  "", "");
-        Assert.assertEquals(7, robotPlayer.getCellIndex(board));
+        assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -52,7 +51,7 @@ public class RobotPlayerTest {
         board = setBoard("O", "X", "X",
                          "X", "O", "X",
                          "X",  "", "");
-        Assert.assertEquals(9, robotPlayer.getCellIndex(board));
+        assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -60,7 +59,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "X", "O",
                          "X", "O", "X",
                          "",  "", "X");
-        Assert.assertEquals(7, robotPlayer.getCellIndex(board));
+        assertEquals(7, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -68,7 +67,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "X", "",
                           "", "O", "",
                           "",  "", "");
-        Assert.assertEquals(3, robotPlayer.getCellIndex(board));
+        assertEquals(3, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -76,7 +75,7 @@ public class RobotPlayerTest {
         board = setBoard("", "", "X",
                          "", "O", "",
                          "", "", "X");
-        Assert.assertEquals(6, robotPlayer.getCellIndex(board));
+        assertEquals(6, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -84,7 +83,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "", "",
                          "", "X", "",
                          "O", "", "");
-        Assert.assertEquals(9, robotPlayer.getCellIndex(board));
+        assertEquals(9, robotPlayer.getCellIndex(board));
     }
 
     @Test
@@ -92,7 +91,7 @@ public class RobotPlayerTest {
         board = setBoard("",  "", "X",
                          "O", "", "",
                          "X", "", "");
-        Assert.assertEquals(5, robotPlayer.getCellIndex(board));
+        assertEquals(5, robotPlayer.getCellIndex(board));
     }
 
     private Board setBoard(String... cellContents) {
