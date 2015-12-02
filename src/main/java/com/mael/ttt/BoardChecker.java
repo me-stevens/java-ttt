@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 public class BoardChecker {
 
     private int size;

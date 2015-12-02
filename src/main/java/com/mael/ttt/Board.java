@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -11,6 +13,11 @@ public class Board {
         reset();
     }
 
+    public int getSize() {
+        return SIZE;
+    }
+
+    // http://stackoverflow.com/questions/1754315/how-to-create-custom-exceptions-in-java
     public void setCell(int index, String cellContent) {
         board[getRowFromIndex(index)][getColFromIndex(index)] = cellContent;
     }
@@ -19,9 +26,7 @@ public class Board {
         return board[getRowFromIndex(index)][getColFromIndex(index)];
     }
 
-    public int getSize() {
-        return SIZE;
-    }
+
 
     public Board getCopy() {
         Board copy = new Board(SIZE);

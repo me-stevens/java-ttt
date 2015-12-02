@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 public class UserInterface {
 
     public static final String WELCOME      = "\n --- WELCOME ---\n";

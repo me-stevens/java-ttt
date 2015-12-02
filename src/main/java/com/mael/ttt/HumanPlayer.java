@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 public class HumanPlayer implements Player {
 
     private Board board;

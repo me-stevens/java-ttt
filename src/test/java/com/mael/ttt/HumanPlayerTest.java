@@ -1,3 +1,6 @@
+package com.mael.ttt;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +24,7 @@ public class HumanPlayerTest {
     @Test
     public void repeatsUntilCellIsNumber() {
         spy.setInputs("a", "20", "1");
-        assertEquals(1, humanPlayer.getCellIndex(board));
+        Assert.assertEquals(1, humanPlayer.getCellIndex(board));
         assertEquals(3, spy.timesReadWasCalled());
     }
 
@@ -29,13 +32,13 @@ public class HumanPlayerTest {
     public void repeatsUntilItGetsEmptyCellIndex() {
         board.setCell(1, "X");
         spy.setInputs("1", "2");
-        assertEquals(2, humanPlayer.getCellIndex(board));
+        Assert.assertEquals(2, humanPlayer.getCellIndex(board));
         assertEquals(2, spy.timesReadWasCalled());
     }
 
     @Test
     public void returnsRightIndex() {
         spy.setInputs("2");
-        assertEquals(2, humanPlayer.getCellIndex(board));
+        Assert.assertEquals(2, humanPlayer.getCellIndex(board));
     }
 }

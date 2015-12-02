@@ -1,3 +1,6 @@
+package com.mael.ttt;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,7 +41,7 @@ public class UserInterfaceTest {
     @Test
     public void getsOptionFromMenu() {
         spy.setInput("1");
-        assertEquals("1", ui.getMenuOption("menu"));
+        Assert.assertEquals("1", ui.getMenuOption("menu"));
         assertTrue(spy.readMethodWasCalled());
     }
 
@@ -52,7 +55,7 @@ public class UserInterfaceTest {
     @Test
     public void readsUserInput() {
         spy.setInput("hi");
-        assertEquals("hi", ui.getInput());
+        Assert.assertEquals("hi", ui.getInput());
         assertTrue(spy.readMethodWasCalled());
     }
 
@@ -80,7 +83,7 @@ public class UserInterfaceTest {
     @Test
     public void readsReplayAnswer() {
         spy.setInput("y");
-        assertEquals("y", ui.replay());
+        Assert.assertEquals("y", ui.replay());
         assertTrue(spy.readMethodWasCalled());
     }
 }

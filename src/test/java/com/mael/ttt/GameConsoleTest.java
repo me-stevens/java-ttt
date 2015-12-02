@@ -1,3 +1,6 @@
+package com.mael.ttt;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -14,7 +17,7 @@ public class GameConsoleTest {
         InputStream in = new ByteArrayInputStream("Hello".getBytes());
         GameConsole gameConsole = new GameConsole(in, null);
 
-        assertEquals("Hello", gameConsole.read());
+        Assert.assertEquals("Hello", gameConsole.read());
     }
 
     @Test

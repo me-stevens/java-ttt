@@ -1,3 +1,6 @@
+package com.mael.ttt;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +39,7 @@ public class BoardTest {
     public void getsTheEmptyCellIndexes() {
         board.setCell(1, "hi");
         List<Integer> expected = asList(2, 3, 4, 5, 6, 7, 8, 9);
-        assertEquals(expected, board.getEmptyCellIndexes());
+        Assert.assertEquals(expected, board.getEmptyCellIndexes());
     }
 
     @Test
@@ -52,17 +55,17 @@ public class BoardTest {
 
     @Test
     public void getsRowFromCellIndex() {
-        assertEquals((1 - 1) / size, board.getRowFromIndex(1));
+        Assert.assertEquals((1 - 1) / size, board.getRowFromIndex(1));
     }
 
     @Test
     public void getsColFromCellIndex() {
-        assertEquals((1 - 1) % size, board.getColFromIndex(1));
+        Assert.assertEquals((1 - 1) % size, board.getColFromIndex(1));
     }
 
     @Test
     public void getsIndexFromCoords() {
-        assertEquals(1, board.getIndexFromCoords(0, 0));
+        Assert.assertEquals(1, board.getIndexFromCoords(0, 0));
     }
 
     @Test

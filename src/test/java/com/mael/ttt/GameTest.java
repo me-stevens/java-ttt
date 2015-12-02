@@ -1,3 +1,6 @@
+package com.mael.ttt;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,14 +26,14 @@ public class GameTest {
     public void runPrintsWelcomeMessage() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertEquals(UserInterface.WELCOME, spy.firstPrintedMessage());
+        Assert.assertEquals(UserInterface.WELCOME, spy.firstPrintedMessage());
     }
 
     @Test
     public void runEndsTheGameIfWin() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
+        Assert.assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
 
 
@@ -45,7 +48,7 @@ public class GameTest {
     public void runEndsTheGameIfFull() {
         spy.setInputs("1", "1", "2", "3", "4", "5", "6", "8", "7", "9", "n");
         game.run();
-        assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
+        Assert.assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
 
     @Test
@@ -59,7 +62,7 @@ public class GameTest {
     public void replaysGameUntilNo() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "y", "1", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
+        Assert.assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
 
 

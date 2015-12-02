@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 public class GameRunner {
 
     public static void main(String[] args) {

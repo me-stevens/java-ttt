@@ -1,3 +1,5 @@
+package com.mael.ttt;
+
 import java.util.List;
 import java.util.Random;
 
