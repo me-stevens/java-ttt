@@ -5,7 +5,6 @@ import com.mael.ttt.ui.UserInterface;
 
 public class HumanPlayer implements Player {
 
-    private Board board;
     private UserInterface gameUI;
 
     public HumanPlayer(UserInterface ui, String mark) {
@@ -13,8 +12,7 @@ public class HumanPlayer implements Player {
     }
 
     public int getCellIndex(Board board) {
-        this.board = board;
-        String cellIndex = returnEmptyCellIndex(returnValidCellIndex());
+        String cellIndex = returnEmptyCellIndex(board, returnValidCellIndex());
         return stringToNumber(cellIndex);
     }
 
@@ -30,7 +28,7 @@ public class HumanPlayer implements Player {
         return cellIndex;
     }
 
-    private String returnEmptyCellIndex(String cellIndex) {
+    private String returnEmptyCellIndex(Board board, String cellIndex) {
         while (board.isCellBusy(stringToNumber(cellIndex))) {
             gameUI.printCellIsBusyMessage();
             cellIndex = gameUI.getInput();
