@@ -25,8 +25,6 @@ public class Board {
         return board[getRowFromIndex(index)][getColFromIndex(index)];
     }
 
-
-
     public Board getCopy() {
         Board copy = new Board(SIZE);
 
