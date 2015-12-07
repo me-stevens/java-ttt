@@ -10,8 +10,8 @@ import java.util.List;
 public class TwoHumans implements Option {
 
     public List<Player> createPlayers(UserInterface gameUI) {
-        Player player1 = new HumanPlayer(gameUI, "X");
-        Player player2 = new HumanPlayer(gameUI, "O");
+        Player player1 = new HumanPlayer(gameUI);
+        Player player2 = new HumanPlayer(gameUI);
         return Arrays.asList(player1, player2);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class HumanAndRobot implements Option {
 
     public List<Player> createPlayers(UserInterface gameUI) {
-        Player player1 = new HumanPlayer(gameUI, "X");
+        Player player1 = new HumanPlayer(gameUI);
         Player player2 = new RobotPlayer(gameUI, "O");
         return Arrays.asList(player1, player2);
     }

@@ -18,7 +18,7 @@ public class AlienPlayerTest {
     @Before
     public void setUp() {
         spy         = new SpyConsole();
-        alienPlayer = new AlienPlayer(new UserInterface(spy), "O");
+        alienPlayer = new AlienPlayer(new UserInterface(spy));
         board       = new Board(3);
     }
 

@@ -9,7 +9,7 @@ import java.util.Random;
 public class AlienPlayer implements Player {
     private final UserInterface gameUI;
 
-    public AlienPlayer(UserInterface gameUI, String mark) {
+    public AlienPlayer(UserInterface gameUI) {
         this.gameUI = gameUI;
     }
 

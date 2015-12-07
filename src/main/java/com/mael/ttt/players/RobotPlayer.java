@@ -2,6 +2,7 @@ package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
 import com.mael.ttt.BoardChecker;
+import com.mael.ttt.Marks;
 import com.mael.ttt.ui.UserInterface;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class RobotPlayer implements Player {
     }
 
     private String swapMark(String currentPlayer) {
-        return (currentPlayer.equals("X") ? "O" : "X");
+        return (currentPlayer.equals(Marks.PLAYER.toString()) ? Marks.OPPONENT.toString() : Marks.PLAYER.toString());
     }
 
     private int heuristics(String currentPlayer) {
