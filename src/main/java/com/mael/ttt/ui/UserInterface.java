@@ -2,9 +2,12 @@ package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
 
+import java.util.List;
+
 public class UserInterface {
 
     public static final String WELCOME      = "\n --- WELCOME ---\n";
+    public static final String MENUPROMPT   = "\nChoose an option:\n";
     public static final String PROMPT       = "\nChoose a cell to put your mark: ";
     public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
     public static final String ALIENPROMPT  = "\nAlien chooses a cell\n";
@@ -23,6 +26,18 @@ public class UserInterface {
 
     public void print(String message) {
         console.write(message);
+    }
+
+    public void printMenuPrompt() {
+        print(MENUPROMPT);
+    }
+
+    public String formatMenuOptions(List<String> menuOptionIds, List<String> menuOptionTexts) {
+        String menu = "";
+        for (int i = 0; i < menuOptionIds.size(); i++) {
+            menu += menuOptionIds.get(i) + ") " + menuOptionTexts.get(i) + "\n";
+        }
+        return menu;
     }
 
     public void printBoard(Board board) {
