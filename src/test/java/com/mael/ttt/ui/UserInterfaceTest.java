@@ -1,8 +1,12 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
+import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -24,6 +28,13 @@ public class UserInterfaceTest {
         assertEquals("hi", spy.printedMessage());
     }
 
+    @Test
+    public void formatsMenuOptions() {
+        List menuOptionIds   = Arrays.asList("1", "2");
+        List menuOptionTexts = Arrays.asList("foo", "bar");
+        assertEquals("1) foo\n2) bar\n", ui.formatMenuOptions(menuOptionIds, menuOptionTexts));
+
+    }
     @Test
     public void printsCellNumberIfCellIsEmpty() {
         Board board = new Board(3);

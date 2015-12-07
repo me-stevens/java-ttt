@@ -1,8 +1,8 @@
 package com.mael.ttt;
 
 import com.mael.ttt.players.Player;
-import com.mael.ttt.ui.Menu;
 import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.ui.menu.MenuCreator;
 
 import java.util.List;
 
@@ -11,10 +11,8 @@ public class Game {
     private Board board;
     private UserInterface gameUI;
     private String currentMark;
-    private Player currentPlayer;
     private Player player1;
     private Player player2;
-
 
     public Game(Board board, UserInterface gameUI) {
         this.board  = board;
@@ -45,7 +43,7 @@ public class Game {
     }
 
     private void setPlayers() {
-        List<Player> players = new Menu(gameUI).createPlayers();
+        List<Player> players = new MenuCreator().createMenu(gameUI).createPlayers();
         player1 = players.get(0);
         player2 = players.get(1);
     }
@@ -53,8 +51,8 @@ public class Game {
     private boolean nextTurn() {
         gameUI.printBoard(board);
 
-        currentPlayer = (currentMark.equals("X")) ? player1 : player2;
-        int index     = currentPlayer.getCellIndex(board);
+        Player currentPlayer = (currentMark.equals("X")) ? player1 : player2;
+        int index            = currentPlayer.getCellIndex(board);
         board.setCell(index, currentMark);
 
         return updateGameStatus();

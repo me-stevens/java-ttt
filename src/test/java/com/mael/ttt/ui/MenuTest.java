@@ -4,6 +4,8 @@ import com.mael.ttt.players.AlienPlayer;
 import com.mael.ttt.players.HumanPlayer;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.players.RobotPlayer;
+import com.mael.ttt.ui.menu.Menu;
+import com.mael.ttt.ui.menu.MenuCreator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +22,7 @@ public class MenuTest {
     @Before
     public void setUp() {
         spy  = new SpyConsole();
-        menu = new Menu(new UserInterface(spy));
+        menu = new MenuCreator().createMenu(new UserInterface(spy));
     }
 
     @Test
