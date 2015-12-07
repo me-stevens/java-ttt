@@ -9,5 +9,4 @@ public class GameRunner {
         Game game = new Game(new Board(3), new UserInterface(new GameConsole(System.in, System.out)));
         game.run();
     }
-
 }

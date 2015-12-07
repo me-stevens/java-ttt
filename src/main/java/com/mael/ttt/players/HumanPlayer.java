@@ -7,7 +7,7 @@ public class HumanPlayer implements Player {
 
     private UserInterface gameUI;
 
-    public HumanPlayer(UserInterface ui, String mark) {
+    public HumanPlayer(UserInterface ui) {
         this.gameUI = ui;
     }
 

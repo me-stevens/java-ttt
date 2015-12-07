@@ -13,10 +13,14 @@ public class Game {
     private String currentMark;
     private Player player1;
     private Player player2;
+    private String playerMark;
+    private String opponentMark;
 
     public Game(Board board, UserInterface gameUI) {
-        this.board  = board;
-        this.gameUI = gameUI;
+        this.board   = board;
+        this.gameUI  = gameUI;
+        playerMark   = Marks.PLAYER.toString();
+        opponentMark = Marks.OPPONENT.toString();
         resetGame();
     }
 
@@ -29,7 +33,7 @@ public class Game {
 
     private void resetGame() {
         board.reset();
-        currentMark = "X";
+        currentMark = playerMark;
     }
 
     private void start() {
@@ -51,7 +55,7 @@ public class Game {
     private boolean nextTurn() {
         gameUI.printBoard(board);
 
-        Player currentPlayer = (currentMark.equals("X")) ? player1 : player2;
+        Player currentPlayer = (currentMark.equals(playerMark)) ? player1 : player2;
         int index            = currentPlayer.getCellIndex(board);
         board.setCell(index, currentMark);
 
@@ -88,6 +92,6 @@ public class Game {
     }
 
     private void swapPlayer() {
-        currentMark = (currentMark == "X") ? "O" : "X";
+        currentMark = (currentMark == playerMark) ? opponentMark : playerMark;
     }
 }

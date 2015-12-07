@@ -1,5 +1,6 @@
 package com.mael.ttt.ui.menu;
 
+import com.mael.ttt.Marks;
 import com.mael.ttt.players.AlienPlayer;
 import com.mael.ttt.players.HumanPlayer;
 import com.mael.ttt.players.Player;
@@ -11,8 +12,8 @@ import java.util.List;
 public class HumanAndAlien implements Option {
 
     public List<Player> createPlayers(UserInterface gameUI) {
-        Player player1 = new HumanPlayer(gameUI, "X");
-        Player player2 = new AlienPlayer(gameUI, "O");
+        Player player1 = new HumanPlayer(gameUI);
+        Player player2 = new AlienPlayer(gameUI);
         return Arrays.asList(player1, player2);
     }
 }

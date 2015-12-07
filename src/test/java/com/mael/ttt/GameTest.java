@@ -15,13 +15,18 @@ public class GameTest {
     Board board;
     private SpyConsole spy;
     private int size;
+    private String playerMark;
+    private String opponentMark;
 
     @Before
     public void setUp() {
-        size = 3;
+        size  = 3;
         board = new Board(size);
-        spy  = new SpyConsole();
-        game = new Game(board, new UserInterface(spy));
+        spy   = new SpyConsole();
+        game  = new Game(board, new UserInterface(spy));
+
+        playerMark   = Marks.PLAYER.toString();
+        opponentMark = Marks.OPPONENT.toString();
     }
 
     @Test
@@ -43,7 +48,7 @@ public class GameTest {
     public void checkForWinnerPrintsBoardAndMsgs() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertThat(spy.printedMessage(), containsString("X X X \nO O 6 \n7 8 9 \n" + UserInterface.HASWINNER + "X" + UserInterface.GAMEOVER));
+        assertThat(spy.printedMessage(), containsString(playerMark + " " + playerMark + " " + playerMark + " \n" + opponentMark + " " + opponentMark + " 6 \n7 8 9 \n" + UserInterface.HASWINNER + playerMark + UserInterface.GAMEOVER));
     }
 
     @Test
@@ -57,7 +62,7 @@ public class GameTest {
     public void checkForFullPrintsBoardAndMsgs() {
         spy.setInputs("1", "1", "2", "3", "7", "4", "6", "5", "9", "8", "n");
         game.run();
-        assertThat(spy.printedMessage(), containsString("X O X \nX X O \nO X O \n" + UserInterface.ISFULL + UserInterface.GAMEOVER));
+        assertThat(spy.printedMessage(), containsString(playerMark + " " + opponentMark + " " + playerMark + " \n" + playerMark + " " + playerMark + " " + opponentMark + " \n" + opponentMark + " " + playerMark + " " + opponentMark + " \n" + UserInterface.ISFULL + UserInterface.GAMEOVER));
     }
 
     @Test
@@ -66,6 +71,4 @@ public class GameTest {
         game.run();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
     }
-
-
 }
