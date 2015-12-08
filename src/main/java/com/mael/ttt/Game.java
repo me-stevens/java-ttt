@@ -2,7 +2,6 @@ package com.mael.ttt;
 
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
-import com.mael.ttt.ui.menu.MenuCreator;
 
 import java.util.List;
 
@@ -18,19 +17,14 @@ public class Game {
     private String playerMark;
     private String opponentMark;
 
-    public Game(Board board, UserInterface gameUI) {
+    public Game(Board board, UserInterface gameUI, List<Player> players) {
         this.board   = board;
         this.gameUI  = gameUI;
+        player1      = players.get(0);
+        player2      = players.get(1);
         playerMark   = PLAYER.getMark();
         opponentMark = OPPONENT.getMark();
         resetGame();
-    }
-
-    public void run() {
-        do {
-            resetGame();
-            start();
-        } while (gameUI.replay().equals("y"));
     }
 
     private void resetGame() {
@@ -38,20 +32,11 @@ public class Game {
         currentMark = playerMark;
     }
 
-    private void start() {
-        gameUI.printWelcomeMessage();
-        setPlayers();
-
+    public void start() {
         boolean play = true;
         while (play) {
             play = nextTurn();
         }
-    }
-
-    private void setPlayers() {
-        List<Player> players = new MenuCreator().createMenu(gameUI).createPlayers();
-        player1 = players.get(0);
-        player2 = players.get(1);
     }
 
     private boolean nextTurn() {
