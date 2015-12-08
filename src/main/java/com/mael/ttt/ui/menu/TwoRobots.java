@@ -1,6 +1,5 @@
 package com.mael.ttt.ui.menu;
 
-import com.mael.ttt.Marks;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.players.RobotPlayer;
 import com.mael.ttt.ui.UserInterface;
