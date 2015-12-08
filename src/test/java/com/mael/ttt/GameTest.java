@@ -50,8 +50,8 @@ public class GameTest {
         assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   playerMark,   playerMark,
                                                                        opponentMark, opponentMark, "6",
                                                                        "7", "8", "9") +
-                                                        UserInterface.HASWINNER + playerMark +
-                                                        UserInterface.GAMEOVER));
+                                                                       UserInterface.HASWINNER + playerMark +
+                                                                       UserInterface.GAMEOVER));
     }
 
     @Test
@@ -68,8 +68,8 @@ public class GameTest {
         assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   opponentMark, playerMark,
                                                                        playerMark,   playerMark,   opponentMark,
                                                                        opponentMark, playerMark,   opponentMark) +
-                                                        UserInterface.ISFULL +
-                                                        UserInterface.GAMEOVER));
+                                                                       UserInterface.ISFULL +
+                                                                       UserInterface.GAMEOVER));
     }
 
     private String formattedBoard(String ... cells) {

@@ -24,12 +24,7 @@ public class Game {
         player2      = players.get(1);
         playerMark   = PLAYER.getMark();
         opponentMark = OPPONENT.getMark();
-        resetGame();
-    }
-
-    private void resetGame() {
-        board.reset();
-        currentMark = playerMark;
+        currentMark  = playerMark;
     }
 
     public void start() {
