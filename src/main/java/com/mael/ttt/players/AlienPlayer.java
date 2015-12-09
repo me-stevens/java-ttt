@@ -13,7 +13,7 @@ public class AlienPlayer implements Player {
         this.gameUI = gameUI;
     }
 
-    public int getCellIndex(Board board) {
+    public int getMove(Board board) {
         gameUI.printAlienPrompt();
 
         List<Integer> empties = board.getEmptyCellIndexes();

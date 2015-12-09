@@ -24,12 +24,12 @@ public class AlienPlayerTest {
 
     @Test
     public void printsPromptMessage() {
-        alienPlayer.getCellIndex(board);
+        alienPlayer.getMove(board);
         assertEquals(UserInterface.ALIENPROMPT, spy.lastPrintedMessage());
     }
 
     @Test
     public void getsAnExistingEmptyIndex() {
-        assertTrue(board.getEmptyCellIndexes().contains(alienPlayer.getCellIndex(board)));
+        assertTrue(board.getEmptyCellIndexes().contains(alienPlayer.getMove(board)));
     }
 }
