@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static com.mael.ttt.Marks.*;
 
 public class GameTest {
 
@@ -25,8 +26,8 @@ public class GameTest {
         spy   = new SpyConsole();
         game  = new Game(board, new UserInterface(spy));
 
-        playerMark   = Marks.PLAYER.toString();
-        opponentMark = Marks.OPPONENT.toString();
+        playerMark   = PLAYER.getMark();
+        opponentMark = OPPONENT.getMark();
     }
 
     @Test

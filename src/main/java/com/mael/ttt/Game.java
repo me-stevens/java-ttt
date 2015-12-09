@@ -6,6 +6,8 @@ import com.mael.ttt.ui.menu.MenuCreator;
 
 import java.util.List;
 
+import static com.mael.ttt.Marks.*;
+
 public class Game {
 
     private Board board;
@@ -19,8 +21,8 @@ public class Game {
     public Game(Board board, UserInterface gameUI) {
         this.board   = board;
         this.gameUI  = gameUI;
-        playerMark   = Marks.PLAYER.toString();
-        opponentMark = Marks.OPPONENT.toString();
+        playerMark   = PLAYER.getMark();
+        opponentMark = OPPONENT.getMark();
         resetGame();
     }
 
