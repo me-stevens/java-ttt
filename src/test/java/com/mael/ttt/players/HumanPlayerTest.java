@@ -1,11 +1,11 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.Marks;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
+import static com.mael.ttt.Marks.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +33,7 @@ public class HumanPlayerTest {
 
     @Test
     public void repeatsUntilItGetsEmptyCellIndex() {
-        board.setCell(1, Marks.PLAYER.toString());
+        board.setCell(1, PLAYER.getMark());
         spy.setInputs("1", "2");
         assertEquals(2, humanPlayer.getCellIndex(board));
         assertEquals(2, spy.timesReadWasCalled());

@@ -2,17 +2,16 @@ package com.mael.ttt;
 
 public enum Marks {
 
-    PLAYER {
-        @Override
-        public String toString() {
-            return "X";
-        }
-    },
+    PLAYER("X"),
+    OPPONENT("O");
 
-    OPPONENT {
-        @Override
-        public String toString() {
-            return "O";
-        }
+    private String mark;
+
+    Marks(String mark) {
+        this.mark = mark;
+    }
+
+    public String getMark() {
+        return mark;
     }
 }

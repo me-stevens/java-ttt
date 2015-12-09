@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static com.mael.ttt.Marks.*;
 
 public class BoardCheckerTest {
 
@@ -20,8 +21,8 @@ public class BoardCheckerTest {
         board   = new Board(size);
         checker = new BoardChecker(board);
 
-        playerMark   = Marks.PLAYER.toString();
-        opponentMark = Marks.OPPONENT.toString();
+        playerMark   = PLAYER.getMark();
+        opponentMark = OPPONENT.getMark();
     }
 
     @Test
