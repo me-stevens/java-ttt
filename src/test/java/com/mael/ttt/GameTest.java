@@ -48,7 +48,11 @@ public class GameTest {
     public void checkForWinnerPrintsBoardAndMsgs() {
         spy.setInputs("1", "1", "4", "2", "5", "3", "n");
         game.run();
-        assertThat(spy.printedMessage(), containsString(playerMark + " " + playerMark + " " + playerMark + " \n" + opponentMark + " " + opponentMark + " 6 \n7 8 9 \n" + UserInterface.HASWINNER + playerMark + UserInterface.GAMEOVER));
+        assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   playerMark,   playerMark,
+                                                                       opponentMark, opponentMark, "6",
+                                                                       "7", "8", "9") +
+                                                        UserInterface.HASWINNER + playerMark +
+                                                        UserInterface.GAMEOVER));
     }
 
     @Test
@@ -62,7 +66,11 @@ public class GameTest {
     public void checkForFullPrintsBoardAndMsgs() {
         spy.setInputs("1", "1", "2", "3", "7", "4", "6", "5", "9", "8", "n");
         game.run();
-        assertThat(spy.printedMessage(), containsString(playerMark + " " + opponentMark + " " + playerMark + " \n" + playerMark + " " + playerMark + " " + opponentMark + " \n" + opponentMark + " " + playerMark + " " + opponentMark + " \n" + UserInterface.ISFULL + UserInterface.GAMEOVER));
+        assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   opponentMark, playerMark,
+                                                                       playerMark,   playerMark,   opponentMark,
+                                                                       opponentMark, playerMark,   opponentMark) +
+                                                        UserInterface.ISFULL +
+                                                        UserInterface.GAMEOVER));
     }
 
     @Test
@@ -70,5 +78,16 @@ public class GameTest {
         spy.setInputs("1", "1", "4", "2", "5", "3", "y", "1", "1", "4", "2", "5", "3", "n");
         game.run();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
+    }
+
+    private String formattedBoard(String ... cells) {
+        String formattedBoard = "";
+        for (int i = 0; i < cells.length; i++) {
+            formattedBoard += cells[i] + " ";
+            if ((i+1) % 3 == 0) {
+                formattedBoard += "\n";
+            }
+        }
+        return formattedBoard;
     }
 }
