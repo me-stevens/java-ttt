@@ -11,7 +11,7 @@ public class HumanPlayer implements Player {
         this.gameUI = ui;
     }
 
-    public int getCellIndex(Board board) {
+    public int getMove(Board board) {
         String cellIndex = returnEmptyCellIndex(board, returnValidCellIndex());
         return stringToNumber(cellIndex);
     }

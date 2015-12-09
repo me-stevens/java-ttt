@@ -56,12 +56,12 @@ public class Game {
 
     private boolean nextTurn() {
         gameUI.printBoard(board);
-
-        Player currentPlayer = (currentMark.equals(playerMark)) ? player1 : player2;
-        int index            = currentPlayer.getCellIndex(board);
-        board.setCell(index, currentMark);
-
+        board.setCell(getPlayer().getMove(board), currentMark);
         return updateGameStatus();
+    }
+
+    private Player getPlayer() {
+        return (currentMark.equals(playerMark)) ? player1 : player2;
     }
 
     private boolean updateGameStatus() {

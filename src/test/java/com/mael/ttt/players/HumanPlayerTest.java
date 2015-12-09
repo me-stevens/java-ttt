@@ -27,7 +27,7 @@ public class HumanPlayerTest {
     @Test
     public void repeatsUntilCellIsNumber() {
         spy.setInputs("a", "20", "1");
-        assertEquals(1, humanPlayer.getCellIndex(board));
+        assertEquals(1, humanPlayer.getMove(board));
         assertEquals(3, spy.timesReadWasCalled());
     }
 
@@ -35,13 +35,13 @@ public class HumanPlayerTest {
     public void repeatsUntilItGetsEmptyCellIndex() {
         board.setCell(1, PLAYER.getMark());
         spy.setInputs("1", "2");
-        assertEquals(2, humanPlayer.getCellIndex(board));
+        assertEquals(2, humanPlayer.getMove(board));
         assertEquals(2, spy.timesReadWasCalled());
     }
 
     @Test
     public void returnsRightIndex() {
         spy.setInputs("2");
-        assertEquals(2, humanPlayer.getCellIndex(board));
+        assertEquals(2, humanPlayer.getMove(board));
     }
 }

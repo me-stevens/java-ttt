@@ -4,5 +4,5 @@ import com.mael.ttt.Board;
 
 public interface Player {
 
-    int getCellIndex(Board board);
+    int getMove(Board board);
 }

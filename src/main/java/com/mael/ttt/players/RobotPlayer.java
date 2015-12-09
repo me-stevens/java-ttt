@@ -19,7 +19,7 @@ public class RobotPlayer implements Player {
         playerToOptimize = mark;
     }
 
-    public int getCellIndex(Board board) {
+    public int getMove(Board board) {
         tempBoard = board;
         gameUI.printRobotPrompt();
 

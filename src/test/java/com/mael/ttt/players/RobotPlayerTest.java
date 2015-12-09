@@ -26,7 +26,7 @@ public class RobotPlayerTest {
     @Test
     public void promptMessageIsPrinted() {
         board = new Board(size);
-        robotPlayer.getCellIndex(board);
+        robotPlayer.getMove(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
@@ -35,7 +35,7 @@ public class RobotPlayerTest {
         board = setBoard("O", "O", "",
                          "X", "X", "",
                           "",  "", "");
-        assertEquals(3, robotPlayer.getCellIndex(board));
+        assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "O", "",
                          "X", "O", "",
                           "",  "", "");
-        assertEquals(7, robotPlayer.getCellIndex(board));
+        assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class RobotPlayerTest {
         board = setBoard("O", "X", "X",
                          "X", "O", "X",
                          "X",  "", "");
-        assertEquals(9, robotPlayer.getCellIndex(board));
+        assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "X", "O",
                          "X", "O", "X",
                          "",  "", "X");
-        assertEquals(7, robotPlayer.getCellIndex(board));
+        assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "X", "",
                           "", "O", "",
                           "",  "", "");
-        assertEquals(3, robotPlayer.getCellIndex(board));
+        assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class RobotPlayerTest {
         board = setBoard("", "", "X",
                          "", "O", "",
                          "", "", "X");
-        assertEquals(6, robotPlayer.getCellIndex(board));
+        assertEquals(6, robotPlayer.getMove(board));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RobotPlayerTest {
         board = setBoard("X", "", "",
                          "", "X", "",
                          "O", "", "");
-        assertEquals(9, robotPlayer.getCellIndex(board));
+        assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class RobotPlayerTest {
         board = setBoard("",  "", "X",
                          "O", "", "",
                          "X", "", "");
-        assertEquals(5, robotPlayer.getCellIndex(board));
+        assertEquals(5, robotPlayer.getMove(board));
     }
 
     private Board setBoard(String... cellContents) {
