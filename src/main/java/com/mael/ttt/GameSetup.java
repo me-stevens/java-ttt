@@ -26,6 +26,6 @@ public class GameSetup {
     }
 
     private List<Player> setPlayers() {
-        return new MenuCreator().createMenu(gameUI).createPlayers();
+        return new MenuCreator(gameUI).createMenu().createPlayers();
     }
 }
