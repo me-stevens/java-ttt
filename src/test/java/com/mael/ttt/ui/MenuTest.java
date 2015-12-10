@@ -22,7 +22,7 @@ public class MenuTest {
     @Before
     public void setUp() {
         spy  = new SpyConsole();
-        menu = new MenuCreator().createMenu(new UserInterface(spy));
+        menu = new MenuCreator(new UserInterface(spy)).createMenu();
     }
 
     @Test

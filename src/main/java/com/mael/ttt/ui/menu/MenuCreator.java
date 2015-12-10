@@ -7,8 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MenuCreator {
+    private final UserInterface gameUI;
 
-    public Menu createMenu(UserInterface gameUI) {
+    public MenuCreator(UserInterface gameUI) {
+        this.gameUI = gameUI;
+    }
+
+    public Menu createMenu() {
         List<String> menuOptionIds   = new ArrayList<>();
         List<Option> menuOptions     = new ArrayList<>();
         List<String> menuOptionTexts = new ArrayList<>();
