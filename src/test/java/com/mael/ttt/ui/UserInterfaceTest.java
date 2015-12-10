@@ -1,7 +1,6 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
-import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.Before;
 import org.junit.Test;
 

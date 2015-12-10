@@ -14,9 +14,7 @@ import static com.mael.ttt.Mark.*;
 public class GameTest {
 
     private int size;
-    private Board board;
     private SpyConsole spy;
-    private UserInterface gameUI;
     private Game game;
 
     private String playerMark;
@@ -25,10 +23,8 @@ public class GameTest {
     @Before
     public void setUp() {
         size   = 3;
-        board  = new Board(size);
         spy    = new SpyConsole();
-        gameUI = new UserInterface(spy);
-        game   = new Game(board, gameUI, new HumanPlayer(gameUI), new HumanPlayer(gameUI));
+        game   = new Game(new Board(size), new UserInterface(spy), new HumanPlayer(new UserInterface(spy)), new HumanPlayer(new UserInterface(spy)));
 
         playerMark   = PLAYER.getMark();
         opponentMark = OPPONENT.getMark();
@@ -74,7 +70,7 @@ public class GameTest {
         String formattedBoard = "";
         for (int i = 0; i < cells.length; i++) {
             formattedBoard += cells[i] + " ";
-            if ((i+1) % 3 == 0) {
+            if ((i+1) % size == 0) {
                 formattedBoard += "\n";
             }
         }
