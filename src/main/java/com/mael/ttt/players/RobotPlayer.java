@@ -6,7 +6,7 @@ import com.mael.ttt.ui.UserInterface;
 
 import java.util.List;
 
-import static com.mael.ttt.Marks.*;
+import static com.mael.ttt.Mark.*;
 
 public class RobotPlayer implements Player {
 

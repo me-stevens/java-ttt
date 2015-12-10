@@ -3,7 +3,7 @@ package com.mael.ttt;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
 
-import static com.mael.ttt.Marks.*;
+import static com.mael.ttt.Mark.*;
 
 public class Game {
 

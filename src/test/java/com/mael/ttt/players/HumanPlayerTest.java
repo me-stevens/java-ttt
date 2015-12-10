@@ -5,7 +5,7 @@ import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
-import static com.mael.ttt.Marks.*;
+import static com.mael.ttt.Mark.*;
 
 import static org.junit.Assert.assertEquals;
 
