@@ -20,7 +20,6 @@ public class RobotPlayerTest {
         size        = 3;
         spy         = new SpyConsole();
         robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
-
     }
 
     @Test

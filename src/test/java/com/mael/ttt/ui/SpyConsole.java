@@ -1,7 +1,5 @@
 package com.mael.ttt.ui;
 
-import com.mael.ttt.ui.Console;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
