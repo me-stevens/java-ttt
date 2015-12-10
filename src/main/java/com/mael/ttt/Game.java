@@ -3,28 +3,26 @@ package com.mael.ttt;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
 
-import java.util.List;
-
 import static com.mael.ttt.Marks.*;
 
 public class Game {
 
     private Board board;
     private UserInterface gameUI;
-    private String currentMark;
-    private Player player1;
-    private Player player2;
+    private Player player;
+    private Player opponent;
     private String playerMark;
     private String opponentMark;
+    private String currentMark;
 
-    public Game(Board board, UserInterface gameUI, List<Player> players) {
-        this.board   = board;
-        this.gameUI  = gameUI;
-        player1      = players.get(0);
-        player2      = players.get(1);
-        playerMark   = PLAYER.getMark();
-        opponentMark = OPPONENT.getMark();
-        currentMark  = playerMark;
+    public Game(Board board, UserInterface gameUI, Player player, Player opponent) {
+        this.board    = board;
+        this.gameUI   = gameUI;
+        this.player   = player;
+        this.opponent = opponent;
+        playerMark    = PLAYER.getMark();
+        opponentMark  = OPPONENT.getMark();
+        currentMark   = playerMark;
     }
 
     public void start() {
@@ -41,7 +39,7 @@ public class Game {
     }
 
     private Player getPlayer() {
-        return (currentMark.equals(playerMark)) ? player1 : player2;
+        return (currentMark.equals(playerMark)) ? player : opponent;
     }
 
     private boolean updateGameStatus() {
@@ -74,6 +72,6 @@ public class Game {
     }
 
     private void swapPlayer() {
-        currentMark = (currentMark == playerMark) ? opponentMark : playerMark;
+        currentMark = (currentMark.equals(playerMark)) ? opponentMark : playerMark;
     }
 }
