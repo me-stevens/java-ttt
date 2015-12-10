@@ -19,7 +19,8 @@ public class GameSetup {
 
     public void playGame() {
         do {
-            Game game = new Game(new Board(3), gameUI, setPlayers());
+            List<Player> players = setPlayers();
+            Game game = new Game(new Board(3), gameUI, players.get(0), players.get(1));
             game.start();
         } while (gameUI.replay().equals("y"));
     }

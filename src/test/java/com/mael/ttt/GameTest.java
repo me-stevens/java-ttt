@@ -30,7 +30,7 @@ public class GameTest {
         board  = new Board(size);
         spy    = new SpyConsole();
         gameUI = new UserInterface(spy);
-        game   = new Game(board, gameUI, Arrays.asList(new HumanPlayer(gameUI), new HumanPlayer(gameUI)));
+        game   = new Game(board, gameUI, new HumanPlayer(gameUI), new HumanPlayer(gameUI));
 
         playerMark   = PLAYER.getMark();
         opponentMark = OPPONENT.getMark();
