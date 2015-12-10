@@ -11,7 +11,7 @@ import java.util.Arrays;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static com.mael.ttt.Marks.*;
+import static com.mael.ttt.Mark.*;
 
 public class GameTest {
 

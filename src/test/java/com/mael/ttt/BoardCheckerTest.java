@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static com.mael.ttt.Marks.*;
+import static com.mael.ttt.Mark.*;
 
 public class BoardCheckerTest {
 
