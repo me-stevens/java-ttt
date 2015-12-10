@@ -11,17 +11,17 @@ public class Game {
     private UserInterface gameUI;
     private Player player;
     private Player opponent;
-    private String playerMark;
-    private String opponentMark;
-    private String currentMark;
+    private Mark playerMark;
+    private Mark opponentMark;
+    private Mark currentMark;
 
     public Game(Board board, UserInterface gameUI, Player player, Player opponent) {
         this.board    = board;
         this.gameUI   = gameUI;
         this.player   = player;
         this.opponent = opponent;
-        playerMark    = PLAYER.getMark();
-        opponentMark  = OPPONENT.getMark();
+        playerMark    = PLAYER;
+        opponentMark  = OPPONENT;
         currentMark   = playerMark;
     }
 
@@ -34,12 +34,12 @@ public class Game {
 
     private boolean nextTurn() {
         gameUI.printBoard(board);
-        board.setCell(getPlayer().getMove(board), currentMark);
+        board.setCell(getPlayer().getMove(board), currentMark.getMark());
         return updateGameStatus();
     }
 
     private Player getPlayer() {
-        return (currentMark.equals(playerMark)) ? player : opponent;
+        return (currentMark == playerMark) ? player : opponent;
     }
 
     private boolean updateGameStatus() {
@@ -52,9 +52,9 @@ public class Game {
     }
 
     private boolean checkForWinner() {
-        if (new BoardChecker(board).hasWinner(currentMark)) {
+        if (new BoardChecker(board).hasWinner(currentMark.getMark())) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentMark);
+            gameUI.printHasWinnerMessage(currentMark.getMark());
             return true;
         }
 
@@ -72,6 +72,6 @@ public class Game {
     }
 
     private void swapPlayer() {
-        currentMark = (currentMark.equals(playerMark)) ? opponentMark : playerMark;
+        currentMark = (currentMark == playerMark) ? opponentMark : playerMark;
     }
 }
