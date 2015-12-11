@@ -100,7 +100,7 @@ public class TurnTest {
         boolean keepPlaying = true;
 
         for (int i = 0; i < times; i++) {
-            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI), mark);
+            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI, mark), mark);
             mark        = (mark == PLAYER) ? OPPONENT : PLAYER;
         }
 

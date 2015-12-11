@@ -21,7 +21,7 @@ public class HumanPlayerTest {
         size        = 3;
         board       = new Board(size);
         spy         = new SpyConsole();
-        humanPlayer = new HumanPlayer(new UserInterface(spy));
+        humanPlayer = new HumanPlayer(new UserInterface(spy), PLAYER);
     }
 
     @Test

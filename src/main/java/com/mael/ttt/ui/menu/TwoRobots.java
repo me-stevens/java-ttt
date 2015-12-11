@@ -12,8 +12,8 @@ import static com.mael.ttt.Mark.*;
 public class TwoRobots implements Option {
 
     public List<Player> createPlayers(UserInterface gameUI) {
-        Player player1 = new RobotPlayer(gameUI, PLAYER.getMark());
-        Player player2 = new RobotPlayer(gameUI, OPPONENT.getMark());
+        Player player1 = new RobotPlayer(gameUI, PLAYER);
+        Player player2 = new RobotPlayer(gameUI, OPPONENT);
         return Arrays.asList(player1, player2);
     }
 }

@@ -2,6 +2,7 @@ package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
 import com.mael.ttt.BoardChecker;
+import com.mael.ttt.Mark;
 import com.mael.ttt.ui.UserInterface;
 
 import java.util.List;
@@ -12,11 +13,13 @@ public class RobotPlayer implements Player {
 
     private Board tempBoard;
     private UserInterface gameUI;
-    private final String playerToOptimize;
+    private Mark mark;
+    private String playerToOptimize;
 
-    public RobotPlayer(UserInterface ui, String mark) {
-        gameUI           = ui;
-        playerToOptimize = mark;
+    public RobotPlayer(UserInterface ui, Mark mark) {
+        this.gameUI      = ui;
+        this.mark        = mark;
+        playerToOptimize = this.mark.getMark();
     }
 
     public int getMove(Board board) {
@@ -25,6 +28,10 @@ public class RobotPlayer implements Player {
 
         int[] result = miniMax(tempBoard, playerToOptimize);
         return result[0];
+    }
+
+    public Mark getMark() {
+        return mark;
     }
 
     private int[] miniMax(Board currentBoard, String currentPlayer) {

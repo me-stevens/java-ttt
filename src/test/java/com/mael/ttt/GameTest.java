@@ -23,7 +23,7 @@ public class GameTest {
         board  = new Board(size);
         spy    = new SpyConsole();
         gameUI = new UserInterface(spy);
-        game   = new Game(new Turn(board, gameUI), new HumanPlayer(gameUI), new HumanPlayer(gameUI));
+        game   = new Game(new Turn(board, gameUI), new HumanPlayer(gameUI, PLAYER), new HumanPlayer(gameUI, OPPONENT));
     }
 
     @Test
