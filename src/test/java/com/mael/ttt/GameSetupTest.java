@@ -14,8 +14,9 @@ public class GameSetupTest {
 
     @Before
     public void setUp() {
+        int size  = 3;
         spy       = new SpyConsole();
-        gameSetup = new GameSetup(new UserInterface(spy));
+        gameSetup = new GameSetup(new Board(size), new UserInterface(spy));
     }
 
     @Test
