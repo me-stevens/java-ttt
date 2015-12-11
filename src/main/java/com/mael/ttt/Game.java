@@ -20,7 +20,7 @@ public class Game {
 
     public void start() {
         while (turn.keepPlaying(getCurrentPlayer(), getCurrentMark())) {
-            swapMark();
+            currentMark = currentMark.swapMark();
         }
     }
 
@@ -32,7 +32,4 @@ public class Game {
         return currentMark;
     }
 
-    private void swapMark() {
-        currentMark = (currentMark == PLAYER) ? OPPONENT : PLAYER;
-    }
 }
