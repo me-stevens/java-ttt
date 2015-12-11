@@ -20,7 +20,7 @@ public class GameSetup {
     public void playGame() {
         do {
             List<Player> players = setPlayers();
-            Game game = new Game(new Board(3), gameUI, players.get(0), players.get(1));
+            Game game = new Game(new Turn(new Board(3), gameUI), players.get(0), players.get(1));
             game.start();
         } while (gameUI.replay().equals("y"));
     }

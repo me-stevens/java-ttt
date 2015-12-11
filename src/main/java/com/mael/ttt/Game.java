@@ -1,77 +1,38 @@
 package com.mael.ttt;
 
 import com.mael.ttt.players.Player;
-import com.mael.ttt.ui.UserInterface;
 
 import static com.mael.ttt.Mark.*;
 
 public class Game {
 
-    private Board board;
-    private UserInterface gameUI;
+    private Turn turn;
     private Player player;
     private Player opponent;
-    private Mark playerMark;
-    private Mark opponentMark;
     private Mark currentMark;
 
-    public Game(Board board, UserInterface gameUI, Player player, Player opponent) {
-        this.board    = board;
-        this.gameUI   = gameUI;
+    public Game(Turn turn, Player player, Player opponent) {
+        this.turn     = turn;
         this.player   = player;
         this.opponent = opponent;
-        playerMark    = PLAYER;
-        opponentMark  = OPPONENT;
-        currentMark   = playerMark;
+        currentMark   = PLAYER;
     }
 
     public void start() {
-        boolean play = true;
-        while (play) {
-            play = nextTurn();
+        while (turn.keepPlaying(getCurrentPlayer(), getCurrentMark())) {
+            swapMark();
         }
     }
 
-    private boolean nextTurn() {
-        gameUI.printBoard(board);
-        board.setCell(getPlayer().getMove(board), currentMark.getMark());
-        return updateGameStatus();
+    private Player getCurrentPlayer() {
+        return (currentMark == PLAYER) ? player : opponent;
     }
 
-    private Player getPlayer() {
-        return (currentMark == playerMark) ? player : opponent;
+    private Mark getCurrentMark() {
+        return currentMark;
     }
 
-    private boolean updateGameStatus() {
-        if (checkForWinner() || checkForFull()) {
-            return false;
-        }
-
-        swapPlayer();
-        return true;
-    }
-
-    private boolean checkForWinner() {
-        if (new BoardChecker(board).hasWinner(currentMark.getMark())) {
-            gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentMark.getMark());
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean checkForFull() {
-        if (board.isFull()) {
-            gameUI.printBoard(board);
-            gameUI.printIsFullMessage();
-            return true;
-        }
-
-        return false;
-    }
-
-    private void swapPlayer() {
-        currentMark = (currentMark == playerMark) ? opponentMark : playerMark;
+    private void swapMark() {
+        currentMark = (currentMark == PLAYER) ? OPPONENT : PLAYER;
     }
 }

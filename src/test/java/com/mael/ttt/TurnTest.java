@@ -1,85 +1,120 @@
 package com.mael.ttt;
 
-import org.junit.Ignore;
+import com.mael.ttt.players.HumanPlayer;
+import com.mael.ttt.ui.SpyConsole;
+import com.mael.ttt.ui.UserInterface;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static com.mael.ttt.Mark.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.*;
 
 public class TurnTest {
-/*
 
-    @Ignore
-    @Test
-    public void turnPrintsTheBoardInEveryTurn() {
-        spy.setInputs("1", "1");
-        game.run();
-        assertTrue(spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n" + com.mael.ttt.ui.UserInterface.PROMPT));
+    private int size;
+    private Board board;
+    private SpyConsole spy;
+    private UserInterface gameUI;
+    private String X, O;
+
+    @Before
+    public void setUp() {
+        size   = 3;
+        board  = new Board(size);
+        spy    = new SpyConsole();
+        gameUI = new UserInterface(spy);
+        X      = PLAYER.getMark();
+        O      = OPPONENT.getMark();
     }
 
-    @Ignore
     @Test
-    public void turnUpdatesTheBoardInEveryTurn() {
-        com.mael.ttt.Board old = board.getCopy();
+    public void printsTheBoardInEveryTurn() {
+        spy.setInputs("1");
+        playTurns(1);
+        assertEquals(true, spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n"));
+    }
+
+    @Test
+    public void updatesTheBoardInEveryTurn() {
+        Board old = board.getCopy();
         spy.setInput("1");
         playTurns(1);
-
         assertNotEquals(old, board);
-        assertEquals("X", board.getCell(1));
+        assertEquals(PLAYER.getMark(), board.getCell(1));
     }
 
-    @Ignore
     @Test
-    public void turnReturnsTrueIfNotWinOrFull() {
-        spy.setInputs("1", "1");
-        game.run();
-        //assertTrue(game.nextTurn());
+    public void returnsTrueIfNotWinOrFull() {
+        spy.setInputs("1");
+        assertEquals(true, playTurns(1));
     }
 
-    @Ignore
     @Test
-    public void turnReturnsFalseIfWin() {
-        spy.setInputs("1", "1", "4", "2", "5", "3");
-        playTurns(4);
-
-        //assertFalse(game.nextTurn());
+    public void returnsFalseIfWin() {
+        spy.setInputs("1", "4", "2", "5", "3");
+        assertEquals(false, playTurns(5));
     }
 
-    @Ignore
     @Test
-    public void turnReturnsFalseIfFull() {
-        spy.setInputs("1", "1", "2", "3", "4", "5", "6", "8", "7", "9");
-        playTurns(size*size - 1);
-
-        //assertFalse(game.nextTurn());
+    public void returnsFalseIfFull() {
+        spy.setInputs("1", "2", "3", "4", "5", "7", "6", "9", "8");
+        assertEquals(false, playTurns(size*size));
     }
 
-    @Ignore
     @Test
-    public void markIsSwappedInEveryTurn() {
-        spy.setInputs("1", "1", "2", "3");
-        playTurns(3);
-
-        assertEquals("X", board.getCell(1));
-        assertEquals("O", board.getCell(2));
-        assertEquals("X", board.getCell(3));
+    public void printsBoardIfWin() {
+        spy.setInputs("1", "4", "2", "5", "3");
+        playTurns(5);
+        assertThat(spy.printedMessage(), containsString(formattedBoard(  X,   X,   X,
+                                                                         O,   O, "6",
+                                                                       "7", "8", "9")));
     }
 
-    @Ignore
     @Test
-    public void robotPlays() {
-        spy.setInputs("2", "1", "2", "9", "3", "4", "5", "6", "7", "8");
-        game.run();
-
-        System.out.println(spy.printedMessage());
-
-        assertEquals("O", board.getCell(5));
+    public void printsWinningMessageIfWin() {
+        spy.setInputs("1", "4", "2", "5", "3");
+        playTurns(5);
+        assertThat(spy.printedMessage(), containsString(UserInterface.HASWINNER + X + UserInterface.GAMEOVER));
     }
 
-    private void playTurns(int times) {
+    @Test
+    public void printsBoardIfFull() {
+        spy.setInputs("1", "2", "3", "4", "5", "7", "6", "9", "8");
+        playTurns(size*size);
+        assertThat(spy.printedMessage(), containsString(formattedBoard(X, O, X,
+                                                                       O, X, X,
+                                                                       O, X, O)));
+    }
+
+    @Test
+    public void printsFullMessageIfFull() {
+        spy.setInputs("1", "2", "3", "4", "5", "7", "6", "9", "8");
+        playTurns(size*size);
+        assertThat(spy.printedMessage(), containsString(UserInterface.ISFULL + UserInterface.GAMEOVER));
+    }
+
+    private boolean playTurns(int times) {
+        Turn turn = new Turn(board, gameUI);
+        Mark mark = PLAYER;
+        boolean keepPlaying = true;
+
         for (int i = 0; i < times; i++) {
-            //game.nextTurn();
+            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI), mark);
+            mark        = (mark == PLAYER) ? OPPONENT : PLAYER;
         }
-    }*/
+
+        return keepPlaying;
+    }
+    
+    private String formattedBoard(String ... cells) {
+        String formattedBoard = "";
+        for (int i = 0; i < cells.length; i++) {
+            formattedBoard += cells[i] + " ";
+            if ((i+1) % size == 0) {
+                formattedBoard += "\n";
+            }
+        }
+        return formattedBoard;
+    }
 }
