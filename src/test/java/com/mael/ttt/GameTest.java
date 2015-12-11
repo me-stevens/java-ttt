@@ -6,28 +6,24 @@ import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static com.mael.ttt.Mark.*;
 
 public class GameTest {
 
     private int size;
+    private Board board;
     private SpyConsole spy;
     private Game game;
-
-    private String playerMark;
-    private String opponentMark;
+    private UserInterface gameUI;
 
     @Before
     public void setUp() {
         size   = 3;
+        board  = new Board(size);
         spy    = new SpyConsole();
-        game   = new Game(new Board(size), new UserInterface(spy), new HumanPlayer(new UserInterface(spy)), new HumanPlayer(new UserInterface(spy)));
-
-        playerMark   = PLAYER.getMark();
-        opponentMark = OPPONENT.getMark();
+        gameUI = new UserInterface(spy);
+        game   = new Game(new Turn(board, gameUI), new HumanPlayer(gameUI), new HumanPlayer(gameUI));
     }
 
     @Test
@@ -38,17 +34,6 @@ public class GameTest {
     }
 
     @Test
-    public void checkForWinnerPrintsBoardAndMsgs() {
-        spy.setInputs("1", "4", "2", "5", "3");
-        game.start();
-        assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   playerMark,   playerMark,
-                                                                       opponentMark, opponentMark, "6",
-                                                                       "7", "8", "9") +
-                                                                       UserInterface.HASWINNER + playerMark +
-                                                                       UserInterface.GAMEOVER));
-    }
-
-    @Test
     public void endsTheGameIfFull() {
         spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
         game.start();
@@ -56,24 +41,12 @@ public class GameTest {
     }
 
     @Test
-    public void checkForFullPrintsBoardAndMsgs() {
-        spy.setInputs("1", "2", "3", "7", "4", "6", "5", "9", "8");
+    public void markIsSwappedInEveryTurn() {
+        spy.setInputs("1", "2", "3", "4", "5", "6", "7");
         game.start();
-        assertThat(spy.printedMessage(), containsString(formattedBoard(playerMark,   opponentMark, playerMark,
-                                                                       playerMark,   playerMark,   opponentMark,
-                                                                       opponentMark, playerMark,   opponentMark) +
-                                                                       UserInterface.ISFULL +
-                                                                       UserInterface.GAMEOVER));
-    }
 
-    private String formattedBoard(String ... cells) {
-        String formattedBoard = "";
-        for (int i = 0; i < cells.length; i++) {
-            formattedBoard += cells[i] + " ";
-            if ((i+1) % size == 0) {
-                formattedBoard += "\n";
-            }
-        }
-        return formattedBoard;
+        assertEquals(PLAYER.getMark(),   board.getCell(1));
+        assertEquals(OPPONENT.getMark(), board.getCell(2));
+        assertEquals(PLAYER.getMark(),   board.getCell(3));
     }
 }
