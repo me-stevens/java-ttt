@@ -1,19 +1,26 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
+import com.mael.ttt.Mark;
 import com.mael.ttt.ui.UserInterface;
 
 public class HumanPlayer implements Player {
 
     private UserInterface gameUI;
+    private Mark mark;
 
-    public HumanPlayer(UserInterface ui) {
+    public HumanPlayer(UserInterface ui, Mark mark) {
         this.gameUI = ui;
+        this.mark   = mark;
     }
 
     public int getMove(Board board) {
         String cellIndex = returnEmptyCellIndex(board, returnValidCellIndex());
         return stringToNumber(cellIndex);
+    }
+
+    public Mark getMark() {
+        return mark;
     }
 
     private String returnValidCellIndex() {

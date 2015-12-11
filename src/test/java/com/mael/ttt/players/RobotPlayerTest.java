@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static com.mael.ttt.Mark.*;
 
 public class RobotPlayerTest {
 
@@ -19,7 +20,7 @@ public class RobotPlayerTest {
     public void setUp() {
         size        = 3;
         spy         = new SpyConsole();
-        robotPlayer = new RobotPlayer(new UserInterface(spy), "O");
+        robotPlayer = new RobotPlayer(new UserInterface(spy), OPPONENT);
     }
 
     @Test
