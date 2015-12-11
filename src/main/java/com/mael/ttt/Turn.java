@@ -13,10 +13,10 @@ public class Turn {
         this.gameUI = gameUI;
     }
 
-    public boolean keepPlaying(Player player, Mark currentMark) {
+    public boolean keepPlaying(Player player) {
         gameUI.printBoard(board);
-        board.setCell(player.getMove(board), currentMark.getMark());
-        return isNotGameOver(currentMark);
+        board.setCell(player.getMove(board), player.getMark().getString());
+        return isNotGameOver(player.getMark());
     }
 
     private boolean isNotGameOver(Mark currentMark) {
@@ -24,9 +24,9 @@ public class Turn {
     }
 
     private boolean checkForWinner(Mark currentMark) {
-        if (new BoardChecker(board).hasWinner(currentMark.getMark())) {
+        if (new BoardChecker(board).hasWinner(currentMark.getString())) {
             gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentMark.getMark());
+            gameUI.printHasWinnerMessage(currentMark.getString());
             return true;
         }
 

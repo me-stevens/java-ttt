@@ -19,7 +19,7 @@ public class RobotPlayer implements Player {
     public RobotPlayer(UserInterface ui, Mark mark) {
         this.gameUI      = ui;
         this.mark        = mark;
-        playerToOptimize = this.mark.getMark();
+        playerToOptimize = this.mark.getString();
     }
 
     public int getMove(Board board) {
@@ -81,7 +81,7 @@ public class RobotPlayer implements Player {
     }
 
     private String swapMark(String currentPlayer) {
-        return (currentPlayer.equals(PLAYER.getMark()) ? OPPONENT.getMark() : PLAYER.getMark());
+        return (currentPlayer.equals(PLAYER.getString()) ? OPPONENT.getString() : PLAYER.getString());
     }
 
     private int heuristics(String currentPlayer) {
