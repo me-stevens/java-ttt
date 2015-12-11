@@ -11,11 +11,7 @@ public enum Mark {
         this.mark = mark;
     }
 
-    public String getMark() {
+    public String getString() {
         return mark;
-    }
-
-    Mark swapMark() {
-        return this == PLAYER ? OPPONENT : PLAYER;
     }
 }

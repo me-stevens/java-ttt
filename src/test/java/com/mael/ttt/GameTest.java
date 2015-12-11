@@ -45,8 +45,8 @@ public class GameTest {
         spy.setInputs("1", "2", "3", "4", "5", "6", "7");
         game.start();
 
-        assertEquals(PLAYER.getMark(),   board.getCell(1));
-        assertEquals(OPPONENT.getMark(), board.getCell(2));
-        assertEquals(PLAYER.getMark(),   board.getCell(3));
+        assertEquals(PLAYER.getString(),   board.getCell(1));
+        assertEquals(OPPONENT.getString(), board.getCell(2));
+        assertEquals(PLAYER.getString(),   board.getCell(3));
     }
 }

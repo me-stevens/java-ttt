@@ -9,27 +9,26 @@ public class Game {
     private Turn turn;
     private Player player;
     private Player opponent;
-    private Mark currentMark;
+    private Player currentPlayer;
 
     public Game(Turn turn, Player player, Player opponent) {
         this.turn     = turn;
         this.player   = player;
         this.opponent = opponent;
-        currentMark   = PLAYER;
+        currentPlayer = player;
     }
 
     public void start() {
-        while (turn.keepPlaying(getCurrentPlayer(), getCurrentMark())) {
-            currentMark = currentMark.swapMark();
+        while (turn.keepPlaying(getCurrentPlayer())) {
+            swapPlayers();
         }
     }
 
     private Player getCurrentPlayer() {
-        return (currentMark == PLAYER) ? player : opponent;
+        return currentPlayer;
     }
 
-    private Mark getCurrentMark() {
-        return currentMark;
+    private void swapPlayers() {
+        currentPlayer = (currentPlayer.getMark() == PLAYER) ? opponent : player;
     }
-
 }

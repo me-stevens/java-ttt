@@ -24,8 +24,8 @@ public class TurnTest {
         board  = new Board(size);
         spy    = new SpyConsole();
         gameUI = new UserInterface(spy);
-        X      = PLAYER.getMark();
-        O      = OPPONENT.getMark();
+        X      = PLAYER.getString();
+        O      = OPPONENT.getString();
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TurnTest {
         spy.setInput("1");
         playTurns(1);
         assertNotEquals(old, board);
-        assertEquals(PLAYER.getMark(), board.getCell(1));
+        assertEquals(PLAYER.getString(), board.getCell(1));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class TurnTest {
         boolean keepPlaying = true;
 
         for (int i = 0; i < times; i++) {
-            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI, mark), mark);
+            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI, mark));
             mark        = (mark == PLAYER) ? OPPONENT : PLAYER;
         }
 

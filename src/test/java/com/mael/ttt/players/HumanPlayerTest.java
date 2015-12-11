@@ -33,7 +33,7 @@ public class HumanPlayerTest {
 
     @Test
     public void repeatsUntilItGetsEmptyCellIndex() {
-        board.setCell(1, PLAYER.getMark());
+        board.setCell(1, PLAYER.getString());
         spy.setInputs("1", "2");
         assertEquals(2, humanPlayer.getMove(board));
         assertEquals(2, spy.timesReadWasCalled());

@@ -21,8 +21,8 @@ public class BoardCheckerTest {
         board   = new Board(size);
         checker = new BoardChecker(board);
 
-        playerMark   = PLAYER.getMark();
-        opponentMark = OPPONENT.getMark();
+        playerMark   = PLAYER.getString();
+        opponentMark = OPPONENT.getString();
     }
 
     @Test
