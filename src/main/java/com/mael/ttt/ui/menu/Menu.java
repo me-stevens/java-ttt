@@ -9,16 +9,12 @@ public class Menu {
 
     private UserInterface gameUI;
     private Map<String, Option> menuOptions;
-    private List<String> menuOptionIds;
-    private List<String> menuOptionTexts;
 
-    public Menu(UserInterface gameUI, List<String> menuOptionIds, List<Option> menuOptions, List<String> menuOptionTexts) {
-        this.gameUI          = gameUI;
-        this.menuOptionIds   = menuOptionIds;
-        this.menuOptions     = new HashMap<>();
-        this.menuOptionTexts = menuOptionTexts;
+    public Menu(UserInterface gameUI, List<Option> menuOptions) {
+        this.gameUI      = gameUI;
+        this.menuOptions = new HashMap<>();
 
-        initializeOptions(menuOptionIds, menuOptions);
+        initializeOptions(menuOptions);
     }
 
     public List<Player> createPlayers() {
@@ -26,19 +22,17 @@ public class Menu {
         return menuOptions.get(option).createPlayers(gameUI);
     }
 
-    private void initializeOptions(List<String> menuOptionIds, List<Option> menuOptions) {
-        for (int i = 0; i < menuOptionIds.size(); i++) {
-            this.menuOptions.put(menuOptionIds.get(i), menuOptions.get(i));
+    private void initializeOptions(List<Option> menuOptions) {
+        for (int i = 0; i < MenuOption.values().length; i++) {
+            this.menuOptions.put(MenuOption.values()[i].getMenuOptionId(), menuOptions.get(i));
         }
     }
 
     private String setOption() {
         String option = "";
-
         while (isInvalidOption(option)) {
             option = printPlayersMenu();
         }
-
         return option;
     }
 
@@ -48,6 +42,6 @@ public class Menu {
 
     private String printPlayersMenu() {
         gameUI.printMenuPrompt();
-        return gameUI.getMenuOption(gameUI.formatMenuOptions(menuOptionIds, menuOptionTexts));
+        return gameUI.getMenuOption(gameUI.formatMenuOptions());
     }
 }

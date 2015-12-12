@@ -22,6 +22,6 @@ public class MenuCreator {
         menuOptions.addAll(Arrays.asList(new TwoHumans(), new HumanAndRobot(), new TwoRobots(), new HumanAndAlien()));
         menuOptionTexts.addAll(Arrays.asList("Human vs. Human", "Human vs. Robot", "Robot vs. Robot", "Human vs. Alien"));
 
-        return new Menu(gameUI, menuOptionIds, menuOptions, menuOptionTexts);
+        return new Menu(gameUI, menuOptions);
     }
 }
