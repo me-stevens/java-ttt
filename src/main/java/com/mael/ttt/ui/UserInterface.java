@@ -1,8 +1,7 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
-
-import java.util.List;
+import com.mael.ttt.ui.menu.MenuOption;
 
 public class UserInterface {
 
@@ -32,16 +31,20 @@ public class UserInterface {
         print(MENUPROMPT);
     }
 
-    public String formatMenuOptions(List<String> menuOptionIds, List<String> menuOptionTexts) {
+    public String formatMenuOptions() {
         String menu = "";
-        for (int i = 0; i < menuOptionIds.size(); i++) {
-            menu += menuOptionIds.get(i) + ") " + menuOptionTexts.get(i) + "\n";
+        for (int i = 0; i < MenuOption.values().length; i++) {
+            menu += formatOption(MenuOption.values()[i]);
         }
         return menu;
     }
 
-    public void printBoard(Board board) {
+    private String formatOption(MenuOption option) {
+        return option.getMenuOptionId()   + ") " +
+               option.getMenuOptionText() + "\n";
+    }
 
+    public void printBoard(Board board) {
         int size = board.getSize();
         for (int index = 1; index<= size * size; index++) {
             print(formatCell(index, board.getCell(index)));
