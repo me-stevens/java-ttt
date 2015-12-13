@@ -57,7 +57,7 @@ public class UserInterfaceTest {
     public void promptsTheUserForInput() {
         spy.setInput("");
         ui.getInput();
-        assertEquals(ui.PROMPT, spy.lastPrintedMessage());
+        assertEquals(ui.HUMANPROMPT, spy.lastPrintedMessage());
     }
 
     @Test

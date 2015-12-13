@@ -15,7 +15,6 @@ public class TurnTest {
     private int size;
     private Board board;
     private SpyConsole spy;
-    private UserInterface gameUI;
     private String X, O;
 
     @Before
@@ -23,7 +22,6 @@ public class TurnTest {
         size   = 3;
         board  = new Board(size);
         spy    = new SpyConsole();
-        gameUI = new UserInterface(spy);
         X      = PLAYER.getString();
         O      = OPPONENT.getString();
     }
@@ -41,7 +39,7 @@ public class TurnTest {
         spy.setInput("1");
         playTurns(1);
         assertNotEquals(old, board);
-        assertEquals(PLAYER.getString(), board.getCell(1));
+        assertEquals(X, board.getCell(1));
     }
 
     @Test
@@ -75,7 +73,8 @@ public class TurnTest {
     public void printsWinningMessageIfWin() {
         spy.setInputs("1", "4", "2", "5", "3");
         playTurns(5);
-        assertThat(spy.printedMessage(), containsString(UserInterface.HASWINNER + X + UserInterface.GAMEOVER));
+        assertThat(spy.printedMessage(), containsString(UserInterface.HASWINNER + X +
+                                                        UserInterface.GAMEOVER));
     }
 
     @Test
@@ -95,27 +94,28 @@ public class TurnTest {
     }
 
     private boolean playTurns(int times) {
-        UserInterface gameUI = new UserInterface(spy);
-        Turn turn            = new Turn(board, new BoardChecker(board), gameUI);
-        Mark mark            = PLAYER;
-        boolean keepPlaying  = true;
+        Turn turn           = new Turn(board, new BoardChecker(board), new UserInterface(spy));
+        Mark mark           = PLAYER;
+        boolean keepPlaying = true;
 
         for (int i = 0; i < times; i++) {
-            keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI, mark));
-            mark        = (mark == PLAYER) ? OPPONENT : PLAYER;
+            keepPlaying = turn.keepPlaying(new HumanPlayer(new UserInterface(spy), mark));
+            mark = mark.swapMark();
         }
 
         return keepPlaying;
     }
-    
+
     private String formattedBoard(String ... cells) {
         String formattedBoard = "";
-        for (int i = 0; i < cells.length; i++) {
-            formattedBoard += cells[i] + " ";
-            if ((i+1) % size == 0) {
-                formattedBoard += "\n";
-            }
+        int i = 0;
+        for(String cell : cells) {
+            formattedBoard += cell + " " + endOfLine(++i);
         }
         return formattedBoard;
+    }
+
+    private String endOfLine(int i) {
+        return (i % size == 0) ? "\n" : "";
     }
 }

@@ -11,7 +11,6 @@ public class GameSetup {
     private BoardChecker checker;
     private UserInterface gameUI;
 
-
     public GameSetup(Board board, UserInterface gameUI) {
         this.board   = board;
         this.checker = new BoardChecker(board);

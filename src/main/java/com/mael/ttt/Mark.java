@@ -14,4 +14,8 @@ public enum Mark {
     public String getString() {
         return mark;
     }
+
+    public Mark swapMark() {
+        return (this == PLAYER) ? OPPONENT : PLAYER;
+    }
 }
