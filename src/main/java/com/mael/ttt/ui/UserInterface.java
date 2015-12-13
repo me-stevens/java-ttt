@@ -7,7 +7,7 @@ public class UserInterface {
 
     public static final String WELCOME      = "\n --- WELCOME ---\n";
     public static final String MENUPROMPT   = "\nChoose an option:\n";
-    public static final String PROMPT       = "\nChoose a cell to put your mark: ";
+    public static final String HUMANPROMPT  = "\nChoose a cell to put your mark: ";
     public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
     public static final String ALIENPROMPT  = "\nAlien chooses a cell\n";
     public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
@@ -69,7 +69,7 @@ public class UserInterface {
     }
 
     public String getInput() {
-        print(PROMPT);
+        print(HUMANPROMPT);
         return console.read();
     }
 

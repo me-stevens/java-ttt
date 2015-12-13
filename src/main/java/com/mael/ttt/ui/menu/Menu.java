@@ -2,7 +2,6 @@ package com.mael.ttt.ui.menu;
 
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
-
 import java.util.*;
 
 public class Menu {
@@ -18,8 +17,7 @@ public class Menu {
     }
 
     public List<Player> createPlayers() {
-        String option = setOption();
-        return menuOptions.get(option).createPlayers(gameUI);
+        return menuOptions.get(getUserOption()).createPlayers(gameUI);
     }
 
     private void initializeOptions(List<Option> menuOptions) {
@@ -28,7 +26,7 @@ public class Menu {
         }
     }
 
-    private String setOption() {
+    private String getUserOption() {
         String option = "";
         while (isInvalidOption(option)) {
             option = printPlayersMenu();
