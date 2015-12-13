@@ -95,9 +95,10 @@ public class TurnTest {
     }
 
     private boolean playTurns(int times) {
-        Turn turn = new Turn(board, gameUI);
-        Mark mark = PLAYER;
-        boolean keepPlaying = true;
+        UserInterface gameUI = new UserInterface(spy);
+        Turn turn            = new Turn(board, new BoardChecker(board), gameUI);
+        Mark mark            = PLAYER;
+        boolean keepPlaying  = true;
 
         for (int i = 0; i < times; i++) {
             keepPlaying = turn.keepPlaying(new HumanPlayer(gameUI, mark));

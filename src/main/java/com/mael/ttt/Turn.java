@@ -5,12 +5,14 @@ import com.mael.ttt.ui.UserInterface;
 
 public class Turn {
 
-    private final Board board;
-    private final UserInterface gameUI;
+    private Board board;
+    private UserInterface gameUI;
+    private BoardChecker boardChecker;
 
-    public Turn(Board board, UserInterface gameUI) {
-        this.board  = board;
-        this.gameUI = gameUI;
+    public Turn(Board board, BoardChecker boardChecker, UserInterface gameUI) {
+        this.board        = board;
+        this.boardChecker = boardChecker;
+        this.gameUI       = gameUI;
     }
 
     public boolean keepPlaying(Player player) {
@@ -24,7 +26,7 @@ public class Turn {
     }
 
     private boolean checkForWinner(Mark currentMark) {
-        if (new BoardChecker(board).hasWinner(currentMark.getString())) {
+        if (boardChecker.hasWinner(currentMark.getString())) {
             gameUI.printBoard(board);
             gameUI.printHasWinnerMessage(currentMark.getString());
             return true;
