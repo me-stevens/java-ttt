@@ -49,10 +49,10 @@ public enum MenuOption {
         return HUMAN_HUMAN;
     }
 
-    public static Player createPlayer(String player, UserInterface gameUI, Mark mark) {
-        if (player.equals("human")) {
+    public static Player createPlayer(String playerType, UserInterface gameUI, Mark mark) {
+        if (playerType.equals("human")) {
             return new HumanPlayer(gameUI, mark);
-        } else if (player.equals("robot")) {
+        } else if (playerType.equals("robot")) {
             return new RobotPlayer(gameUI, mark);
         }
         return new AlienPlayer(gameUI, mark);
