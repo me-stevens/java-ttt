@@ -44,17 +44,6 @@ public class BoardTest {
     }
 
     @Test
-    public void newBoardIsNotFull() {
-        assertFalse(board.isFull());
-    }
-
-    @Test
-    public void checksThatBoardIsFull() {
-        board = setAllCellsTo("hi");
-        assertTrue(board.isFull());
-    }
-
-    @Test
     public void getsRowFromCellIndex() {
         assertEquals((1 - 1) / size, board.getRowFromIndex(1));
     }

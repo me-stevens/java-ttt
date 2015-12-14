@@ -33,10 +33,7 @@ public class BoardCheckerTest {
 
     @Test
     public void checksWinnerInRow() {
-        for (int index = 1; index <= size; index++) {
-            board.setCell(index, playerMark);
-        }
-
+        setBoardContents(size, playerMark);
         assertTrue(checker.hasWinner(playerMark));
     }
 
@@ -66,4 +63,17 @@ public class BoardCheckerTest {
 
         assertTrue(checker.hasWinner(playerMark));
     }
+
+    @Test
+    public void checksThatBoardIsFull() {
+        setBoardContents(size*size, "hi");
+        assertTrue(checker.isFull());
+    }
+
+    private void setBoardContents(int numberOfCells, String cellContent) {
+        for (int index = 1; index <= numberOfCells; index++) {
+            board.setCell(index, cellContent);
+        }
+    }
 }
+
