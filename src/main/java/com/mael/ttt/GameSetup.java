@@ -18,12 +18,9 @@ public class GameSetup {
         this.gameUI  = gameUI;
     }
 
-    public void setUp() {
-        gameUI.printWelcomeMessage();
-    }
-
     public void playGame() {
         do {
+            gameUI.printWelcomeMessage();
             board.reset();
             String option = new Menu(gameUI).getUserOption();
             Game game     = new Game(new Turn(board, checker, gameUI), getPlayer(option), getOpponent(option));
