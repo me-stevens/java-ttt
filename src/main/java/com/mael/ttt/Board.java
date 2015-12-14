@@ -13,6 +13,13 @@ public class Board {
         reset();
     }
 
+    public Board (Board board) {
+        this(board.getSize());
+        for(int index = 1; index <= SIZE*SIZE; index++) {
+            this.setCell(index, board.getCell(index));
+        }
+    }
+
     public int getSize() {
         return SIZE;
     }
@@ -26,13 +33,7 @@ public class Board {
     }
 
     public Board getCopy() {
-        Board copy = new Board(SIZE);
-
-        for(int index = 1; index <= SIZE*SIZE; index++) {
-            copy.setCell(index, this.getCell(index));
-        }
-
-        return copy;
+        return new Board(this);
     }
 
     public void reset() {
