@@ -1,7 +1,6 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.ui.menu.MenuOption;
 
 public class UserInterface {
 
