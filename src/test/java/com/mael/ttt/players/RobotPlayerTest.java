@@ -97,6 +97,11 @@ public class RobotPlayerTest {
         assertEquals(5, robotPlayer.getMove(board));
     }
 
+    @Test
+    public void returnsMark() {
+        assertEquals(OPPONENT, robotPlayer.getMark());
+    }
+
     private Board setBoard(String... cellContents) {
         board = new Board(size);
         for (int index = 1; index <= size*size; index++) {
