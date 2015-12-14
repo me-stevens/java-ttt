@@ -2,9 +2,10 @@ package com.mael.ttt;
 
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
-import com.mael.ttt.ui.menu.MenuCreator;
+import com.mael.ttt.ui.Menu;
+import com.mael.ttt.ui.MenuOption;
 
-import java.util.List;
+import static com.mael.ttt.Mark.*;
 
 public class GameSetup {
     private Board board;
@@ -24,13 +25,25 @@ public class GameSetup {
     public void playGame() {
         do {
             board.reset();
-            List<Player> players = setPlayers();
-            Game game = new Game(new Turn(board, checker, gameUI), players.get(0), players.get(1));
+            String option = new Menu(gameUI).getUserOption();
+            Game game     = new Game(new Turn(board, checker, gameUI), getPlayer(option), getOpponent(option));
             game.start();
         } while (gameUI.replay().equals("y"));
     }
 
-    private List<Player> setPlayers() {
-        return new MenuCreator(gameUI).createMenu().createPlayers();
+    private Player getPlayer(String option) {
+        return MenuOption.createPlayer(getPlayerType(option), gameUI, PLAYER);
+    }
+
+    private Player getOpponent(String option) {
+        return MenuOption.createPlayer(getOpponentType(option), gameUI, OPPONENT);
+    }
+
+    private String getPlayerType(String option) {
+        return MenuOption.idToOption(option).getPlayerType();
+    }
+
+    private String getOpponentType(String option) {
+        return MenuOption.idToOption(option).getOpponentType();
     }
 }
