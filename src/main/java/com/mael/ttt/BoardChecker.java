@@ -11,20 +11,19 @@ public class BoardChecker {
     }
 
     public boolean hasWinner(String mark) {
+        return checkWinnerInRows(mark)     ||
+               checkWinnerInCols(mark)     ||
+               checkWinnerInDiagonal(mark) ||
+               checkWinnerInAntiDiagonal(mark);
+    }
 
-        for (int row = 0; row < size; row++) {
-            if (checkWinnerInRow(row, mark)) {
-                return true;
-            }
-        }
-
+    private boolean checkWinnerInCols(String mark) {
         for (int col = 0; col < size; col++) {
             if (checkWinnerInColumn(col, mark)) {
                 return true;
             }
         }
-
-        return checkWinnerInDiagonal(mark) || checkWinnerInAntiDiagonal(mark);
+        return false;
     }
 
     private boolean checkWinnerInRow(int row, String mark) {
@@ -35,6 +34,15 @@ public class BoardChecker {
         }
 
         return true;
+    }
+
+    private boolean checkWinnerInRows(String mark) {
+        for (int row = 0; row < size; row++) {
+            if (checkWinnerInRow(row, mark)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkWinnerInColumn(int col, String mark) {
@@ -69,5 +77,9 @@ public class BoardChecker {
 
     private boolean cellIsNotMark(int row, int col, String mark) {
         return !board.getCell(board.getIndexFromCoords(row, col)).equals(mark);
+    }
+
+    public boolean isFull() {
+        return board.getEmptyCellIndexes().size() == 0;
     }
 }

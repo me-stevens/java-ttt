@@ -53,10 +53,6 @@ public class Board {
         return empties;
     }
 
-    public boolean isFull() {
-        return getEmptyCellIndexes().size() == 0;
-    }
-
     public int getRowFromIndex(int index) {
         return (index - 1) / SIZE;
     }

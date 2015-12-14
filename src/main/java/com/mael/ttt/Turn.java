@@ -36,7 +36,7 @@ public class Turn {
     }
 
     private boolean checkForFull() {
-        if (board.isFull()) {
+        if (boardChecker.isFull()) {
             gameUI.printBoard(board);
             gameUI.printIsFullMessage();
             return true;
