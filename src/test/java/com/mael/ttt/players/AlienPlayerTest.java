@@ -34,4 +34,9 @@ public class AlienPlayerTest {
     public void getsAnExistingEmptyIndex() {
         assertTrue(board.getEmptyCellIndexes().contains(alienPlayer.getMove(board)));
     }
+
+    @Test
+    public void returnsMark() {
+        assertEquals(PLAYER, alienPlayer.getMark());
+    }
 }
