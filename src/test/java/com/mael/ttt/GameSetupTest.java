@@ -21,8 +21,11 @@ public class GameSetupTest {
 
     @Test
     public void printsWelcomeMessage() {
-        gameSetup.setUp();
-        assertEquals(UserInterface.WELCOME, spy.printedMessage());
+        spy.setInputs("1",
+                      "1", "4", "2", "5", "3",
+                      "n");
+        gameSetup.playGame();
+        assertEquals(UserInterface.WELCOME, spy.firstPrintedMessage());
     }
 
     @Test
@@ -31,7 +34,7 @@ public class GameSetupTest {
                       "1", "4", "2", "5", "3",
                       "y",
                       "1",
-                      "1", "4", "2", "5", "3",
+                      "1", "2", "3", "4", "5", "7", "6", "9", "8",
                       "n");
         gameSetup.playGame();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
