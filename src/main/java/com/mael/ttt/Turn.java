@@ -15,13 +15,16 @@ public class Turn {
         this.gameUI       = gameUI;
     }
 
-    public boolean keepPlaying(Player player) {
+    public void placeMark(Player player) {
         gameUI.printBoard(board);
         board.setCell(player.getMove(board), player.getMark().getString());
-        return isNotGameOver(player.getMark());
     }
 
-    private boolean isNotGameOver(Mark currentMark) {
+    public boolean isNotGameOver(Player player) {
+        return checkForWinnerOrFull(player.getMark());
+    }
+
+    private boolean checkForWinnerOrFull(Mark currentMark) {
         return !(checkForWinner(currentMark) || checkForFull());
     }
 
