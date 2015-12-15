@@ -49,7 +49,7 @@ public class TurnTest {
     public void returnsTrueIfNotWinOrFull() {
         spy.setInputs("1");
         turn.placeMark(player);
-        assertEquals(true, turn.isNotGameOver(player));
+        assertEquals(true, turn.isNotGameOver());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TurnTest {
         board.setBoardContents( X,  X,  X,
                                 O,  O, "",
                                "", "", "");
-        assertEquals(false, turn.isNotGameOver(player));
+        assertEquals(false, turn.isNotGameOver());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class TurnTest {
         board.setBoardContents( X,  O,  X,
                                 O,  X,  X,
                                 O,  X,  O);
-        assertEquals(false, turn.isNotGameOver(player));
+        assertEquals(false, turn.isNotGameOver());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class TurnTest {
         board.setBoardContents( X,  X, X,
                                 O,  O, "",
                                "", "", "");
-        turn.isNotGameOver(player);
+        turn.isNotGameOver();
         assertThat(spy.printedMessage(), containsString(formattedBoard(  X,   X,   X,
                                                                          O,   O, "6",
                                                                        "7", "8", "9")));
@@ -84,7 +84,7 @@ public class TurnTest {
         board.setBoardContents( X,  O,  X,
                                 O,  X,  X,
                                 O,  X,  O);
-        turn.isNotGameOver(player);
+        turn.isNotGameOver();
         assertThat(spy.printedMessage(), containsString(formattedBoard(X, O, X,
                                                                        O, X, X,
                                                                        O, X, O)));
@@ -95,7 +95,7 @@ public class TurnTest {
         board.setBoardContents( X,  X, X,
                                 O,  O, "",
                                "", "", "");
-        turn.isNotGameOver(player);
+        turn.isNotGameOver();
         assertThat(spy.printedMessage(), containsString(UserInterface.HASWINNER + X +
                                                         UserInterface.GAMEOVER));
     }
@@ -106,7 +106,7 @@ public class TurnTest {
         board.setBoardContents( X,  O,  X,
                                 O,  X,  X,
                                 O,  X,  O);
-        turn.isNotGameOver(player);
+        turn.isNotGameOver();
         assertThat(spy.printedMessage(), containsString(UserInterface.ISFULL + UserInterface.GAMEOVER));
     }
 
