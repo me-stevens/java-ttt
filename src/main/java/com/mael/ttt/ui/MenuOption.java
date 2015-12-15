@@ -1,7 +1,6 @@
 package com.mael.ttt.ui;
 
-import com.mael.ttt.Mark;
-import com.mael.ttt.players.*;
+import com.mael.ttt.players.PlayerType;
 
 import static com.mael.ttt.players.PlayerType.*;
 
@@ -46,14 +45,5 @@ public enum MenuOption {
             }
         }
         return HUMAN_HUMAN;
-    }
-
-    public static Player conversionTable(PlayerType playerType, UserInterface gameUI, Mark mark) {
-        if (playerType.equals(ROBOT)) {
-            return new RobotPlayer(gameUI, mark);
-        } else if (playerType.equals(ALIEN)) {
-            return new AlienPlayer(gameUI, mark);
-        }
-        return new HumanPlayer(gameUI, mark);
     }
 }

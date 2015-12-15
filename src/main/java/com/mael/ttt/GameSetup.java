@@ -1,13 +1,12 @@
 package com.mael.ttt;
 
-import com.mael.ttt.players.Player;
-import com.mael.ttt.players.PlayerType;
+import com.mael.ttt.players.*;
 import com.mael.ttt.ui.Menu;
-import com.mael.ttt.ui.MenuOption;
 import com.mael.ttt.ui.UserInterface;
 
-import static com.mael.ttt.Mark.OPPONENT;
-import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.players.PlayerType.*;
+import static com.mael.ttt.ui.MenuOption.idToOption;
 
 public class GameSetup {
     private Board board;
@@ -24,33 +23,42 @@ public class GameSetup {
         do {
             setUp();
             String option = getMenuOption();
-            Game game     = new Game(new Turn(board, checker, gameUI), getPlayer(option), getOpponent(option));
+            Game game     = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
             game.start();
         } while (gameUI.replay().equals("y"));
     }
 
     private void setUp() {
-        gameUI.printWelcomeMessage();
         board.reset();
+        gameUI.printWelcomeMessage();
     }
 
     private String getMenuOption() {
         return new Menu(gameUI).getUserOption();
     }
 
-    private Player getPlayer(String option) {
-        return MenuOption.conversionTable(getPlayerType(option), gameUI, PLAYER);
+    private Player createPlayer(String option) {
+        return conversionTable(getPlayerType(option), PLAYER);
     }
 
-    private Player getOpponent(String option) {
-        return MenuOption.conversionTable(getOpponentType(option), gameUI, OPPONENT);
+    private Player createOpponent(String option) {
+        return conversionTable(getOpponentType(option), OPPONENT);
     }
 
     private PlayerType getPlayerType(String option) {
-        return MenuOption.idToOption(option).getPlayerType();
+        return idToOption(option).getPlayerType();
     }
 
     private PlayerType getOpponentType(String option) {
-        return MenuOption.idToOption(option).getOpponentType();
+        return idToOption(option).getOpponentType();
+    }
+
+    public Player conversionTable(PlayerType playerType, Mark mark) {
+        if (playerType == ROBOT) {
+            return new RobotPlayer(gameUI, mark);
+        } else if (playerType == ALIEN) {
+            return new AlienPlayer(gameUI, mark);
+        }
+        return new HumanPlayer(gameUI, mark);
     }
 }
