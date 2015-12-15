@@ -3,6 +3,9 @@ package com.mael.ttt;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterface;
 
+import static com.mael.ttt.Mark.*;
+
+
 public class Turn {
 
     private Board board;
@@ -20,31 +23,28 @@ public class Turn {
         board.setCell(player.getMove(board), player.getMark().getString());
     }
 
-    public boolean isNotGameOver() {
-        return !(hasWinner() || checkForFull());
+    public boolean canBePlayed() {
+        return !(hasWinner() || isFull());
+    }
+
+    public void printResults(Mark winnerMark) {
+        gameUI.printBoard(board);
+        if (hasWinner()) {
+            gameUI.printHasWinnerMessage(winnerMark.getString());
+        } else if (isFull()) {
+            gameUI.printIsFullMessage();
+        }
     }
 
     private boolean hasWinner() {
-        return checkForWinner(Mark.PLAYER) || checkForWinner(Mark.OPPONENT);
+        return hasWinner(PLAYER) || hasWinner(OPPONENT);
     }
 
-    private boolean checkForWinner(Mark currentMark) {
-        if (boardChecker.hasWinner(currentMark.getString())) {
-            gameUI.printBoard(board);
-            gameUI.printHasWinnerMessage(currentMark.getString());
-            return true;
-        }
-
-        return false;
+    private boolean hasWinner(Mark currentMark) {
+        return boardChecker.hasWinner(currentMark.getString());
     }
 
-    private boolean checkForFull() {
-        if (boardChecker.isFull()) {
-            gameUI.printBoard(board);
-            gameUI.printIsFullMessage();
-            return true;
-        }
-
-        return false;
+    private boolean isFull() {
+        return boardChecker.isFull();
     }
 }

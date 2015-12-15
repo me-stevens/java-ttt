@@ -1,125 +1,154 @@
 package com.mael.ttt;
 
-import com.mael.ttt.players.HumanPlayer;
 import com.mael.ttt.players.Player;
-import com.mael.ttt.ui.SpyConsole;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.Mark.*;
-import static org.hamcrest.CoreMatchers.containsString;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.mael.ttt.Mark.OPPONENT;
+import static com.mael.ttt.Mark.PLAYER;
 import static org.junit.Assert.*;
 
 public class TurnTest {
-
-    private int size;
     private Board board;
-    private SpyConsole spy;
     private Turn turn;
     private Player player;
     private String X, O;
+    private UserInterfaceSpy uiSpy;
 
     @Before
     public void setUp() {
-        size   = 3;
-        board  = new Board(size);
-        spy    = new SpyConsole();
-        turn   = new Turn(board, new BoardChecker(board), new UserInterface(spy));
-        player = new HumanPlayer(new UserInterface(spy), PLAYER);
+        board  = new Board(3);
+        uiSpy  = new UserInterfaceSpy();
+        turn   = new Turn(board, new BoardChecker(board), uiSpy);
+        player = new FakePlayer(1);
         X      = PLAYER.getString();
         O      = OPPONENT.getString();
     }
 
     @Test
     public void printsTheBoardInEveryTurn() {
-        spy.setInputs("1");
         turn.placeMark(player);
-        assertEquals(true, spy.printedMessage().contains("1 2 3 \n4 5 6 \n7 8 9 \n"));
+        assertTrue(uiSpy.printBoardHasBeeCalled());
     }
 
     @Test
     public void updatesTheBoardInEveryTurn() {
-        spy.setInput("1");
         turn.placeMark(player);
         assertEquals(X, board.getCell(1));
     }
 
     @Test
-    public void returnsTrueIfNotWinOrFull() {
-        spy.setInputs("1");
+    public void canBePlayedIfNoWinnerOrFull() {
         turn.placeMark(player);
-        assertEquals(true, turn.isNotGameOver());
+        assertTrue(turn.canBePlayed());
     }
 
     @Test
-    public void returnsFalseIfWin() {
+    public void cannotBePlayedIfBoardHasWinner() {
         board.setBoardContents( X,  X,  X,
                                 O,  O, "",
                                "", "", "");
-        assertEquals(false, turn.isNotGameOver());
+        assertFalse(turn.canBePlayed());
     }
 
     @Test
-    public void returnsFalseIfFull() {
+    public void cannotBePlayedIfBoardIsFull() {
         board.setBoardContents( X,  O,  X,
                                 O,  X,  X,
                                 O,  X,  O);
-        assertEquals(false, turn.isNotGameOver());
+        assertFalse(turn.canBePlayed());
     }
 
     @Test
-    public void printsBoardIfWin() {
+    public void printsBoardIfBoardHasWinner() {
         board.setBoardContents( X,  X, X,
                                 O,  O, "",
                                "", "", "");
-        turn.isNotGameOver();
-        assertThat(spy.printedMessage(), containsString(formattedBoard(  X,   X,   X,
-                                                                         O,   O, "6",
-                                                                       "7", "8", "9")));
+        turn.printResults(PLAYER);
+        assertTrue(uiSpy.printBoardHasBeeCalled());
     }
 
     @Test
-    public void printsBoardIfFull() {
+    public void printsBoardIfBoardIsFull() {
         board.setBoardContents( X,  O,  X,
                                 O,  X,  X,
                                 O,  X,  O);
-        turn.isNotGameOver();
-        assertThat(spy.printedMessage(), containsString(formattedBoard(X, O, X,
-                                                                       O, X, X,
-                                                                       O, X, O)));
+        turn.printResults(PLAYER);
+        assertTrue(uiSpy.printBoardHasBeeCalled());
     }
 
     @Test
-    public void printsWinningMessageIfWin() {
+    public void printsWinningMessageIfBoardHasWinner() {
         board.setBoardContents( X,  X, X,
                                 O,  O, "",
                                "", "", "");
-        turn.isNotGameOver();
-        assertThat(spy.printedMessage(), containsString(UserInterface.HASWINNER + X +
-                                                        UserInterface.GAMEOVER));
+        turn.printResults(PLAYER);
+        assertTrue(uiSpy.printHasWinnerMessageHasBeenCalled());
+        assertFalse(uiSpy.printIsFullMessageHasBeenCalled());
+
+    }
+
+    @Test
+    public void printsFullMessageIfBoardIsFull() {
+        board.setBoardContents( X,  O,  X,
+                                O,  X,  X,
+                                O,  X,  O);
+        turn.printResults(PLAYER);
+        assertTrue(uiSpy.printIsFullMessageHasBeenCalled());
+        assertFalse(uiSpy.printHasWinnerMessageHasBeenCalled());
+
+    }
+
+    @Test
+    public void ifNoWinnerAndBoardIsNotFullJustPrintsTheBoard() {
+        board.setBoardContents( X,  X, "",
+                                O,  O, "",
+                               "", "", "");
+        turn.printResults(PLAYER);
+        assertTrue(uiSpy.printBoardHasBeeCalled());
+        assertFalse(uiSpy.printHasWinnerMessageHasBeenCalled());
+        assertFalse(uiSpy.printIsFullMessageHasBeenCalled());
+    }
+
+    @Test
+    public void announcesTheCorrectWinnerForPlayer() {
+        board.setBoardContents( X,  X, X,
+                                O,  O, "",
+                               "", "", "");
+        turn.printResults(PLAYER);
+        assertEquals(PLAYER.getString(), uiSpy.announcedWinner());
     }
 
 
     @Test
-    public void printsFullMessageIfFull() {
-        board.setBoardContents( X,  O,  X,
-                                O,  X,  X,
-                                O,  X,  O);
-        turn.isNotGameOver();
-        assertThat(spy.printedMessage(), containsString(UserInterface.ISFULL + UserInterface.GAMEOVER));
+    public void announcesTheCorrectWinnerForOpponent() {
+        board.setBoardContents( O,  O, O,
+                                X,  X, "",
+                               "", "", "");
+        turn.printResults(OPPONENT);
+        assertEquals(OPPONENT.getString(), uiSpy.announcedWinner());
     }
 
-    private String formattedBoard(String ... cells) {
-        String formattedBoard = "";
-        int i = 0;
-        for(String cell : cells) {
-            formattedBoard += cell + " " + endOfLine(++i);
+    class FakePlayer implements Player {
+        private List<Integer> moves = new ArrayList<>();
+
+        public FakePlayer(Integer ... moves) {
+            this.moves.addAll(Arrays.asList(moves));
         }
-        return formattedBoard;
-    }
 
-    private String endOfLine(int i) {
-        return (i % size == 0) ? "\n" : "";
+        @Override
+        public int getMove(Board board) {
+            return moves.remove(0);
+        }
+
+        @Override
+        public Mark getMark() {
+            return PLAYER;
+        }
     }
 }
