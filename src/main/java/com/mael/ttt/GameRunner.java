@@ -8,7 +8,6 @@ public class GameRunner {
 
     public static void main(String[] args) {
         GameSetup gameSetup = new GameSetup(new Board(3), new UserInterface(new GameConsole(System.in, System.out)));
-        gameSetup.setUp();
         gameSetup.playGame();
     }
 }
