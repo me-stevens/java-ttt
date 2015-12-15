@@ -20,12 +20,20 @@ public class GameSetup {
 
     public void playGame() {
         do {
-            gameUI.printWelcomeMessage();
-            board.reset();
-            String option = new Menu(gameUI).getUserOption();
+            setUp();
+            String option = getMenuOption();
             Game game     = new Game(new Turn(board, checker, gameUI), getPlayer(option), getOpponent(option));
             game.start();
         } while (gameUI.replay().equals("y"));
+    }
+
+    private void setUp() {
+        gameUI.printWelcomeMessage();
+        board.reset();
+    }
+
+    private String getMenuOption() {
+        return new Menu(gameUI).getUserOption();
     }
 
     private Player getPlayer(String option) {
