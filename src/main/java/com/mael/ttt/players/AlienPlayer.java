@@ -7,6 +7,8 @@ import com.mael.ttt.ui.UserInterface;
 import java.util.List;
 import java.util.Random;
 
+import static com.mael.ttt.players.PlayerType.ALIEN;
+
 public class AlienPlayer implements Player {
     private final UserInterface gameUI;
     private final Mark mark;
@@ -25,5 +27,10 @@ public class AlienPlayer implements Player {
 
     public Mark getMark() {
         return mark;
+    }
+
+    @Override
+    public PlayerType getType() {
+        return ALIEN;
     }
 }
