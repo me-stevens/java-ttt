@@ -1,15 +1,15 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.Mark;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.players.PlayerType.ALIEN;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static com.mael.ttt.Mark.*;
 
 public class AlienPlayerTest {
 
@@ -38,5 +38,10 @@ public class AlienPlayerTest {
     @Test
     public void returnsMark() {
         assertEquals(PLAYER, alienPlayer.getMark());
+    }
+
+    @Test
+    public void returnsType() {
+        assertEquals(ALIEN, alienPlayer.getType());
     }
 }

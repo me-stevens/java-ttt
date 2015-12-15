@@ -7,7 +7,9 @@ import com.mael.ttt.ui.UserInterface;
 
 import java.util.List;
 
-import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.Mark.OPPONENT;
+import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.players.PlayerType.ROBOT;
 
 public class RobotPlayer implements Player {
 
@@ -32,6 +34,11 @@ public class RobotPlayer implements Player {
 
     public Mark getMark() {
         return mark;
+    }
+
+    @Override
+    public PlayerType getType() {
+        return ROBOT;
     }
 
     private int[] miniMax(Board currentBoard, String currentPlayer) {

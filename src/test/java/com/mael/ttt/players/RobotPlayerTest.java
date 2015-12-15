@@ -6,8 +6,10 @@ import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mael.ttt.Mark.OPPONENT;
+import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.players.PlayerType.ROBOT;
 import static org.junit.Assert.assertEquals;
-import static com.mael.ttt.Mark.*;
 
 public class RobotPlayerTest {
 
@@ -101,5 +103,10 @@ public class RobotPlayerTest {
     @Test
     public void returnsMark() {
         assertEquals(OPPONENT, robotPlayer.getMark());
+    }
+
+    @Test
+    public void returnsType() {
+        assertEquals(ROBOT, robotPlayer.getType());
     }
 }
