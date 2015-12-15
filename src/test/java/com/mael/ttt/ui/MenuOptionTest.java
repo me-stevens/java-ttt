@@ -6,9 +6,11 @@ import com.mael.ttt.players.RobotPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.players.PlayerType.*;
+import static com.mael.ttt.ui.MenuOption.HUMAN_HUMAN;
+import static com.mael.ttt.ui.MenuOption.HUMAN_ROBOT;
 import static org.junit.Assert.assertEquals;
-import static com.mael.ttt.ui.MenuOption.*;
-import static com.mael.ttt.Mark.*;
 
 public class MenuOptionTest {
 
@@ -31,12 +33,12 @@ public class MenuOptionTest {
 
     @Test
     public void getsPlayerType() {
-        assertEquals("human", HUMAN_ROBOT.getPlayerType());
+        assertEquals(HUMAN, HUMAN_ROBOT.getPlayerType());
     }
 
     @Test
     public void getsOpponentType() {
-        assertEquals("robot", HUMAN_ROBOT.getOpponentType());
+        assertEquals(ROBOT, HUMAN_ROBOT.getOpponentType());
     }
 
     @Test
@@ -51,16 +53,16 @@ public class MenuOptionTest {
 
     @Test
     public void createsAHuman() {
-        assertEquals(true, MenuOption.createPlayer("human", gameUI, PLAYER) instanceof HumanPlayer);
+        assertEquals(true, MenuOption.conversionTable(HUMAN, gameUI, PLAYER) instanceof HumanPlayer);
     }
 
     @Test
     public void createsARobot() {
-        assertEquals(true, MenuOption.createPlayer("robot", gameUI, PLAYER) instanceof RobotPlayer);
+        assertEquals(true, MenuOption.conversionTable(ROBOT, gameUI, PLAYER) instanceof RobotPlayer);
     }
 
     @Test
     public void createsAnAlien() {
-        assertEquals(true, MenuOption.createPlayer("alien", gameUI, PLAYER) instanceof AlienPlayer);
+        assertEquals(true, MenuOption.conversionTable(ALIEN, gameUI, PLAYER) instanceof AlienPlayer);
     }
 }

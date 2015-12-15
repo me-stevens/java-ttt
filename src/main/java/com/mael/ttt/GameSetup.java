@@ -1,11 +1,13 @@
 package com.mael.ttt;
 
 import com.mael.ttt.players.Player;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.players.PlayerType;
 import com.mael.ttt.ui.Menu;
 import com.mael.ttt.ui.MenuOption;
+import com.mael.ttt.ui.UserInterface;
 
-import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.Mark.OPPONENT;
+import static com.mael.ttt.Mark.PLAYER;
 
 public class GameSetup {
     private Board board;
@@ -37,18 +39,18 @@ public class GameSetup {
     }
 
     private Player getPlayer(String option) {
-        return MenuOption.createPlayer(getPlayerType(option), gameUI, PLAYER);
+        return MenuOption.conversionTable(getPlayerType(option), gameUI, PLAYER);
     }
 
     private Player getOpponent(String option) {
-        return MenuOption.createPlayer(getOpponentType(option), gameUI, OPPONENT);
+        return MenuOption.conversionTable(getOpponentType(option), gameUI, OPPONENT);
     }
 
-    private String getPlayerType(String option) {
+    private PlayerType getPlayerType(String option) {
         return MenuOption.idToOption(option).getPlayerType();
     }
 
-    private String getOpponentType(String option) {
+    private PlayerType getOpponentType(String option) {
         return MenuOption.idToOption(option).getOpponentType();
     }
 }
