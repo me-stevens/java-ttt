@@ -20,6 +20,7 @@ public class RobotPlayerTest {
     @Before
     public void setUp() {
         size        = 3;
+        board       = new Board(size);
         spy         = new SpyConsole();
         robotPlayer = new RobotPlayer(new UserInterface(spy), OPPONENT);
         X           = PLAYER.getString();
@@ -28,85 +29,77 @@ public class RobotPlayerTest {
 
     @Test
     public void promptMessageIsPrinted() {
-        board = new Board(size);
+        board  =new Board(size);
         robotPlayer.getMove(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }
 
     @Test
     public void choosesWinningCombinationInARow() {
-        board = setBoard( O,  O, "",
-                          X,  X, "",
-                         "", "", "");
+        board.setBoardContents( O,  O, "",
+                                X,  X, "",
+                               "", "", "");
         assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAColumn() {
-        board = setBoard( X,  O, "",
-                          X,  O, "",
-                         "", "", "");
+        board.setBoardContents( X,  O, "",
+                                X,  O, "",
+                               "", "", "");
         assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInDiagonal() {
-        board = setBoard(O,  X,  X,
-                         X,  O,  X,
-                         X, "", "");
+        board.setBoardContents(O,  X,  X,
+                               X,  O,  X,
+                               X, "", "");
         assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAntiDiagonal() {
-        board = setBoard( X,  X, O,
-                          X,  O, X,
-                         "", "", X);
+        board.setBoardContents( X,  X, O,
+                                X,  O, X,
+                               "", "", X);
         assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInARow() {
-        board = setBoard( X,  X, "",
-                         "",  O, "",
-                         "", "", "");
+        board.setBoardContents( X,  X, "",
+                               "",  O, "",
+                               "", "", "");
         assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInAColumn() {
-        board = setBoard("", "",  X,
-                         "",  O, "",
-                         "", "",  X);
+        board.setBoardContents("", "",  X,
+                               "",  O, "",
+                               "", "",  X);
         assertEquals(6, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInDiagonal() {
-        board = setBoard( X, "", "",
-                         "",  X, "",
-                          O, "", "");
+        board.setBoardContents( X, "", "",
+                               "",  X, "",
+                                O, "", "");
         assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInAntiDiagonal() {
-        board = setBoard("", "",  X,
-                          O, "", "",
-                          X, "", "");
+        board.setBoardContents("", "",  X,
+                                O, "", "",
+                                X, "", "");
         assertEquals(5, robotPlayer.getMove(board));
     }
 
     @Test
     public void returnsMark() {
         assertEquals(OPPONENT, robotPlayer.getMark());
-    }
-
-    private Board setBoard(String... cellContents) {
-        board = new Board(size);
-        for (int index = 1; index <= size*size; index++) {
-            board.setCell(index, cellContents[index-1]);
-        }
-        return board;
     }
 }

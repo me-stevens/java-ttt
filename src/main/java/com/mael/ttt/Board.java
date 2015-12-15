@@ -73,4 +73,10 @@ public class Board {
 
         return true;
     }
+
+    public void setBoardContents(String... cellContents) {
+        for (int index = 1; index <= SIZE*SIZE; index++) {
+            setCell(index, cellContents[index-1]);
+        }
+    }
 }
