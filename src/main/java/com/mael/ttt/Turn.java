@@ -20,12 +20,12 @@ public class Turn {
         board.setCell(player.getMove(board), player.getMark().getString());
     }
 
-    public boolean isNotGameOver(Player player) {
-        return checkForWinnerOrFull(player.getMark());
+    public boolean isNotGameOver() {
+        return !(hasWinner() || checkForFull());
     }
 
-    private boolean checkForWinnerOrFull(Mark currentMark) {
-        return !(checkForWinner(currentMark) || checkForFull());
+    private boolean hasWinner() {
+        return checkForWinner(Mark.PLAYER) || checkForWinner(Mark.OPPONENT);
     }
 
     private boolean checkForWinner(Mark currentMark) {

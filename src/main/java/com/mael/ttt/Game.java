@@ -19,11 +19,10 @@ public class Game {
     }
 
     public void start() {
-        do {
+        while (turn.isNotGameOver()) {
             turn.placeMark(getCurrentPlayer());
             swapPlayers();
         }
-        while (turn.isNotGameOver(getCurrentPlayer()));
     }
 
     private Player getCurrentPlayer() {
