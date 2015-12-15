@@ -1,13 +1,10 @@
 package com.mael.ttt;
 
+import com.mael.ttt.players.FakePlayer;
 import com.mael.ttt.players.Player;
 import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.mael.ttt.Mark.OPPONENT;
 import static com.mael.ttt.Mark.PLAYER;
@@ -134,21 +131,4 @@ public class TurnTest {
         assertEquals(OPPONENT.getString(), uiSpy.announcedWinner());
     }
 
-    class FakePlayer implements Player {
-        private List<Integer> moves = new ArrayList<>();
-
-        public FakePlayer(Integer ... moves) {
-            this.moves.addAll(Arrays.asList(moves));
-        }
-
-        @Override
-        public int getMove(Board board) {
-            return moves.remove(0);
-        }
-
-        @Override
-        public Mark getMark() {
-            return PLAYER;
-        }
-    }
 }

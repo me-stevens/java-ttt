@@ -1,51 +1,52 @@
 package com.mael.ttt;
 
-import com.mael.ttt.players.HumanPlayer;
-import com.mael.ttt.ui.SpyConsole;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.players.FakePlayer;
+import com.mael.ttt.ui.UserInterfaceSpy;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static com.mael.ttt.Mark.*;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
-    private int size;
     private Board board;
-    private SpyConsole spy;
     private Game game;
-    private UserInterface gameUI;
+    private UserInterfaceSpy uiSpy;
 
     @Before
     public void setUp() {
-        size   = 3;
-        board  = new Board(size);
-        spy    = new SpyConsole();
-        gameUI = new UserInterface(spy);
-        game   = new Game(new Turn(board, new BoardChecker(board), gameUI),
-                 new HumanPlayer(gameUI, PLAYER),
-                 new HumanPlayer(gameUI, OPPONENT));
+        board = new Board(3);
+        uiSpy = new UserInterfaceSpy();
     }
 
     @Test
     public void endsTheGameIfWin() {
-        spy.setInputs("1", "4", "2", "5", "3");
+        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+                new FakePlayer(PLAYER, 1, 2, 3),
+                new FakePlayer(OPPONENT, 4, 5));
         game.start();
-        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
+        assertTrue(uiSpy.printHasWinnerMessageHasBeenCalled());
     }
 
     @Test
     public void endsTheGameIfFull() {
-        spy.setInputs("1", "2", "3", "4", "5", "6", "8", "7", "9");
+        UserInterfaceSpy uiSpy = new UserInterfaceSpy();
+        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+                new FakePlayer(PLAYER, 1, 2, 5, 6, 7),
+                new FakePlayer(OPPONENT, 4, 3, 9, 8));
         game.start();
-        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
+        assertTrue(uiSpy.printIsFullMessageHasBeenCalled());
     }
 
     @Test
     public void markIsSwappedInEveryTurn() {
-        spy.setInputs("1", "2", "3", "4", "5", "6", "7");
+        UserInterfaceSpy uiSpy = new UserInterfaceSpy();
+        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+                new FakePlayer(PLAYER, 1, 3, 5, 7),
+                new FakePlayer(OPPONENT, 2, 4, 6));
         game.start();
 
         assertEquals(PLAYER.getString(),   board.getCell(1));
