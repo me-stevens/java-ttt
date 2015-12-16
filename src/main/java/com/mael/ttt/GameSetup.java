@@ -38,11 +38,11 @@ public class GameSetup {
     }
 
     private Player createPlayer(String option) {
-        return conversionTable(getPlayerType(option), PLAYER);
+        return createPlayerOfType(getPlayerType(option), PLAYER);
     }
 
     private Player createOpponent(String option) {
-        return conversionTable(getOpponentType(option), OPPONENT);
+        return createPlayerOfType(getOpponentType(option), OPPONENT);
     }
 
     private PlayerType getPlayerType(String option) {
@@ -53,7 +53,7 @@ public class GameSetup {
         return idToOption(option).getOpponentType();
     }
 
-    public Player conversionTable(PlayerType playerType, Mark mark) {
+    public Player createPlayerOfType(PlayerType playerType, Mark mark) {
         if (playerType == ROBOT) {
             return new RobotPlayer(gameUI, mark);
         } else if (playerType == ALIEN) {

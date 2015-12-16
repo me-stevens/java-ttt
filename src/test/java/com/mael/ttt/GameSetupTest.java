@@ -50,16 +50,16 @@ public class GameSetupTest {
 
     @Test
     public void createsAHuman() {
-        assertTrue(gameSetup.conversionTable(HUMAN, PLAYER) instanceof HumanPlayer);
+        assertTrue(gameSetup.createPlayerOfType(HUMAN, PLAYER) instanceof HumanPlayer);
     }
 
     @Test
     public void createsARobot() {
-        assertTrue(gameSetup.conversionTable(ROBOT, PLAYER) instanceof RobotPlayer);
+        assertTrue(gameSetup.createPlayerOfType(ROBOT, PLAYER) instanceof RobotPlayer);
     }
 
     @Test
     public void createsAnAlien() {
-        assertTrue(gameSetup.conversionTable(ALIEN, PLAYER) instanceof AlienPlayer);
+        assertTrue(gameSetup.createPlayerOfType(ALIEN, PLAYER) instanceof AlienPlayer);
     }
 }
