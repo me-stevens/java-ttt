@@ -25,11 +25,6 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    @Override
-    public PlayerType getType() {
-        return HUMAN;
-    }
-
     private String returnValidCellIndex() {
         String cellIndex      = gameUI.getInput();
         String validCellIndex = "[1-9]";

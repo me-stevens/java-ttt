@@ -28,9 +28,4 @@ public class AlienPlayer implements Player {
     public Mark getMark() {
         return mark;
     }
-
-    @Override
-    public PlayerType getType() {
-        return ALIEN;
-    }
 }

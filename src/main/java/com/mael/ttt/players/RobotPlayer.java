@@ -36,11 +36,6 @@ public class RobotPlayer implements Player {
         return mark;
     }
 
-    @Override
-    public PlayerType getType() {
-        return ROBOT;
-    }
-
     private int[] miniMax(Board currentBoard, String currentPlayer) {
         int index = resetIndex();
         int score = resetScore(currentPlayer);

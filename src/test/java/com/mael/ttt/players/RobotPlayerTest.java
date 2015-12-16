@@ -104,9 +104,4 @@ public class RobotPlayerTest {
     public void returnsMark() {
         assertEquals(OPPONENT, robotPlayer.getMark());
     }
-
-    @Test
-    public void returnsType() {
-        assertEquals(ROBOT, robotPlayer.getType());
-    }
 }

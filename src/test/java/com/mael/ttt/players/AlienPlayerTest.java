@@ -39,9 +39,4 @@ public class AlienPlayerTest {
     public void returnsMark() {
         assertEquals(PLAYER, alienPlayer.getMark());
     }
-
-    @Test
-    public void returnsType() {
-        assertEquals(ALIEN, alienPlayer.getType());
-    }
 }

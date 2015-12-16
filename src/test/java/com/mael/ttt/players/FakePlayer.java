@@ -31,9 +31,4 @@ public class FakePlayer implements Player {
     public Mark getMark() {
         return mark;
     }
-
-    @Override
-    public PlayerType getType() {
-        return null;
-    }
 }
