@@ -7,5 +7,4 @@ public interface Player {
 
     int getMove(Board board);
     Mark getMark();
-    PlayerType getType();
 }

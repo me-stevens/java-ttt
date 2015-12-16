@@ -45,9 +45,4 @@ public class HumanPlayerTest {
         spy.setInputs("2");
         assertEquals(2, humanPlayer.getMove(board));
     }
-
-    @Test
-    public void returnsType() {
-        assertEquals(HUMAN, humanPlayer.getType());
-    }
 }
