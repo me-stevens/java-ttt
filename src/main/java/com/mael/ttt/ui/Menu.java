@@ -19,6 +19,7 @@ public class Menu {
             gameUI.printMenuPrompt();
             option = gameUI.getMenuOption(gameUI.formatMenuOptions());
         }
+
         return MenuOption.idToOption(option);
     }
 

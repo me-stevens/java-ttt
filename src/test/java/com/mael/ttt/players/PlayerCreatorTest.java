@@ -15,7 +15,7 @@ public class PlayerCreatorTest {
 
     @Before
     public void setUp() {
-        gameUI = new UserInterface(new SpyConsole());
+        gameUI        = new UserInterface(new SpyConsole());
         playerCreator = new PlayerCreator(gameUI);
     }
 

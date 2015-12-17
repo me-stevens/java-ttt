@@ -7,8 +7,6 @@ import com.mael.ttt.ui.UserInterface;
 import java.util.List;
 import java.util.Random;
 
-import static com.mael.ttt.players.PlayerType.ALIEN;
-
 public class AlienPlayer implements Player {
     private final UserInterface gameUI;
     private final Mark mark;
@@ -20,9 +18,8 @@ public class AlienPlayer implements Player {
 
     public int getMove(Board board) {
         gameUI.printAlienPrompt();
-
-        List<Integer> empties = board.getEmptyCellIndexes();
-        return empties.get(new Random().nextInt(empties.size()));
+        List<Integer> emptyCellIndexes = board.getEmptyCellIndexes();
+        return emptyCellIndexes.get(new Random().nextInt(emptyCellIndexes.size()));
     }
 
     public Mark getMark() {

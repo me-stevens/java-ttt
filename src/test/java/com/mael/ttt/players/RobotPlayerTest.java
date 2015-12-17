@@ -6,9 +6,7 @@ import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.Mark.OPPONENT;
-import static com.mael.ttt.Mark.PLAYER;
-import static com.mael.ttt.players.PlayerType.ROBOT;
+import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 
 public class RobotPlayerTest {
@@ -31,7 +29,7 @@ public class RobotPlayerTest {
 
     @Test
     public void promptMessageIsPrinted() {
-        board  =new Board(size);
+        board = new Board(size);
         robotPlayer.getMove(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }

@@ -22,4 +22,11 @@ public class MenuTest {
         menu.getUserOption();
         assertEquals(3, spy.timesReadWasCalled());
     }
+
+    @Test
+    public void printsMenuPrompt() {
+        spy.setInput("1");
+        menu.getUserOption();
+        assertEquals(UserInterface.MENUPROMPT, spy.firstPrintedMessage());
+    }
 }

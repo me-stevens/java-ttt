@@ -16,14 +16,4 @@ public class MarkTest {
     public void convertsOpponentMarkToString() {
         assertEquals("O", OPPONENT.getString());
     }
-
-    @Test
-    public void swapsPlayerMark() {
-        assertEquals(OPPONENT, PLAYER.swapMark());
-    }
-
-    @Test
-    public void swapsOpponentMark() {
-        assertEquals(PLAYER, OPPONENT.swapMark());
-    }
 }

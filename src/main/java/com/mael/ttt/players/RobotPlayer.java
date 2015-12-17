@@ -9,7 +9,6 @@ import java.util.List;
 
 import static com.mael.ttt.Mark.OPPONENT;
 import static com.mael.ttt.Mark.PLAYER;
-import static com.mael.ttt.players.PlayerType.ROBOT;
 
 public class RobotPlayer implements Player {
 
@@ -21,7 +20,7 @@ public class RobotPlayer implements Player {
     public RobotPlayer(UserInterface ui, Mark mark) {
         this.gameUI      = ui;
         this.mark        = mark;
-        playerToOptimize = this.mark.getString();
+        playerToOptimize = mark.getString();
     }
 
     public int getMove(Board board) {

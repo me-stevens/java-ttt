@@ -3,9 +3,9 @@ package com.mael.ttt.ui;
 import com.mael.ttt.Board;
 
 public class UserInterfaceSpy extends UserInterface {
-    private boolean printBoardHasBeenCalled = false;
-    private boolean printHasWinnerMessageHasBeenCalled = false;
-    private boolean printIsFullMessageHasBeenCalled = false;
+    private boolean printBoardWasCalled = false;
+    private boolean printHasWinnerMessageWasCalled = false;
+    private boolean printIsFullMessageWasCalled = false;
     private String winner = "";
 
     public UserInterfaceSpy() {
@@ -27,7 +27,7 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public void printBoard(Board board) {
-        printBoardHasBeenCalled = true;
+        printBoardWasCalled = true;
     }
 
     @Override
@@ -63,12 +63,12 @@ public class UserInterfaceSpy extends UserInterface {
     @Override
     public void printHasWinnerMessage(String currentPlayer) {
         winner = currentPlayer;
-        printHasWinnerMessageHasBeenCalled = true;
+        printHasWinnerMessageWasCalled = true;
     }
 
     @Override
     public void printIsFullMessage() {
-        printIsFullMessageHasBeenCalled = true;
+        printIsFullMessageWasCalled = true;
     }
 
     @Override
@@ -76,16 +76,16 @@ public class UserInterfaceSpy extends UserInterface {
         return "";
     }
 
-    public boolean printBoardHasBeeCalled() {
-        return printBoardHasBeenCalled;
+    public boolean printBoardWasCalled() {
+        return printBoardWasCalled;
     }
 
-    public boolean printHasWinnerMessageHasBeenCalled() {
-        return printHasWinnerMessageHasBeenCalled;
+    public boolean printHasWinnerMessageWasCalled() {
+        return printHasWinnerMessageWasCalled;
     }
 
-    public boolean printIsFullMessageHasBeenCalled() {
-        return printIsFullMessageHasBeenCalled;
+    public boolean printIsFullMessageWasCalled() {
+        return printIsFullMessageWasCalled;
     }
 
     public String announcedWinner() {

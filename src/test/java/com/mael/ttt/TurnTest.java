@@ -6,8 +6,7 @@ import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.Mark.OPPONENT;
-import static com.mael.ttt.Mark.PLAYER;
+import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.*;
 
 public class TurnTest {
@@ -30,7 +29,7 @@ public class TurnTest {
     @Test
     public void printsTheBoardInEveryTurn() {
         turn.placeMark(player);
-        assertTrue(uiSpy.printBoardHasBeeCalled());
+        assertTrue(uiSpy.printBoardWasCalled());
     }
 
     @Test
@@ -67,7 +66,7 @@ public class TurnTest {
                                 O,  O, "",
                                "", "", "");
         turn.printResults(PLAYER);
-        assertTrue(uiSpy.printBoardHasBeeCalled());
+        assertTrue(uiSpy.printBoardWasCalled());
     }
 
     @Test
@@ -76,7 +75,7 @@ public class TurnTest {
                                 O,  X,  X,
                                 O,  X,  O);
         turn.printResults(PLAYER);
-        assertTrue(uiSpy.printBoardHasBeeCalled());
+        assertTrue(uiSpy.printBoardWasCalled());
     }
 
     @Test
@@ -85,8 +84,8 @@ public class TurnTest {
                                 O,  O, "",
                                "", "", "");
         turn.printResults(PLAYER);
-        assertTrue(uiSpy.printHasWinnerMessageHasBeenCalled());
-        assertFalse(uiSpy.printIsFullMessageHasBeenCalled());
+        assertTrue(uiSpy.printHasWinnerMessageWasCalled());
+        assertFalse(uiSpy.printIsFullMessageWasCalled());
 
     }
 
@@ -96,8 +95,8 @@ public class TurnTest {
                                 O,  X,  X,
                                 O,  X,  O);
         turn.printResults(PLAYER);
-        assertTrue(uiSpy.printIsFullMessageHasBeenCalled());
-        assertFalse(uiSpy.printHasWinnerMessageHasBeenCalled());
+        assertTrue(uiSpy.printIsFullMessageWasCalled());
+        assertFalse(uiSpy.printHasWinnerMessageWasCalled());
 
     }
 
@@ -107,9 +106,9 @@ public class TurnTest {
                                 O,  O, "",
                                "", "", "");
         turn.printResults(PLAYER);
-        assertTrue(uiSpy.printBoardHasBeeCalled());
-        assertFalse(uiSpy.printHasWinnerMessageHasBeenCalled());
-        assertFalse(uiSpy.printIsFullMessageHasBeenCalled());
+        assertTrue(uiSpy.printBoardWasCalled());
+        assertFalse(uiSpy.printHasWinnerMessageWasCalled());
+        assertFalse(uiSpy.printIsFullMessageWasCalled());
     }
 
     @Test
