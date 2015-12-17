@@ -9,19 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class GameSetupTest {
 
+    private int size;
     private SpyConsole spy;
     private GameSetup gameSetup;
-    private UserInterface gameUI;
-    private Board board;
-    private int size;
 
     @Before
     public void setUp() {
-        size = 3;
-        board     = new Board(size);
+        size      = 3;
         spy       = new SpyConsole();
-        gameUI    = new UserInterface(spy);
-        gameSetup = new GameSetup(board, gameUI);
+        gameSetup = new GameSetup(new Board(size), new UserInterface(spy));
     }
 
     @Test

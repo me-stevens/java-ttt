@@ -20,8 +20,8 @@ public class GameSetup {
         do {
             setUp();
             MenuOption option = getMenuOption();
-            Game game     = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
-            game.start();
+            Game game         = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
+            game.play();
         } while (gameUI.replay().equals("y"));
     }
 

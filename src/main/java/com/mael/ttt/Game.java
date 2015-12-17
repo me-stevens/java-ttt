@@ -14,7 +14,7 @@ public class Game {
         this.lastPlayer    = opponent;
     }
 
-    public void start() {
+    public void play() {
         while (turn.canBePlayed()) {
             turn.placeMark(getCurrentPlayer());
             swapPlayers();

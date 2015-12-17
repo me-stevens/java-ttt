@@ -1,6 +1,7 @@
 package com.mael.ttt;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
@@ -42,8 +43,8 @@ public class Board {
         }
     }
 
-    public ArrayList<Integer> getEmptyCellIndexes() {
-        ArrayList<Integer> empties = new ArrayList();
+    public List<Integer> getEmptyCellIndexes() {
+        List<Integer> empties = new ArrayList();
 
         for (int index = 1; index <= SIZE*SIZE; index++) {
             if (getCell(index).equals("")) {

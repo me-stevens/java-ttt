@@ -1,6 +1,5 @@
 package com.mael.ttt.ui;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.mael.ttt.players.PlayerType.*;
@@ -8,13 +7,6 @@ import static com.mael.ttt.ui.MenuOption.*;
 import static org.junit.Assert.assertEquals;
 
 public class MenuOptionTest {
-
-    private UserInterface gameUI;
-
-    @Before
-    public void setUp() {
-        gameUI = new UserInterface(new SpyConsole());
-    }
 
     @Test
     public void getsHumanVsHumanId() {

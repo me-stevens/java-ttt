@@ -27,27 +27,25 @@ public class GameTest {
         game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
                 new FakePlayer(PLAYER, 1, 2, 3),
                 new FakePlayer(OPPONENT, 4, 5));
-        game.start();
-        assertTrue(uiSpy.printHasWinnerMessageHasBeenCalled());
+        game.play();
+        assertTrue(uiSpy.printHasWinnerMessageWasCalled());
     }
 
     @Test
     public void endsTheGameIfFull() {
-        UserInterfaceSpy uiSpy = new UserInterfaceSpy();
         game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
                 new FakePlayer(PLAYER, 1, 2, 5, 6, 7),
                 new FakePlayer(OPPONENT, 4, 3, 9, 8));
-        game.start();
-        assertTrue(uiSpy.printIsFullMessageHasBeenCalled());
+        game.play();
+        assertTrue(uiSpy.printIsFullMessageWasCalled());
     }
 
     @Test
-    public void markIsSwappedInEveryTurn() {
-        UserInterfaceSpy uiSpy = new UserInterfaceSpy();
+    public void playerIsSwappedInEveryTurn() {
         game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
                 new FakePlayer(PLAYER, 1, 3, 5, 7),
                 new FakePlayer(OPPONENT, 2, 4, 6));
-        game.start();
+        game.play();
 
         assertEquals(PLAYER.getString(),   board.getCell(1));
         assertEquals(OPPONENT.getString(), board.getCell(2));
