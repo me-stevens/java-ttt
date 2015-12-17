@@ -6,8 +6,7 @@ import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.Mark.PLAYER;
-import static com.mael.ttt.players.PlayerType.ALIEN;
+import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

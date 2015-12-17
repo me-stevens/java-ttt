@@ -4,8 +4,6 @@ import com.mael.ttt.Board;
 import com.mael.ttt.Mark;
 import com.mael.ttt.ui.UserInterface;
 
-import static com.mael.ttt.players.PlayerType.HUMAN;
-
 public class HumanPlayer implements Player {
 
     private UserInterface gameUI;

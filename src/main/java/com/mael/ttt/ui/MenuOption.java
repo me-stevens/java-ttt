@@ -44,6 +44,7 @@ public enum MenuOption {
                 return menuOption;
             }
         }
+
         return HUMAN_HUMAN;
     }
 }
