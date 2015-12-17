@@ -2,11 +2,8 @@ package com.mael.ttt;
 
 import com.mael.ttt.players.*;
 import com.mael.ttt.ui.Menu;
+import com.mael.ttt.ui.MenuOption;
 import com.mael.ttt.ui.UserInterface;
-
-import static com.mael.ttt.Mark.*;
-import static com.mael.ttt.players.PlayerType.*;
-import static com.mael.ttt.ui.MenuOption.idToOption;
 
 public class GameSetup {
     private Board board;
@@ -22,7 +19,7 @@ public class GameSetup {
     public void playGame() {
         do {
             setUp();
-            String option = getMenuOption();
+            MenuOption option = getMenuOption();
             Game game     = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
             game.start();
         } while (gameUI.replay().equals("y"));
@@ -33,32 +30,15 @@ public class GameSetup {
         gameUI.printWelcomeMessage();
     }
 
-    private String getMenuOption() {
+    private MenuOption getMenuOption() {
         return new Menu(gameUI).getUserOption();
     }
 
-    private Player createPlayer(String option) {
-        return createPlayerOfType(getPlayerType(option), PLAYER);
+    private Player createPlayer(MenuOption option) {
+        return new PlayerCreator(gameUI).createPlayer(option);
     }
 
-    private Player createOpponent(String option) {
-        return createPlayerOfType(getOpponentType(option), OPPONENT);
-    }
-
-    private PlayerType getPlayerType(String option) {
-        return idToOption(option).getPlayerType();
-    }
-
-    private PlayerType getOpponentType(String option) {
-        return idToOption(option).getOpponentType();
-    }
-
-    public Player createPlayerOfType(PlayerType playerType, Mark mark) {
-        if (playerType == ROBOT) {
-            return new RobotPlayer(gameUI, mark);
-        } else if (playerType == ALIEN) {
-            return new AlienPlayer(gameUI, mark);
-        }
-        return new HumanPlayer(gameUI, mark);
+    private Player createOpponent(MenuOption option) {
+        return new PlayerCreator(gameUI).createOpponent(option);
     }
 }

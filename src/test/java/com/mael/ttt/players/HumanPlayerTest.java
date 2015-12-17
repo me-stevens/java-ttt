@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.mael.ttt.Mark.PLAYER;
-import static com.mael.ttt.players.PlayerType.HUMAN;
 import static org.junit.Assert.assertEquals;
 
 public class HumanPlayerTest {

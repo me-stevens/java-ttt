@@ -3,10 +3,8 @@ package com.mael.ttt.ui;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.players.PlayerType.HUMAN;
-import static com.mael.ttt.players.PlayerType.ROBOT;
-import static com.mael.ttt.ui.MenuOption.HUMAN_HUMAN;
-import static com.mael.ttt.ui.MenuOption.HUMAN_ROBOT;
+import static com.mael.ttt.players.PlayerType.*;
+import static com.mael.ttt.ui.MenuOption.*;
 import static org.junit.Assert.assertEquals;
 
 public class MenuOptionTest {
