@@ -1,30 +1,27 @@
 package com.mael.ttt;
 
-import com.mael.ttt.players.AlienPlayer;
-import com.mael.ttt.players.HumanPlayer;
-import com.mael.ttt.players.RobotPlayer;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.Mark.PLAYER;
-import static com.mael.ttt.players.PlayerType.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class GameSetupTest {
 
     private SpyConsole spy;
     private GameSetup gameSetup;
     private UserInterface gameUI;
+    private Board board;
+    private int size;
 
     @Before
     public void setUp() {
-        int size  = 3;
+        size = 3;
+        board     = new Board(size);
         spy       = new SpyConsole();
         gameUI    = new UserInterface(spy);
-        gameSetup = new GameSetup(new Board(size), gameUI);
+        gameSetup = new GameSetup(board, gameUI);
     }
 
     @Test
@@ -46,20 +43,5 @@ public class GameSetupTest {
                       "n");
         gameSetup.playGame();
         assertEquals(UserInterface.REPLAY, spy.lastPrintedMessage());
-    }
-
-    @Test
-    public void createsAHuman() {
-        assertTrue(gameSetup.createPlayerOfType(HUMAN, PLAYER) instanceof HumanPlayer);
-    }
-
-    @Test
-    public void createsARobot() {
-        assertTrue(gameSetup.createPlayerOfType(ROBOT, PLAYER) instanceof RobotPlayer);
-    }
-
-    @Test
-    public void createsAnAlien() {
-        assertTrue(gameSetup.createPlayerOfType(ALIEN, PLAYER) instanceof AlienPlayer);
     }
 }

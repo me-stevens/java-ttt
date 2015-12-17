@@ -13,13 +13,13 @@ public class Menu {
         initializeOptions();
     }
 
-    public String getUserOption() {
+    public MenuOption getUserOption() {
         String option = "";
         while (isInvalidOption(option)) {
             gameUI.printMenuPrompt();
             option = gameUI.getMenuOption(gameUI.formatMenuOptions());
         }
-        return option;
+        return MenuOption.idToOption(option);
     }
 
     private boolean isInvalidOption(String option) {
