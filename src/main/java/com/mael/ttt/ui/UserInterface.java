@@ -98,8 +98,8 @@ public class UserInterface {
         print(GAMEOVER);
     }
 
-    public String replay() {
+    public boolean replay() {
         print(REPLAY);
-        return console.read();
+        return console.read().equals("y");
     }
 }

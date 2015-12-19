@@ -91,7 +91,7 @@ public class UserInterfaceTest {
     @Test
     public void readsReplayAnswer() {
         spy.setInput("y");
-        assertEquals("y", ui.replay());
+        assertTrue(ui.replay());
         assertTrue(spy.readMethodWasCalled());
     }
 }
