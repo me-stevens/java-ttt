@@ -72,8 +72,8 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public String replay() {
-        return "";
+    public boolean replay() {
+        return false;
     }
 
     public boolean printBoardWasCalled() {

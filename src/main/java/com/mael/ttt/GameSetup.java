@@ -22,7 +22,7 @@ public class GameSetup {
             MenuOption option = getMenuOption();
             Game game         = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
             game.play();
-        } while (gameUI.replay().equals("y"));
+        } while (gameUI.replay());
     }
 
     private void setUp() {
