@@ -6,21 +6,25 @@ import com.mael.ttt.ui.MenuOption;
 import com.mael.ttt.ui.UserInterface;
 
 public class GameSetup {
-    private Board board;
-    private BoardChecker checker;
     private UserInterface gameUI;
+    private Menu menu;
+    private Board board;
+    private Turn turn;
+    private PlayerCreator playerCreator;
 
-    public GameSetup(Board board, UserInterface gameUI) {
-        this.board   = board;
-        this.checker = new BoardChecker(board);
-        this.gameUI  = gameUI;
+    public GameSetup(UserInterface gameUI, Menu menu, Board board, Turn turn, PlayerCreator playerCreator) {
+        this.gameUI        = gameUI;
+        this.menu          = menu;
+        this.board         = board;
+        this.turn          = turn;
+        this.playerCreator = playerCreator;
     }
 
     public void playGame() {
         do {
             setUp();
-            MenuOption option = getMenuOption();
-            Game game         = new Game(new Turn(board, checker, gameUI), createPlayer(option), createOpponent(option));
+            MenuOption option = menu.getUserOption();
+            Game game         = new Game(turn, playerCreator.createPlayer(option), playerCreator.createOpponent(option));
             game.play();
         } while (gameUI.replay());
     }
@@ -28,17 +32,5 @@ public class GameSetup {
     private void setUp() {
         board.reset();
         gameUI.printWelcomeMessage();
-    }
-
-    private MenuOption getMenuOption() {
-        return new Menu(gameUI).getUserOption();
-    }
-
-    private Player createPlayer(MenuOption option) {
-        return new PlayerCreator(gameUI).createPlayer(option);
-    }
-
-    private Player createOpponent(MenuOption option) {
-        return new PlayerCreator(gameUI).createOpponent(option);
     }
 }
