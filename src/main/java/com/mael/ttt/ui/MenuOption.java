@@ -22,10 +22,9 @@ public enum MenuOption {
         return menuOptionText;
     }
 
-
-    public static MenuOption idToOption(String menuOptionId) {
+    public static MenuOption idToOption(String id) {
         for (MenuOption menuOption : values()) {
-            if (menuOptionId.equals(menuOption.getMenuOptionId())) {
+            if (id.equals(menuOption.getMenuOptionId())) {
                 return menuOption;
             }
         }
