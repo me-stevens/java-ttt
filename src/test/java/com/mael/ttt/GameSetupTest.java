@@ -1,9 +1,11 @@
 package com.mael.ttt;
 
+import com.mael.ttt.players.PlayerCreator;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
+import com.mael.ttt.ui.Menu;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,12 +14,16 @@ public class GameSetupTest {
     private int size;
     private SpyConsole spy;
     private GameSetup gameSetup;
+    private UserInterface gameUI;
+    private Board board;
 
     @Before
     public void setUp() {
         size      = 3;
         spy       = new SpyConsole();
-        gameSetup = new GameSetup(new Board(size), new UserInterface(spy));
+        gameUI    = new UserInterface(spy);
+        board     = new Board(size);
+        gameSetup = new GameSetup(gameUI, new Menu(gameUI), board, new Turn(board, new BoardChecker(board), gameUI), new PlayerCreator(gameUI));
     }
 
     @Test
