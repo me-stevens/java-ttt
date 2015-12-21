@@ -1,25 +1,17 @@
 package com.mael.ttt.ui;
 
-import com.mael.ttt.players.PlayerType;
-
-import static com.mael.ttt.players.PlayerType.*;
-
 public enum MenuOption {
-    HUMAN_HUMAN("1", "Human vs. Human", HUMAN, HUMAN),
-    HUMAN_ROBOT("2", "Human vs. Robot", HUMAN, ROBOT),
-    ROBOT_ROBOT("3", "Robot vs. Robot", ROBOT, ROBOT),
-    HUMAN_ALIEN("4", "Human vs. Alien", HUMAN, ALIEN);
+    HUMAN_HUMAN("1", "Human vs. Human"),
+    HUMAN_ROBOT("2", "Human vs. Robot"),
+    ROBOT_ROBOT("3", "Robot vs. Robot"),
+    HUMAN_ALIEN("4", "Human vs. Alien");
 
     private String menuOptionId;
     private String menuOptionText;
-    private PlayerType playerType;
-    private PlayerType opponentType;
 
-    MenuOption(String menuOptionId, String menuOptionText, PlayerType player, PlayerType opponent) {
+    MenuOption(String menuOptionId, String menuOptionText) {
         this.menuOptionId   = menuOptionId;
         this.menuOptionText = menuOptionText;
-        this.playerType     = player;
-        this.opponentType   = opponent;
     }
 
     public String getMenuOptionId() {
@@ -30,13 +22,6 @@ public enum MenuOption {
         return menuOptionText;
     }
 
-    public PlayerType getPlayerType() {
-        return playerType;
-    }
-
-    public PlayerType getOpponentType() {
-        return opponentType;
-    }
 
     public static MenuOption idToOption(String menuOptionId) {
         for (MenuOption menuOption : values()) {
