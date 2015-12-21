@@ -28,7 +28,15 @@ public enum MenuOption {
                 return menuOption;
             }
         }
-
         return HUMAN_HUMAN;
+    }
+
+    public static boolean contains(String id) {
+        for (MenuOption menuOption : values()) {
+            if (id.equals(menuOption.getMenuOptionId())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
