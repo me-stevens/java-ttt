@@ -2,11 +2,20 @@ package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class UserInterfaceSpy extends UserInterface {
     private boolean printBoardWasCalled = false;
     private boolean printHasWinnerMessageWasCalled = false;
     private boolean printIsFullMessageWasCalled = false;
     private String winner = "";
+    private boolean printWelcomeMessageWasCalled = false;
+    private List<Integer> userInputs = new ArrayList<>();
+    private String menuOption = "";
+    private boolean replayWasCalled = false;
+    private List<Boolean> replayAnswers = new ArrayList<>();
 
     public UserInterfaceSpy() {
         super(null);
@@ -32,16 +41,17 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public void printWelcomeMessage() {
+        printWelcomeMessageWasCalled = true;
     }
 
     @Override
     public String getMenuOption(String menu) {
-        return "";
+        return menuOption;
     }
 
     @Override
     public String getInput() {
-        return "1";
+        return userInputs.remove(0).toString();
     }
 
     @Override
@@ -73,7 +83,8 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public boolean replay() {
-        return false;
+        replayWasCalled = true;
+        return replayAnswers.remove(0);
     }
 
     public boolean printBoardWasCalled() {
@@ -88,7 +99,27 @@ public class UserInterfaceSpy extends UserInterface {
         return printIsFullMessageWasCalled;
     }
 
+    public boolean printWelcomeMessageWasCalled() {
+        return printWelcomeMessageWasCalled;
+    }
+
     public String announcedWinner() {
         return winner;
+    }
+
+    public void setReplayAnswers(Boolean ... replayAnswers) {
+        this.replayAnswers.addAll(Arrays.asList(replayAnswers));
+    }
+
+    public void setUserInputs(Integer ... userInputs) {
+        this.userInputs.addAll(Arrays.asList(userInputs));
+    }
+
+    public void setMenuOption (String menuOption) {
+        this.menuOption = menuOption;
+    }
+
+    public boolean replayWasCalled() {
+        return replayWasCalled;
     }
 }
