@@ -1,11 +1,10 @@
 package com.mael.ttt.players;
 
-import com.mael.ttt.Mark;
 import com.mael.ttt.ui.MenuOption;
 import com.mael.ttt.ui.UserInterface;
 
 import static com.mael.ttt.Mark.*;
-import static com.mael.ttt.players.PlayerType.*;
+import static com.mael.ttt.ui.MenuOption.*;
 
 public class PlayerCreator {
 
@@ -16,19 +15,26 @@ public class PlayerCreator {
     }
 
     public Player createPlayer(MenuOption option) {
-        return createPlayerOfType(option.getPlayerType(), PLAYER);
+        return createPlayerOfType(option);
     }
 
     public Player createOpponent(MenuOption option) {
-        return createPlayerOfType(option.getOpponentType(), OPPONENT);
+        return createOpponentOfType(option);
     }
 
-    private Player createPlayerOfType(PlayerType playerType, Mark mark) {
-        if (playerType == ROBOT) {
-            return new RobotPlayer(gameUI, mark);
-        } else if (playerType == ALIEN) {
-            return new AlienPlayer(gameUI, mark);
+    private Player createPlayerOfType(MenuOption option) {
+        if (option == ROBOT_ROBOT) {
+            return new RobotPlayer(gameUI, PLAYER);
         }
-        return new HumanPlayer(gameUI, mark);
+        return new HumanPlayer(gameUI, PLAYER);
+    }
+
+    private Player createOpponentOfType(MenuOption option) {
+        if (option == HUMAN_ROBOT || option == ROBOT_ROBOT) {
+            return new RobotPlayer(gameUI, OPPONENT);
+        } else if (option == HUMAN_ALIEN) {
+            return new AlienPlayer(gameUI, OPPONENT);
+        }
+        return new HumanPlayer(gameUI, OPPONENT);
     }
 }

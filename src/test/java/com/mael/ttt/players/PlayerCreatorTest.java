@@ -27,21 +27,23 @@ public class PlayerCreatorTest {
     }
 
     @Test
-    public void createsHumanAsOpponent() {
-        assertTrue(playerCreator.createOpponent(HUMAN_HUMAN) instanceof HumanPlayer);
-    }
-
-    @Test
     public void createsRobotAsPlayer() {
         assertTrue(playerCreator.createPlayer(ROBOT_ROBOT) instanceof RobotPlayer);
     }
 
     @Test
+    public void createsHumanAsOpponent() {
+        assertTrue(playerCreator.createOpponent(HUMAN_HUMAN) instanceof HumanPlayer);
+    }
+
+    @Test
     public void createsRobotAsOpponent() {
         assertTrue(playerCreator.createOpponent(HUMAN_ROBOT) instanceof RobotPlayer);
+        assertTrue(playerCreator.createOpponent(ROBOT_ROBOT) instanceof RobotPlayer);
     }
 
     @Test
     public void createsAlienAsOpponent() {
         assertTrue(playerCreator.createOpponent(HUMAN_ALIEN) instanceof AlienPlayer);
-    }}
+    }
+}
