@@ -46,4 +46,10 @@ public class PlayerCreatorTest {
     public void createsAlienAsOpponent() {
         assertTrue(playerCreator.createOpponent(HUMAN_ALIEN) instanceof AlienPlayer);
     }
+
+    @Test
+    public void returnsHumanIfNullMenuOptionIsPassed() {
+        assertTrue(playerCreator.createPlayer(null)   instanceof HumanPlayer);
+        assertTrue(playerCreator.createOpponent(null) instanceof HumanPlayer);
+    }
 }

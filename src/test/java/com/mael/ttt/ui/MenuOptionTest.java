@@ -21,12 +21,17 @@ public class MenuOptionTest {
 
     @Test
     public void returnsMenuOptionGivenAnId() {
-        assertEquals(HUMAN_ROBOT, MenuOption.idToOption("2"));
+        assertEquals(HUMAN_HUMAN, MenuOption.idToOption("1"));
     }
 
     @Test
     public void returnsHumanVsHumanIfInvalidOption() {
         assertEquals(HUMAN_HUMAN, MenuOption.idToOption("asdfg"));
+    }
+
+    @Test
+    public void returnsHumanVsHumanIfNullOption() {
+        assertEquals(HUMAN_HUMAN, MenuOption.idToOption(null));
     }
 
     @Test
@@ -37,5 +42,9 @@ public class MenuOptionTest {
     @Test
     public void returnsFalseIfUnexistingIdInEnumConstants() {
         assertFalse(MenuOption.contains("asdf"));
+    }
+    @Test
+    public void returnsFalseIfNullOption() {
+        assertFalse(MenuOption.contains(null));
     }
 }
