@@ -15,21 +15,13 @@ public class PlayerCreator {
     }
 
     public Player createPlayer(MenuOption option) {
-        return createPlayerOfType(option);
-    }
-
-    public Player createOpponent(MenuOption option) {
-        return createOpponentOfType(option);
-    }
-
-    private Player createPlayerOfType(MenuOption option) {
         if (option == ROBOT_ROBOT) {
             return new RobotPlayer(gameUI, PLAYER);
         }
         return new HumanPlayer(gameUI, PLAYER);
     }
 
-    private Player createOpponentOfType(MenuOption option) {
+    public Player createOpponent(MenuOption option) {
         if (option == HUMAN_ROBOT || option == ROBOT_ROBOT) {
             return new RobotPlayer(gameUI, OPPONENT);
         } else if (option == HUMAN_ALIEN) {
