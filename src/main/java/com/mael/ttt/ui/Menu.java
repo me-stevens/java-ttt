@@ -1,16 +1,11 @@
 package com.mael.ttt.ui;
 
-import java.util.*;
-
 public class Menu {
 
     private UserInterface gameUI;
-    private List<String> menuOptionIds;
 
     public Menu(UserInterface gameUI) {
-        this.gameUI        = gameUI;
-        this.menuOptionIds = new ArrayList<>();
-        initializeOptions();
+        this.gameUI = gameUI;
     }
 
     public MenuOption getUserOption() {
@@ -24,12 +19,6 @@ public class Menu {
     }
 
     private boolean isInvalidOption(String option) {
-        return !menuOptionIds.contains(option);
-    }
-
-    private void initializeOptions() {
-        for (MenuOption menuOption : MenuOption.values()) {
-            this.menuOptionIds.add(menuOption.getMenuOptionId());
-        }
+        return !MenuOption.contains(option);
     }
 }
