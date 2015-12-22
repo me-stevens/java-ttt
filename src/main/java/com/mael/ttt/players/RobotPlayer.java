@@ -38,8 +38,8 @@ public class RobotPlayer implements Player {
 
         List<Integer> empties = currentBoard.getEmptyCellIndexes();
 
-        for (int i=0; i<empties.size(); i++) {
-            int tempIndex = empties.get(i);
+        for (Integer empty : empties) {
+            int tempIndex = empty;
             int tempScore = 0;
 
             placeMark(currentBoard, tempIndex, currentPlayer);
@@ -75,7 +75,7 @@ public class RobotPlayer implements Player {
 
     private boolean gameIsNotOver(Mark currentPlayer) {
         BoardChecker checker = new BoardChecker(tempBoard);
-        return !checker.hasWinner(currentPlayer) && tempBoard.getEmptyCellIndexes().size() > 0;
+        return !checker.hasWinner(currentPlayer) && !checker.isFull();
     }
 
     private int heuristics(Mark currentPlayer) {

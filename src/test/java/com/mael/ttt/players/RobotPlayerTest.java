@@ -38,33 +38,33 @@ public class RobotPlayerTest {
 
     @Test
     public void choosesWinningCombinationInARow() {
-        board.setBoardContents( O, O, E,
-                                X, X, E,
-                                E, E, E);
+        board.setBoardContents(O, O, E,
+                               X, X, E,
+                               E, E, E);
         assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAColumn() {
-        board.setBoardContents( X, O, E,
-                                X, O, E,
-                                E, E, E);
+        board.setBoardContents(O, X, E,
+                               O, X, E,
+                               E, E, E);
         assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInDiagonal() {
         board.setBoardContents(O, X, X,
-                               X, O, X,
-                               X, E, E);
+                               X, O, E,
+                               E, E, E);
         assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAntiDiagonal() {
         board.setBoardContents(X, X, O,
-                               X, O, X,
-                               E, E, X);
+                               E, O, X,
+                               E, E, E);
         assertEquals(7, robotPlayer.getMove(board));
     }
 

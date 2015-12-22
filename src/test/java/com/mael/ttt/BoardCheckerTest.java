@@ -26,6 +26,12 @@ public class BoardCheckerTest {
     }
 
     @Test
+    public void checksThatBoardIsFull() {
+        setBoardContents(size*size, PLAYER);
+        assertTrue(checker.isFull());
+    }
+
+    @Test
     public void thereIsNoWinnerIfEmptyBoard() {
         assertFalse(checker.hasWinner(playerMark));
         assertFalse(checker.hasWinner(opponentMark));
@@ -62,12 +68,6 @@ public class BoardCheckerTest {
         }
 
         assertTrue(checker.hasWinner(playerMark));
-    }
-
-    @Test
-    public void checksThatBoardIsFull() {
-        setBoardContents(size*size, PLAYER);
-        assertTrue(checker.isFull());
     }
 
     private void setBoardContents(int numberOfCells, Mark cellContent) {
