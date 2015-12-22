@@ -1,6 +1,9 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
+import com.mael.ttt.Mark;
+
+import static com.mael.ttt.Mark.*;
 
 public class UserInterface {
 
@@ -45,7 +48,7 @@ public class UserInterface {
 
     public void printBoard(Board board) {
         int size = board.getSize();
-        for (int index = 1; index<= size * size; index++) {
+        for (int index = 1; index <= size*size; index++) {
             print(formatCell(index, board.getCell(index)));
 
             if (index % size == 0) {
@@ -54,8 +57,8 @@ public class UserInterface {
         }
     }
 
-    private String formatCell(int index, String cell) {
-        return (cell.equals("")) ? index + " " : cell + " ";
+    private String formatCell(int index, Mark cell) {
+        return (cell == EMPTY) ? index + " " : cell.getString() + " ";
     }
 
     public void printWelcomeMessage() {
@@ -88,8 +91,8 @@ public class UserInterface {
         print(ALIENPROMPT);
     }
 
-    public void printHasWinnerMessage(String currentPlayer) {
-        print(HASWINNER + currentPlayer);
+    public void printHasWinnerMessage(Mark currentPlayer) {
+        print(HASWINNER + currentPlayer.getString());
         print(GAMEOVER);
     }
 

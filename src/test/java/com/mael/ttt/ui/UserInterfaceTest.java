@@ -1,9 +1,11 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
+import com.mael.ttt.Mark;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -69,8 +71,8 @@ public class UserInterfaceTest {
 
     @Test
     public void printsWinnerMessage() {
-        ui.printHasWinnerMessage("foo");
-        assertEquals(UserInterface.HASWINNER + "foo", spy.firstPrintedMessage());
+        ui.printHasWinnerMessage(PLAYER);
+        assertEquals(UserInterface.HASWINNER + "X", spy.firstPrintedMessage());
         assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
     }
 
