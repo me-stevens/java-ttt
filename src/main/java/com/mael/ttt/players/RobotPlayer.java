@@ -7,20 +7,17 @@ import com.mael.ttt.ui.UserInterface;
 
 import java.util.List;
 
-import static com.mael.ttt.Mark.OPPONENT;
-import static com.mael.ttt.Mark.PLAYER;
-
 public class RobotPlayer implements Player {
 
     private Board tempBoard;
     private UserInterface gameUI;
     private Mark mark;
-    private String playerToOptimize;
+    private Mark playerToOptimize;
 
     public RobotPlayer(UserInterface ui, Mark mark) {
         this.gameUI      = ui;
         this.mark        = mark;
-        playerToOptimize = mark.getString();
+        playerToOptimize = mark;
     }
 
     public int getMove(Board board) {
@@ -35,7 +32,7 @@ public class RobotPlayer implements Player {
         return mark;
     }
 
-    private int[] miniMax(Board currentBoard, String currentPlayer) {
+    private int[] miniMax(Board currentBoard, Mark currentPlayer) {
         int index = resetIndex();
         int score = resetScore(currentPlayer);
 
@@ -48,7 +45,7 @@ public class RobotPlayer implements Player {
             placeMark(currentBoard, tempIndex, currentPlayer);
 
             if (gameIsNotOver(currentPlayer)) {
-                int[] tempResult = miniMax(tempBoard, swapMark(currentPlayer));
+                int[] tempResult = miniMax(tempBoard, currentPlayer.swapMark());
                 tempScore = tempResult[1];
             } else {
                 tempScore = heuristics(currentPlayer);
@@ -67,25 +64,21 @@ public class RobotPlayer implements Player {
         return -1;
     }
 
-    private int resetScore(String currentPlayer) {
+    private int resetScore(Mark currentPlayer) {
         return (currentPlayer.equals(playerToOptimize)) ? -100 : 100;
     }
 
-    private void placeMark(Board currentBoard, int tempIndex, String currentPlayer) {
+    private void placeMark(Board currentBoard, int tempIndex, Mark currentPlayer) {
         tempBoard = currentBoard.getCopy();
         tempBoard.setCell(tempIndex, currentPlayer);
     }
 
-    private boolean gameIsNotOver(String currentPlayer) {
+    private boolean gameIsNotOver(Mark currentPlayer) {
         BoardChecker checker = new BoardChecker(tempBoard);
         return !checker.hasWinner(currentPlayer) && tempBoard.getEmptyCellIndexes().size() > 0;
     }
 
-    private String swapMark(String currentPlayer) {
-        return (currentPlayer.equals(PLAYER.getString()) ? OPPONENT.getString() : PLAYER.getString());
-    }
-
-    private int heuristics(String currentPlayer) {
+    private int heuristics(Mark currentPlayer) {
         boolean hasWinner = new BoardChecker(tempBoard).hasWinner(currentPlayer);
 
         if (hasWinner && currentPlayer.equals(playerToOptimize)) {
@@ -99,7 +92,7 @@ public class RobotPlayer implements Player {
         return 0;
     }
 
-    private boolean betterScore(String currentPlayer, int score, int tempScore) {
+    private boolean betterScore(Mark currentPlayer, int score, int tempScore) {
         return (( currentPlayer.equals(playerToOptimize) ) && ( tempScore > score) ) ||
                ((!currentPlayer.equals(playerToOptimize) ) && ( tempScore < score) );
     }
