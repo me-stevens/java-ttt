@@ -31,7 +31,7 @@ public class MarkTest {
     public void swapsTheMarkForOpponent() {
         assertEquals(PLAYER, OPPONENT.swapMark());
     }
-    
+
     @Test
     public void noSwapForEmptyMark() {
         assertEquals(EMPTY, EMPTY.swapMark());
