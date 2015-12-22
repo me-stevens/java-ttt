@@ -47,8 +47,8 @@ public class GameTest {
                 new FakePlayer(OPPONENT, 2, 4, 6));
         game.play();
 
-        assertEquals(PLAYER.getString(),   board.getCell(1));
-        assertEquals(OPPONENT.getString(), board.getCell(2));
-        assertEquals(PLAYER.getString(),   board.getCell(3));
+        assertEquals(PLAYER,   board.getCell(1));
+        assertEquals(OPPONENT, board.getCell(2));
+        assertEquals(PLAYER,   board.getCell(3));
     }
 }
