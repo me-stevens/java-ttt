@@ -20,7 +20,7 @@ public class Turn {
 
     public void placeMark(Player player) {
         gameUI.printBoard(board);
-        board.setCell(player.getMove(board), player.getMark().getString());
+        board.setCell(player.getMove(board), player.getMark());
     }
 
     public boolean canBePlayed() {
@@ -30,7 +30,7 @@ public class Turn {
     public void printResults(Mark winnerMark) {
         gameUI.printBoard(board);
         if (hasWinner()) {
-            gameUI.printHasWinnerMessage(winnerMark.getString());
+            gameUI.printHasWinnerMessage(winnerMark);
         } else if (isFull()) {
             gameUI.printIsFullMessage();
         }
@@ -41,7 +41,7 @@ public class Turn {
     }
 
     private boolean hasWinner(Mark currentMark) {
-        return boardChecker.hasWinner(currentMark.getString());
+        return boardChecker.hasWinner(currentMark);
     }
 
     private boolean isFull() {
