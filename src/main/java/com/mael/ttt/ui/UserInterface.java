@@ -42,8 +42,8 @@ public class UserInterface {
     }
 
     private String formatOption(MenuOption option) {
-        return option.getMenuOptionId()   + ") " +
-               option.getMenuOptionText() + "\n";
+        return option.getId()   + ") " +
+               option.getText() + "\n";
     }
 
     public void printBoard(Board board) {

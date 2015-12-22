@@ -6,25 +6,25 @@ public enum MenuOption {
     ROBOT_ROBOT("3", "Robot vs. Robot"),
     HUMAN_ALIEN("4", "Human vs. Alien");
 
-    private String menuOptionId;
-    private String menuOptionText;
+    private String id;
+    private String text;
 
     MenuOption(String menuOptionId, String menuOptionText) {
-        this.menuOptionId   = menuOptionId;
-        this.menuOptionText = menuOptionText;
+        this.id   = menuOptionId;
+        this.text = menuOptionText;
     }
 
-    public String getMenuOptionId() {
-        return menuOptionId;
+    public String getId() {
+        return id;
     }
 
-    public String getMenuOptionText() {
-        return menuOptionText;
+    public String getText() {
+        return text;
     }
 
     public static MenuOption idToOption(String id) {
         for (MenuOption menuOption : values()) {
-            if (menuOption.getMenuOptionId().equals(id)) {
+            if (menuOption.getId().equals(id)) {
                 return menuOption;
             }
         }
@@ -33,7 +33,7 @@ public enum MenuOption {
 
     public static boolean contains(String id) {
         for (MenuOption menuOption : values()) {
-            if (menuOption.getMenuOptionId().equals(id)) {
+            if (menuOption.getId().equals(id)) {
                 return true;
             }
         }
