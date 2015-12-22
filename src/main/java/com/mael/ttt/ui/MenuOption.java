@@ -24,7 +24,7 @@ public enum MenuOption {
 
     public static MenuOption idToOption(String id) {
         for (MenuOption menuOption : values()) {
-            if (id != null && id.equals(menuOption.getMenuOptionId())) {
+            if (menuOption.getMenuOptionId().equals(id)) {
                 return menuOption;
             }
         }
@@ -33,7 +33,7 @@ public enum MenuOption {
 
     public static boolean contains(String id) {
         for (MenuOption menuOption : values()) {
-            if (id != null && id.equals(menuOption.getMenuOptionId())) {
+            if (menuOption.getMenuOptionId().equals(id)) {
                 return true;
             }
         }
