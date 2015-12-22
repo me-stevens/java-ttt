@@ -1,16 +1,19 @@
 package com.mael.ttt.ui;
 
 import com.mael.ttt.Board;
+import com.mael.ttt.Mark;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.mael.ttt.Mark.*;
+
 public class UserInterfaceSpy extends UserInterface {
     private boolean printBoardWasCalled = false;
     private boolean printHasWinnerMessageWasCalled = false;
     private boolean printIsFullMessageWasCalled = false;
-    private String winner = "";
+    private Mark winner = EMPTY;
     private boolean printWelcomeMessageWasCalled = false;
     private List<Integer> userInputs = new ArrayList<>();
     private String menuOption = "";
@@ -71,7 +74,7 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public void printHasWinnerMessage(String currentPlayer) {
+    public void printHasWinnerMessage(Mark currentPlayer) {
         winner = currentPlayer;
         printHasWinnerMessageWasCalled = true;
     }
@@ -103,7 +106,7 @@ public class UserInterfaceSpy extends UserInterface {
         return printWelcomeMessageWasCalled;
     }
 
-    public String announcedWinner() {
+    public Mark announcedWinner() {
         return winner;
     }
 
