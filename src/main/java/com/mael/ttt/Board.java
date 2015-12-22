@@ -3,14 +3,16 @@ package com.mael.ttt;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mael.ttt.Mark.*;
+
 public class Board {
 
     private final int SIZE;
-    private String[][] board;
+    private Mark[][] board;
 
     public Board (int size) {
         SIZE  = size;
-        board = new String[SIZE][SIZE];
+        board = new Mark[SIZE][SIZE];
         reset();
     }
 
@@ -25,11 +27,11 @@ public class Board {
         return SIZE;
     }
 
-    public void setCell(int index, String cellContent) {
+    public void setCell(int index, Mark cellContent) {
         board[getRowFromIndex(index)][getColFromIndex(index)] = cellContent;
     }
 
-    public String getCell(int index) {
+    public Mark getCell(int index) {
         return board[getRowFromIndex(index)][getColFromIndex(index)];
     }
 
@@ -39,7 +41,7 @@ public class Board {
 
     public void reset() {
         for (int index = 1; index <= SIZE*SIZE; index++) {
-            setCell(index, "");
+            setCell(index, EMPTY);
         }
     }
 
@@ -47,7 +49,7 @@ public class Board {
         List<Integer> empties = new ArrayList<>();
 
         for (int index = 1; index <= SIZE*SIZE; index++) {
-            if (getCell(index).equals("")) {
+            if (getCell(index) == EMPTY) {
                 empties.add(index);
             }
         }
@@ -68,10 +70,10 @@ public class Board {
     }
 
     public boolean isCellBusy(int index) {
-        return !board[getRowFromIndex(index)][getColFromIndex(index)].equals("");
+        return !(board[getRowFromIndex(index)][getColFromIndex(index)] == EMPTY);
     }
 
-    public void setBoardContents(String... cellContents) {
+    public void setBoardContents(Mark ... cellContents) {
         for (int index = 1; index <= SIZE*SIZE; index++) {
             setCell(index, cellContents[index-1]);
         }
