@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
 
-    int size;
+    private int size;
     private Board board;
 
     @Before

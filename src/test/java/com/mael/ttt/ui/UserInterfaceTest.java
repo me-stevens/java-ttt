@@ -4,6 +4,8 @@ import com.mael.ttt.Board;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -94,5 +96,12 @@ public class UserInterfaceTest {
         spy.setInput("y");
         assertTrue(ui.replay());
         assertTrue(spy.readMethodWasCalled());
+    }
+
+    @Test
+    public void getsTheBoardIndexesAsString() {
+        int size = 3;
+        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"),
+                     ui.getBoardIndexesAsStrings(size));
     }
 }
