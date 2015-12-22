@@ -12,8 +12,8 @@ public class BoardCheckerTest {
     int size;
     private Board board;
     private BoardChecker checker;
-    private String playerMark;
-    private String opponentMark;
+    private Mark playerMark;
+    private Mark opponentMark;
 
     @Before
     public void setUp() {
@@ -21,8 +21,8 @@ public class BoardCheckerTest {
         board   = new Board(size);
         checker = new BoardChecker(board);
 
-        playerMark   = PLAYER.getString();
-        opponentMark = OPPONENT.getString();
+        playerMark   = PLAYER;
+        opponentMark = OPPONENT;
     }
 
     @Test
@@ -66,11 +66,11 @@ public class BoardCheckerTest {
 
     @Test
     public void checksThatBoardIsFull() {
-        setBoardContents(size*size, "hi");
+        setBoardContents(size*size, PLAYER);
         assertTrue(checker.isFull());
     }
 
-    private void setBoardContents(int numberOfCells, String cellContent) {
+    private void setBoardContents(int numberOfCells, Mark cellContent) {
         for (int index = 1; index <= numberOfCells; index++) {
             board.setCell(index, cellContent);
         }

@@ -5,10 +5,9 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static com.mael.ttt.Mark.*;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class BoardTest {
 
@@ -23,22 +22,23 @@ public class BoardTest {
 
     @Test
     public void getsACopyOfTheBoard() {
-        board.setCell(1, "hi");
+        board.setCell(1, PLAYER);
         Board copy = board.getCopy();
-        assertEquals( getContentsAsString(board), getContentsAsString(copy) );
+        assertNotEquals(copy, board);
+        assertEquals(getContentsAsString(board), getContentsAsString(copy));
     }
 
     @Test
     public void resetsBoard() {
-        board.setCell(1, "hi");
+        board.setCell(1, PLAYER);
         board.reset();
-        Board expected = setAllCellsTo("");
+        Board expected = setAllCellsTo(EMPTY);
         assertEquals(getContentsAsString(expected), getContentsAsString(board));
     }
 
     @Test
     public void getsTheEmptyCellIndexes() {
-        board.setCell(1, "hi");
+        board.setCell(1, PLAYER);
         List<Integer> expected = asList(2, 3, 4, 5, 6, 7, 8, 9);
         assertEquals(expected, board.getEmptyCellIndexes());
     }
@@ -65,23 +65,22 @@ public class BoardTest {
 
     @Test
     public void checksIfCellIsBusy() {
-        board.setCell(1, "hi");
+        board.setCell(1, PLAYER);
         assertTrue(board.isCellBusy(1));
     }
 
-    private Board setAllCellsTo(String cellContent) {
+    private Board setAllCellsTo(Mark cellContent) {
         Board expected = new Board(size);
         for (int index = 1; index <= size*size; index++) {
             expected.setCell(index, cellContent);
         }
-
         return expected;
     }
 
     private String getContentsAsString(Board board) {
         String boardContents = "";
         for (int index = 1; index <= size*size; index++) {
-            boardContents = board.getCell(index);
+            boardContents += board.getCell(index).getString();
         }
         return boardContents;
     }

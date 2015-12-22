@@ -3,7 +3,8 @@ package com.mael.ttt;
 public enum Mark {
 
     PLAYER("X"),
-    OPPONENT("O");
+    OPPONENT("O"),
+    EMPTY("");
 
     private String mark;
 
@@ -13,5 +14,11 @@ public enum Mark {
 
     public String getString() {
         return mark;
+    }
+
+    public Mark swapMark() {
+        if (this == EMPTY)
+            return EMPTY;
+        return (this == PLAYER) ? OPPONENT : PLAYER;
     }
 }
