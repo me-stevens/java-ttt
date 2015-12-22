@@ -11,12 +11,12 @@ public class MenuOptionTest {
 
     @Test
     public void getsHumanVsHumanId() {
-        assertEquals("1", HUMAN_HUMAN.getMenuOptionId());
+        assertEquals("1", HUMAN_HUMAN.getId());
     }
 
     @Test
     public void getsHumanVsHumanText() {
-        assertEquals("Human vs. Human", HUMAN_HUMAN.getMenuOptionText());
+        assertEquals("Human vs. Human", HUMAN_HUMAN.getText());
     }
 
     @Test
