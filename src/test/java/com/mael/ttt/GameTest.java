@@ -15,10 +15,12 @@ public class GameTest {
     private Board board;
     private Game game;
     private UserInterfaceSpy uiSpy;
+    private int size;
 
     @Before
     public void setUp() {
-        board = new Board(3);
+        size  = 3;
+        board = new Board(size);
         uiSpy = new UserInterfaceSpy();
     }
 

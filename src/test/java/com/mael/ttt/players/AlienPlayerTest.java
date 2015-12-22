@@ -15,12 +15,14 @@ public class AlienPlayerTest {
     private SpyConsole spy;
     private AlienPlayer alienPlayer;
     private Board board;
+    private int size;
 
     @Before
     public void setUp() {
+        size        = 3;
         spy         = new SpyConsole();
         alienPlayer = new AlienPlayer(new UserInterface(spy), PLAYER);
-        board       = new Board(3);
+        board       = new Board(size);
     }
 
     @Test

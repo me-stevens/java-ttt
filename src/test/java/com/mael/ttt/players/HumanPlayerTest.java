@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static com.mael.ttt.Mark.PLAYER;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HumanPlayerTest {
 
@@ -41,7 +42,22 @@ public class HumanPlayerTest {
 
     @Test
     public void returnsRightIndex() {
-        spy.setInputs("2");
-        assertEquals(2, humanPlayer.getMove(board));
+        spy.setInputs("1");
+        assertEquals(1, humanPlayer.getMove(board));
+    }
+
+    @Test
+    public void printsNotValidCellMessage() {
+        spy.setInputs("a", "1");
+        humanPlayer.getMove(board);
+        assertTrue(spy.printedMessage().contains(UserInterface.NOTVALIDCELL));
+    }
+
+    @Test
+    public void printsCellIsBusyMessage() {
+        board.setCell(1, PLAYER);
+        spy.setInputs("1", "2");
+        humanPlayer.getMove(board);
+        assertTrue(spy.printedMessage().contains(UserInterface.CELLISBUSY));
     }
 }

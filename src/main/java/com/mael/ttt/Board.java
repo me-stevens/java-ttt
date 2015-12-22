@@ -74,8 +74,10 @@ public class Board {
     }
 
     public void setBoardContents(Mark ... cellContents) {
-        for (int index = 1; index <= SIZE*SIZE; index++) {
-            setCell(index, cellContents[index-1]);
+        if (cellContents.length == SIZE*SIZE) {
+            for (int index = 1; index <= SIZE*SIZE; index++) {
+                setCell(index, cellContents[index - 1]);
+            }
         }
     }
 }

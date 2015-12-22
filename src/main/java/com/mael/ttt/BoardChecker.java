@@ -10,6 +10,10 @@ public class BoardChecker {
         this.size  = board.getSize();
     }
 
+    public boolean isFull() {
+        return board.getEmptyCellIndexes().size() == 0;
+    }
+
     public boolean hasWinner(Mark mark) {
         return checkWinnerInRows(mark)     ||
                checkWinnerInCols(mark)     ||
@@ -73,9 +77,5 @@ public class BoardChecker {
 
     private boolean cellIsNotMark(int row, int col, Mark mark) {
         return !(board.getCell(board.getIndexFromCoords(row, col)) == mark);
-    }
-
-    public boolean isFull() {
-        return board.getEmptyCellIndexes().size() == 0;
     }
 }
