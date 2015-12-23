@@ -9,11 +9,9 @@ import static com.mael.ttt.Mark.*;
 
 public class BoardCheckerTest {
 
-    int size;
+    private int size;
     private Board board;
     private BoardChecker checker;
-    private Mark playerMark;
-    private Mark opponentMark;
 
     @Before
     public void setUp() {
@@ -21,8 +19,6 @@ public class BoardCheckerTest {
         board   = new Board(size);
         checker = new BoardChecker(board);
 
-        playerMark   = PLAYER;
-        opponentMark = OPPONENT;
     }
 
     @Test
@@ -33,41 +29,41 @@ public class BoardCheckerTest {
 
     @Test
     public void thereIsNoWinnerIfEmptyBoard() {
-        assertFalse(checker.hasWinner(playerMark));
-        assertFalse(checker.hasWinner(opponentMark));
+        assertFalse(checker.hasWinner(PLAYER));
+        assertFalse(checker.hasWinner(OPPONENT));
     }
 
     @Test
     public void checksWinnerInRow() {
-        setBoardContents(size, playerMark);
-        assertTrue(checker.hasWinner(playerMark));
+        setBoardContents(size, PLAYER);
+        assertTrue(checker.hasWinner(PLAYER));
     }
 
     @Test
     public void checksWinnerInColumn() {
         for (int row = 0; row < size; row++) {
-            board.setCell(board.getIndexFromCoords(row, 0), playerMark);
+            board.setCell(board.getIndexFromCoords(row, 0), PLAYER);
         }
 
-        assertTrue(checker.hasWinner(playerMark));
+        assertTrue(checker.hasWinner(PLAYER));
     }
 
     @Test
     public void checksWinnerInDiagonal() {
         for (int row = 0, col = 0; row < size && col < size; row++, col++) {
-            board.setCell(board.getIndexFromCoords(row, col), playerMark);
+            board.setCell(board.getIndexFromCoords(row, col), PLAYER);
         }
 
-        assertTrue(checker.hasWinner(playerMark));
+        assertTrue(checker.hasWinner(PLAYER));
     }
 
     @Test
     public void checksWinnerInAntiDiagonal() {
         for (int row = 0, col = size-1; row < size && col >= 0; row++, col--) {
-            board.setCell(board.getIndexFromCoords(row, col), playerMark);
+            board.setCell(board.getIndexFromCoords(row, col), PLAYER);
         }
 
-        assertTrue(checker.hasWinner(playerMark));
+        assertTrue(checker.hasWinner(PLAYER));
     }
 
     private void setBoardContents(int numberOfCells, Mark cellContent) {
