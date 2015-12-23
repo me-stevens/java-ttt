@@ -3,6 +3,7 @@ package com.mael.ttt.players;
 import com.mael.ttt.Board;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -21,12 +22,13 @@ public class HumanPlayerTest {
     private Board board;
     private SpyConsole spy;
     private HumanPlayer humanPlayer;
+    private UserInterfaceSpy uiSpy;
 
     public HumanPlayerTest(int boardSize) {
         size        = boardSize;
         board       = new Board(size);
-        spy         = new SpyConsole();
-        humanPlayer = new HumanPlayer(new UserInterface(spy), PLAYER);
+        uiSpy = new UserInterfaceSpy();
+        humanPlayer = new HumanPlayer(uiSpy, PLAYER);
     }
 
     @Parameterized.Parameters
@@ -36,37 +38,37 @@ public class HumanPlayerTest {
 
     @Test
     public void repeatsUntilCellIsNumber() {
-        spy.setInputs("a", "20", "1");
+        uiSpy.setUserInputs("a", "20", "1");
         assertEquals(1, humanPlayer.getMove(board));
-        assertEquals(3, spy.timesReadWasCalled());
+        assertEquals(3, uiSpy.timesGetInputWasCalled());
     }
 
     @Test
     public void repeatsUntilItGetsEmptyCellIndex() {
         board.setCell(1, PLAYER);
-        spy.setInputs("1", "2");
+        uiSpy.setUserInputs(1, 2);
         assertEquals(2, humanPlayer.getMove(board));
-        assertEquals(2, spy.timesReadWasCalled());
+        assertEquals(2, uiSpy.timesGetInputWasCalled());
     }
 
     @Test
     public void returnsRightIndex() {
-        spy.setInputs("1");
+        uiSpy.setUserInputs(1);
         assertEquals(1, humanPlayer.getMove(board));
     }
 
     @Test
     public void printsNotValidCellMessage() {
-        spy.setInputs("a", "1");
+        uiSpy.setUserInputs("a", "1");
         humanPlayer.getMove(board);
-        assertTrue(spy.printedMessage().contains(UserInterface.NOTVALIDCELL));
+        assertTrue(uiSpy.printNotValidCellMessageWasCalled());
     }
 
     @Test
     public void printsCellIsBusyMessage() {
         board.setCell(1, PLAYER);
-        spy.setInputs("1", "2");
+        uiSpy.setUserInputs(1, 2);
         humanPlayer.getMove(board);
-        assertTrue(spy.printedMessage().contains(UserInterface.CELLISBUSY));
+        assertTrue(uiSpy.printCellIsBusyMessageWasCalled());
     }
 }
