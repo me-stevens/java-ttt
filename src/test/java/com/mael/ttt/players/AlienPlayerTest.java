@@ -1,8 +1,7 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.ui.SpyConsole;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,28 +11,29 @@ import static org.junit.Assert.assertTrue;
 
 public class AlienPlayerTest {
 
-    private SpyConsole spy;
-    private AlienPlayer alienPlayer;
-    private Board board;
     private int size;
+    private Board board;
+    private UserInterfaceSpy uiSpy;
+    private AlienPlayer alienPlayer;
 
     @Before
     public void setUp() {
         size        = 3;
-        spy         = new SpyConsole();
-        alienPlayer = new AlienPlayer(new UserInterface(spy), PLAYER);
         board       = new Board(size);
+        uiSpy       = new UserInterfaceSpy();
+        alienPlayer = new AlienPlayer(uiSpy, PLAYER);
     }
 
     @Test
     public void printsPromptMessage() {
         alienPlayer.getMove(board);
-        assertEquals(UserInterface.ALIENPROMPT, spy.lastPrintedMessage());
+        assertTrue(uiSpy.printAlienPromptWasCalled());
     }
 
     @Test
     public void getsAnExistingEmptyIndex() {
-        assertTrue(board.getEmptyCellIndexes().contains(alienPlayer.getMove(board)));
+        int alienMove = alienPlayer.getMove(board);
+        assertTrue(board.getEmptyCellIndexes().contains(alienMove));
     }
 
     @Test
