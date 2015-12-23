@@ -3,26 +3,35 @@ package com.mael.ttt.players;
 import com.mael.ttt.Board;
 import com.mael.ttt.ui.SpyConsole;
 import com.mael.ttt.ui.UserInterface;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static com.mael.ttt.Mark.PLAYER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(Parameterized.class)
 public class HumanPlayerTest {
 
-    private HumanPlayer humanPlayer;
-    private SpyConsole spy;
     private int size;
     private Board board;
+    private SpyConsole spy;
+    private HumanPlayer humanPlayer;
 
-    @Before
-    public void setUp() {
-        size        = 3;
+    public HumanPlayerTest(int boardSize) {
+        size        = boardSize;
         board       = new Board(size);
         spy         = new SpyConsole();
         humanPlayer = new HumanPlayer(new UserInterface(spy), PLAYER);
+    }
+
+    @Parameterized.Parameters
+    public static Collection dataSetup() {
+        return Arrays.asList(new Object[][]{ {3}, {4} });
     }
 
     @Test
