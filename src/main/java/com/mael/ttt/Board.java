@@ -54,13 +54,11 @@ public class Board {
 
     public List<Integer> getEmptyCellIndexes() {
         List<Integer> empties = new ArrayList<>();
-
         for (int index = 1; index <= SIZE*SIZE; index++) {
             if (getCell(index) == EMPTY) {
                 empties.add(index);
             }
         }
-
         return empties;
     }
 
