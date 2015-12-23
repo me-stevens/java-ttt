@@ -38,65 +38,65 @@ public class RobotPlayerTest {
 
     @Test
     public void choosesWinningCombinationInARow() {
-        board.setBoardContents(O, O, E,
-                               X, X, E,
-                               E, E, E);
+        board = new Board(O, O, E,
+                          X, X, E,
+                          E, E, E);
         assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAColumn() {
-        board.setBoardContents(O, X, E,
-                               O, X, E,
-                               E, E, E);
+        board = new Board(O, X, E,
+                          O, X, E,
+                          E, E, E);
         assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInDiagonal() {
-        board.setBoardContents(O, X, X,
-                               X, O, E,
-                               E, E, E);
+        board = new Board(O, X, X,
+                          X, O, E,
+                          E, E, E);
         assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
     public void choosesWinningCombinationInAntiDiagonal() {
-        board.setBoardContents(X, X, O,
-                               E, O, X,
-                               E, E, E);
+        board = new Board(X, X, O,
+                          E, O, X,
+                          E, E, E);
         assertEquals(7, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInARow() {
-        board.setBoardContents(X, X, E,
-                               E, O, E,
-                               E, E, E);
+        board = new Board(X, X, E,
+                          E, O, E,
+                          E, E, E);
         assertEquals(3, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInAColumn() {
-        board.setBoardContents(E, E, X,
-                               E, O, E,
-                               E, E, X);
+        board = new Board(E, E, X,
+                          E, O, E,
+                          E, E, X);
         assertEquals(6, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInDiagonal() {
-        board.setBoardContents(X, E, E,
-                               E, X, E,
-                               O, E, E);
+        board = new Board(X, E, E,
+                          E, X, E,
+                          O, E, E);
         assertEquals(9, robotPlayer.getMove(board));
     }
 
     @Test
     public void blocksTheOpponentInAntiDiagonal() {
-        board.setBoardContents(E, E, X,
-                               O, E, E,
-                               X, E, E);
+        board = new Board(E, E, X,
+                          O, E, E,
+                          X, E, E);
         assertEquals(5, robotPlayer.getMove(board));
     }
 

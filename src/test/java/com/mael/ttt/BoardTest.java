@@ -69,13 +69,6 @@ public class BoardTest {
         assertTrue(board.isCellBusy(1));
     }
 
-    @Test
-    public void setsAllBoardContentsAtOnce() {
-        Board expected = setAllCellsTo(PLAYER);
-        board.setBoardContents(PLAYER, PLAYER, PLAYER, PLAYER, PLAYER, PLAYER, PLAYER, PLAYER, PLAYER);
-        assertEquals(getContentsAsString(expected), getContentsAsString(board));
-    }
-
     private Board setAllCellsTo(Mark cellContent) {
         Board expected = new Board(size);
         for (int index = 1; index <= size*size; index++) {
