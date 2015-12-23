@@ -2,13 +2,18 @@ package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
 import com.mael.ttt.ui.UserInterfaceSpy;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(Parameterized.class)
 public class AlienPlayerTest {
 
     private int size;
@@ -16,12 +21,16 @@ public class AlienPlayerTest {
     private UserInterfaceSpy uiSpy;
     private AlienPlayer alienPlayer;
 
-    @Before
-    public void setUp() {
-        size        = 3;
+    public AlienPlayerTest(int boardSize) {
+        size        = boardSize;
         board       = new Board(size);
         uiSpy       = new UserInterfaceSpy();
         alienPlayer = new AlienPlayer(uiSpy, PLAYER);
+    }
+
+    @Parameterized.Parameters
+    public static Collection dataSetup() {
+        return Arrays.asList(new Object[][]{ {3}, {4} });
     }
 
     @Test

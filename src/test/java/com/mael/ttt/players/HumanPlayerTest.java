@@ -1,8 +1,6 @@
 package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
-import com.mael.ttt.ui.SpyConsole;
-import com.mael.ttt.ui.UserInterface;
 import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,14 +18,13 @@ public class HumanPlayerTest {
 
     private int size;
     private Board board;
-    private SpyConsole spy;
-    private HumanPlayer humanPlayer;
     private UserInterfaceSpy uiSpy;
+    private HumanPlayer humanPlayer;
 
     public HumanPlayerTest(int boardSize) {
         size        = boardSize;
         board       = new Board(size);
-        uiSpy = new UserInterfaceSpy();
+        uiSpy       = new UserInterfaceSpy();
         humanPlayer = new HumanPlayer(uiSpy, PLAYER);
     }
 
