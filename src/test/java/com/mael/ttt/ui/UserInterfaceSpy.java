@@ -10,16 +10,20 @@ import java.util.List;
 import static com.mael.ttt.Mark.*;
 
 public class UserInterfaceSpy extends UserInterface {
-    private boolean printBoardWasCalled = false;
-    private boolean printHasWinnerMessageWasCalled = false;
-    private boolean printIsFullMessageWasCalled = false;
-    private Mark winner = EMPTY;
-    private boolean printWelcomeMessageWasCalled = false;
-    private List<Integer> userInputs = new ArrayList<>();
+    private Mark winner       = EMPTY;
     private String menuOption = "";
-    private boolean replayWasCalled = false;
+    private boolean printBoardWasCalled               = false;
+    private boolean printHasWinnerMessageWasCalled    = false;
+    private boolean printIsFullMessageWasCalled       = false;
+    private boolean printWelcomeMessageWasCalled      = false;
+    private boolean replayWasCalled                   = false;
+    private boolean printAlienPromptWasCalled         = false;
+    private boolean printNotValidCellMessageWasCalled = false;
+    private boolean printCellIsBusyMessageWasCalled   = false;
+    private List<Integer> userInputs    = new ArrayList<>();
+    private List<String>  userInputsStr = new ArrayList<>();
     private List<Boolean> replayAnswers = new ArrayList<>();
-    private boolean printAlienPromptWasCalled = false;
+    private int timesGetInputWasCalled  = 0;
 
     public UserInterfaceSpy() {
         super(null);
@@ -55,15 +59,22 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public String getInput() {
-        return userInputs.remove(0).toString();
+        timesGetInputWasCalled++;
+        if (userInputs.size() != 0) {
+            return userInputs.remove(0).toString();
+        }
+        else
+            return userInputsStr.remove(0);
     }
 
     @Override
     public void printNotValidCellMessage() {
+        printNotValidCellMessageWasCalled = true;
     }
 
     @Override
     public void printCellIsBusyMessage() {
+        printCellIsBusyMessageWasCalled = true;
     }
 
     @Override
@@ -120,6 +131,10 @@ public class UserInterfaceSpy extends UserInterface {
         this.userInputs.addAll(Arrays.asList(userInputs));
     }
 
+    public void setUserInputs(String ... userInputs) {
+        this.userInputsStr.addAll(Arrays.asList(userInputs));
+    }
+
     public void setMenuOption (String menuOption) {
         this.menuOption = menuOption;
     }
@@ -130,5 +145,17 @@ public class UserInterfaceSpy extends UserInterface {
 
     public boolean printAlienPromptWasCalled() {
         return printAlienPromptWasCalled;
+    }
+
+    public int timesGetInputWasCalled() {
+        return timesGetInputWasCalled;
+    }
+
+    public boolean printNotValidCellMessageWasCalled() {
+        return printNotValidCellMessageWasCalled;
+    }
+
+    public boolean printCellIsBusyMessageWasCalled() {
+        return printCellIsBusyMessageWasCalled;
     }
 }
