@@ -22,8 +22,8 @@ public class TurnTest {
         size   = 3;
         board  = new Board(size);
         uiSpy  = new UserInterfaceSpy();
-        turn   = new Turn(board, new BoardChecker(board), uiSpy);
         player = new FakePlayer(1);
+        turn   = new Turn(board, new BoardChecker(board), uiSpy);
         X      = PLAYER;
         O      = OPPONENT;
         E      = EMPTY;
@@ -49,65 +49,70 @@ public class TurnTest {
 
     @Test
     public void cannotBePlayedIfBoardHasWinner() {
-        board.setBoardContents(X, X, X,
-                               O, O, E,
-                               E, E, E);
+        board = new Board(X, X, X,
+                          O, O, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         assertFalse(turn.canBePlayed());
     }
 
     @Test
     public void cannotBePlayedIfBoardIsFull() {
-        board.setBoardContents(X, O, X,
-                               O, X, X,
-                               O, X, O);
+        board = new Board(X, O, X,
+                          O, X, X,
+                          O, X, O);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         assertFalse(turn.canBePlayed());
     }
 
     @Test
     public void printsBoardIfBoardHasWinner() {
-        board.setBoardContents(X, X, X,
-                               O, O, E,
-                               E, E, E);
+        board = new Board(X, X, X,
+                          O, O, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
     }
 
     @Test
     public void printsBoardIfBoardIsFull() {
-        board.setBoardContents(X, O, X,
-                               O, X, X,
-                               O, X, O);
+        board = new Board(X, O, X,
+                          O, X, X,
+                          O, X, O);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
     }
 
     @Test
     public void printsWinningMessageIfBoardHasWinner() {
-        board.setBoardContents(X, X, X,
-                               O, O, E,
-                               E, E, E);
+        board = new Board(X, X, X,
+                          O, O, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printHasWinnerMessageWasCalled());
         assertFalse(uiSpy.printIsFullMessageWasCalled());
-
     }
 
     @Test
     public void printsFullMessageIfBoardIsFull() {
-        board.setBoardContents(X, O, X,
-                               O, X, X,
-                               O, X, O);
+        board = new Board(X, O, X,
+                          O, X, X,
+                          O, X, O);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printIsFullMessageWasCalled());
         assertFalse(uiSpy.printHasWinnerMessageWasCalled());
-
     }
 
     @Test
     public void ifNoWinnerAndBoardIsNotFullJustPrintsTheBoard() {
-        board.setBoardContents(X, X, E,
-                               O, O, E,
-                               E, E, E);
+        board = new Board(X, X, E,
+                          O, O, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
         assertFalse(uiSpy.printHasWinnerMessageWasCalled());
@@ -116,9 +121,10 @@ public class TurnTest {
 
     @Test
     public void announcesTheCorrectWinnerForPlayer() {
-        board.setBoardContents(X, X, X,
-                               O, O, E,
-                               E, E, E);
+        board = new Board(X, X, X,
+                          O, O, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(PLAYER);
         assertEquals(PLAYER, uiSpy.announcedWinner());
     }
@@ -126,11 +132,11 @@ public class TurnTest {
 
     @Test
     public void announcesTheCorrectWinnerForOpponent() {
-        board.setBoardContents(O, O, O,
-                               X, X, E,
-                               E, E, E);
+        board = new Board(O, O, O,
+                          X, X, E,
+                          E, E, E);
+        turn  = new Turn(board, new BoardChecker(board), uiSpy);
         turn.printResults(OPPONENT);
         assertEquals(OPPONENT, uiSpy.announcedWinner());
     }
-
 }

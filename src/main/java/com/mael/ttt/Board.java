@@ -23,6 +23,13 @@ public class Board {
         }
     }
 
+    public Board(Mark ... cellContents) {
+        this((int) Math.sqrt(cellContents.length));
+        for (int index = 1; index <= SIZE*SIZE; index++) {
+            setCell(index, cellContents[index - 1]);
+        }
+    }
+
     public int getSize() {
         return SIZE;
     }
@@ -71,13 +78,5 @@ public class Board {
 
     public boolean isCellBusy(int index) {
         return !(board[getRowFromIndex(index)][getColFromIndex(index)] == EMPTY);
-    }
-
-    public void setBoardContents(Mark ... cellContents) {
-        if (cellContents.length == SIZE*SIZE) {
-            for (int index = 1; index <= SIZE*SIZE; index++) {
-                setCell(index, cellContents[index - 1]);
-            }
-        }
     }
 }
