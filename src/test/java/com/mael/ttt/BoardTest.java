@@ -47,7 +47,7 @@ public class BoardTest {
     @Test
     public void getsTheEmptyCellIndexes() {
         board.setCell(1, PLAYER);
-        List<Integer> expected = getAllIndexesStartingOn(2);
+        List<Integer> expected = getCellIndexesStartingOn(2);
         assertEquals(expected, board.getEmptyCellIndexes());
     }
 
@@ -93,7 +93,7 @@ public class BoardTest {
         return boardContents;
     }
 
-    private List<Integer> getAllIndexesStartingOn(int start) {
+    private List<Integer> getCellIndexesStartingOn(int start) {
         List<Integer> expected = new ArrayList<>();
         for (int i = start; i <= size*size; i++) {
             expected.add(i);
