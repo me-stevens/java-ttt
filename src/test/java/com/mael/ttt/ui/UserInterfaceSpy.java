@@ -19,6 +19,7 @@ public class UserInterfaceSpy extends UserInterface {
     private String menuOption = "";
     private boolean replayWasCalled = false;
     private List<Boolean> replayAnswers = new ArrayList<>();
+    private boolean printAlienPromptWasCalled = false;
 
     public UserInterfaceSpy() {
         super(null);
@@ -71,6 +72,7 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public void printAlienPrompt() {
+        printAlienPromptWasCalled = true;
     }
 
     @Override
@@ -124,5 +126,9 @@ public class UserInterfaceSpy extends UserInterface {
 
     public boolean replayWasCalled() {
         return replayWasCalled;
+    }
+
+    public boolean printAlienPromptWasCalled() {
+        return printAlienPromptWasCalled;
     }
 }
