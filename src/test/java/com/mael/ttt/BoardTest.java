@@ -1,23 +1,31 @@
 package com.mael.ttt;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static com.mael.ttt.Mark.*;
-import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
+@RunWith(Parameterized.class)
 public class BoardTest {
 
     private int size;
     private Board board;
 
-    @Before
-    public void setUp() {
-        size  = 3;
+    public BoardTest(int boardSize) {
+        size  = boardSize;
         board = new Board(size);
+    }
+
+    @Parameterized.Parameters
+    public static Collection dataSetup() {
+        return Arrays.asList(new Object[][] { {3}, {4} });
     }
 
     @Test
@@ -39,7 +47,7 @@ public class BoardTest {
     @Test
     public void getsTheEmptyCellIndexes() {
         board.setCell(1, PLAYER);
-        List<Integer> expected = asList(2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> expected = getAllIndexesStartingOn(2);
         assertEquals(expected, board.getEmptyCellIndexes());
     }
 
@@ -83,5 +91,13 @@ public class BoardTest {
             boardContents += board.getCell(index).getString();
         }
         return boardContents;
+    }
+
+    private List<Integer> getAllIndexesStartingOn(int start) {
+        List<Integer> expected = new ArrayList<>();
+        for (int i = start; i <= size*size; i++) {
+            expected.add(i);
+        }
+        return expected;
     }
 }
