@@ -2,25 +2,25 @@ package com.mael.ttt.players;
 
 import com.mael.ttt.Board;
 import com.mael.ttt.Mark;
-import com.mael.ttt.ui.SpyConsole;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RobotPlayerTest {
 
     private Board board;
+    private UserInterfaceSpy uiSpy;
     private RobotPlayer robotPlayer;
-    private SpyConsole spy;
     private Mark X, O, E;
 
     @Before
     public void setUp() {
-        spy         = new SpyConsole();
-        robotPlayer = new RobotPlayer(new UserInterface(spy), OPPONENT);
+        uiSpy       = new UserInterfaceSpy();
+        robotPlayer = new RobotPlayer(uiSpy, OPPONENT);
         X           = PLAYER;
         O           = OPPONENT;
         E           = EMPTY;
@@ -32,7 +32,7 @@ public class RobotPlayerTest {
                           X, O, X,
                           O, X, E);
         robotPlayer.getMove(board);
-        assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
+        assertTrue(uiSpy.printRobotPromptWasCalled());
     }
 
     @Test

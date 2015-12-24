@@ -14,6 +14,7 @@ public class UserInterfaceSpy extends UserInterface {
     private boolean printWelcomeMessageWasCalled      = false;
     private boolean printMenuPromptWasCalled          = false;
     private boolean printBoardWasCalled               = false;
+    private boolean printRobotPromptWasCalled         = false;
     private boolean printAlienPromptWasCalled         = false;
     private boolean printNotValidCellMessageWasCalled = false;
     private boolean printCellIsBusyMessageWasCalled   = false;
@@ -83,6 +84,7 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public void printRobotPrompt() {
+        printRobotPromptWasCalled = true;
     }
 
     @Override
@@ -125,6 +127,10 @@ public class UserInterfaceSpy extends UserInterface {
 
     public boolean printBoardWasCalled() {
         return printBoardWasCalled;
+    }
+
+    public boolean printRobotPromptWasCalled() {
+        return printRobotPromptWasCalled;
     }
 
     public boolean printAlienPromptWasCalled() {
