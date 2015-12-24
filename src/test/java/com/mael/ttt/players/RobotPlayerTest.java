@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 public class RobotPlayerTest {
 
-    private int size;
     private Board board;
     private RobotPlayer robotPlayer;
     private SpyConsole spy;
@@ -20,7 +19,6 @@ public class RobotPlayerTest {
 
     @Before
     public void setUp() {
-        size        = 3;
         spy         = new SpyConsole();
         robotPlayer = new RobotPlayer(new UserInterface(spy), OPPONENT);
         X           = PLAYER;
@@ -30,7 +28,9 @@ public class RobotPlayerTest {
 
     @Test
     public void promptMessageIsPrinted() {
-        board = new Board(size);
+        board = new Board(X, O, X,
+                          X, O, X,
+                          O, X, E);
         robotPlayer.getMove(board);
         assertEquals(UserInterface.ROBOTPROMT, spy.firstPrintedMessage());
     }

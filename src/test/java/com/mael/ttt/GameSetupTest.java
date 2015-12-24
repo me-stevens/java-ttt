@@ -10,14 +10,13 @@ import static org.junit.Assert.assertTrue;
 
 public class GameSetupTest {
 
-    private int size;
     private Board board;
     private UserInterfaceSpy uiSpy;
     private GameSetup gameSetup;
 
     @Before
     public void setUp() {
-        size      = 3;
+        int size  = 3;
         board     = new Board(size);
         uiSpy     = new UserInterfaceSpy();
         gameSetup = new GameSetup(uiSpy, new Menu(uiSpy), board, new Turn(board, new BoardChecker(board), uiSpy), new PlayerCreator(uiSpy));

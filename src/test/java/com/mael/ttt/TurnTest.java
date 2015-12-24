@@ -15,11 +15,10 @@ public class TurnTest {
     private Player player;
     private Mark X, O, E;
     private UserInterfaceSpy uiSpy;
-    private int size;
 
     @Before
     public void setUp() {
-        size   = 3;
+        int size = 3;
         board  = new Board(size);
         uiSpy  = new UserInterfaceSpy();
         player = new FakePlayer(1);
