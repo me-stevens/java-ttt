@@ -21,7 +21,7 @@ public class GameSetupTest {
         board     = new Board(size);
         uiSpy     = new UserInterfaceSpy();
         gameSetup = new GameSetup(uiSpy, new Menu(uiSpy), board, new Turn(board, new BoardChecker(board), uiSpy), new PlayerCreator(uiSpy));
-        uiSpy.setMenuOption("1");
+        uiSpy.setUserOptions("1", "1");
     }
 
     @Test
