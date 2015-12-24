@@ -1,32 +1,21 @@
 package com.mael.ttt;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static com.mael.ttt.Mark.*;
 
-@RunWith(Parameterized.class)
-public class BoardCheckerTest {
 
-    private Board board;
+public class BoardCheckerTest extends ParentTest {
+
     private BoardChecker checker;
     private int size;
 
     public BoardCheckerTest(int boardSize) {
-        board   = new Board(boardSize);
+        super(boardSize);
         checker = new BoardChecker(board);
         size    = boardSize;
-    }
-
-    @Parameterized.Parameters
-    public static Collection dataSetup() {
-        return Arrays.asList(new Object[][]{ {3}, {4} });
     }
 
     @Test

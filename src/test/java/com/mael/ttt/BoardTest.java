@@ -1,31 +1,20 @@
 package com.mael.ttt;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.*;
 
-@RunWith(Parameterized.class)
-public class BoardTest {
+public class BoardTest extends ParentTest {
 
     private int size;
-    private Board board;
 
     public BoardTest(int boardSize) {
-        board = new Board(boardSize);
+        super(boardSize);
         size  = boardSize;
-    }
-
-    @Parameterized.Parameters
-    public static Collection dataSetup() {
-        return Arrays.asList(new Object[][] { {3}, {4} });
     }
 
     @Test
