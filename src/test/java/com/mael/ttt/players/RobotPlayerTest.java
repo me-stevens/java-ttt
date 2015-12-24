@@ -21,7 +21,6 @@ public class RobotPlayerTest {
     @Before
     public void setUp() {
         size        = 3;
-        board       = new Board(size);
         spy         = new SpyConsole();
         robotPlayer = new RobotPlayer(new UserInterface(spy), OPPONENT);
         X           = PLAYER;

@@ -4,29 +4,36 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MenuTest {
 
-    private SpyConsole spy;
     private Menu menu;
+    private UserInterfaceSpy uiSpy;
 
     @Before
     public void setUp() {
-        spy  = new SpyConsole();
-        menu = new Menu(new UserInterface(spy));
+        uiSpy = new UserInterfaceSpy();
+        menu  = new Menu(uiSpy);
     }
 
     @Test
     public void showPlayersMenuUntilRightOption() {
-        spy.setInputs("khgj", "0", "1");
+        uiSpy.setUserOptions("khgj", "0", "1");
         menu.getUserOption();
-        assertEquals(3, spy.timesReadWasCalled());
+        assertEquals(3, uiSpy.timesGetMenuOptionWasCalled());
+    }
+
+    @Test
+    public void returnsTheRightOption() {
+        uiSpy.setUserOptions("1");
+        assertEquals(MenuOption.idToOption("1"), menu.getUserOption());
     }
 
     @Test
     public void printsMenuPrompt() {
-        spy.setInput("1");
+        uiSpy.setUserOptions("1");
         menu.getUserOption();
-        assertEquals(UserInterface.MENUPROMPT, spy.firstPrintedMessage());
+        assertTrue(uiSpy.printMenuPromptWasCalled());
     }
 }

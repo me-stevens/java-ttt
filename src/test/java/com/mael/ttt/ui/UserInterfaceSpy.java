@@ -10,20 +10,22 @@ import java.util.List;
 import static com.mael.ttt.Mark.*;
 
 public class UserInterfaceSpy extends UserInterface {
-    private Mark winner       = EMPTY;
-    private String menuOption = "";
-    private boolean printBoardWasCalled               = false;
-    private boolean printHasWinnerMessageWasCalled    = false;
-    private boolean printIsFullMessageWasCalled       = false;
+    private Mark winner = EMPTY;
     private boolean printWelcomeMessageWasCalled      = false;
-    private boolean replayWasCalled                   = false;
+    private boolean printMenuPromptWasCalled          = false;
+    private boolean printBoardWasCalled               = false;
     private boolean printAlienPromptWasCalled         = false;
     private boolean printNotValidCellMessageWasCalled = false;
     private boolean printCellIsBusyMessageWasCalled   = false;
+    private boolean printHasWinnerMessageWasCalled    = false;
+    private boolean printIsFullMessageWasCalled       = false;
+    private boolean replayWasCalled                   = false;
+    private List<String>  menuOptions   = new ArrayList<>();
     private List<Integer> userInputs    = new ArrayList<>();
     private List<String>  userInputsStr = new ArrayList<>();
     private List<Boolean> replayAnswers = new ArrayList<>();
-    private int timesGetInputWasCalled  = 0;
+    private int timesGetInputWasCalled      = 0;
+    private int timesGetMenuOptionWasCalled = 0;
 
     public UserInterfaceSpy() {
         super(null);
@@ -35,6 +37,7 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public void printMenuPrompt() {
+        printMenuPromptWasCalled = true;
     }
 
     @Override
@@ -54,7 +57,8 @@ public class UserInterfaceSpy extends UserInterface {
 
     @Override
     public String getMenuOption(String menu) {
-        return menuOption;
+        timesGetMenuOptionWasCalled++;
+        return menuOptions.remove(0);
     }
 
     @Override
@@ -103,28 +107,28 @@ public class UserInterfaceSpy extends UserInterface {
         return replayAnswers.remove(0);
     }
 
-    public boolean printBoardWasCalled() {
-        return printBoardWasCalled;
-    }
-
-    public boolean printHasWinnerMessageWasCalled() {
-        return printHasWinnerMessageWasCalled;
-    }
-
-    public boolean printIsFullMessageWasCalled() {
-        return printIsFullMessageWasCalled;
-    }
-
     public boolean printWelcomeMessageWasCalled() {
         return printWelcomeMessageWasCalled;
     }
 
-    public Mark announcedWinner() {
-        return winner;
+    public void setUserOptions(String ... menuOptions) {
+        this.menuOptions.addAll(Arrays.asList(menuOptions));
     }
 
-    public void setReplayAnswers(Boolean ... replayAnswers) {
-        this.replayAnswers.addAll(Arrays.asList(replayAnswers));
+    public boolean printMenuPromptWasCalled() {
+        return printMenuPromptWasCalled;
+    }
+
+    public int timesGetMenuOptionWasCalled() {
+        return timesGetMenuOptionWasCalled;
+    }
+
+    public boolean printBoardWasCalled() {
+        return printBoardWasCalled;
+    }
+
+    public boolean printAlienPromptWasCalled() {
+        return printAlienPromptWasCalled;
     }
 
     public void setUserInputs(Integer ... userInputs) {
@@ -133,18 +137,6 @@ public class UserInterfaceSpy extends UserInterface {
 
     public void setUserInputs(String ... userInputs) {
         this.userInputsStr.addAll(Arrays.asList(userInputs));
-    }
-
-    public void setMenuOption (String menuOption) {
-        this.menuOption = menuOption;
-    }
-
-    public boolean replayWasCalled() {
-        return replayWasCalled;
-    }
-
-    public boolean printAlienPromptWasCalled() {
-        return printAlienPromptWasCalled;
     }
 
     public int timesGetInputWasCalled() {
@@ -157,5 +149,25 @@ public class UserInterfaceSpy extends UserInterface {
 
     public boolean printCellIsBusyMessageWasCalled() {
         return printCellIsBusyMessageWasCalled;
+    }
+
+    public boolean printHasWinnerMessageWasCalled() {
+        return printHasWinnerMessageWasCalled;
+    }
+
+    public boolean printIsFullMessageWasCalled() {
+        return printIsFullMessageWasCalled;
+    }
+
+    public Mark announcedWinner() {
+        return winner;
+    }
+
+    public void setReplayAnswers(Boolean ... replayAnswers) {
+        this.replayAnswers.addAll(Arrays.asList(replayAnswers));
+    }
+
+    public boolean replayWasCalled() {
+        return replayWasCalled;
     }
 }
