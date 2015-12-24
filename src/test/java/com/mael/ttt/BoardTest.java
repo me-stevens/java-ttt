@@ -19,8 +19,8 @@ public class BoardTest {
     private Board board;
 
     public BoardTest(int boardSize) {
+        board = new Board(boardSize);
         size  = boardSize;
-        board = new Board(size);
     }
 
     @Parameterized.Parameters

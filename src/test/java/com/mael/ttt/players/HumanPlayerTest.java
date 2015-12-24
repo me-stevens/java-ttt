@@ -16,14 +16,12 @@ import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class HumanPlayerTest {
 
-    private int size;
     private Board board;
     private UserInterfaceSpy uiSpy;
     private HumanPlayer humanPlayer;
 
     public HumanPlayerTest(int boardSize) {
-        size        = boardSize;
-        board       = new Board(size);
+        board       = new Board(boardSize);
         uiSpy       = new UserInterfaceSpy();
         humanPlayer = new HumanPlayer(uiSpy, PLAYER);
     }

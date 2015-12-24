@@ -14,14 +14,14 @@ import static com.mael.ttt.Mark.*;
 @RunWith(Parameterized.class)
 public class BoardCheckerTest {
 
-    private int size;
     private Board board;
     private BoardChecker checker;
+    private int size;
 
     public BoardCheckerTest(int boardSize) {
-        size    = boardSize;
-        board   = new Board(size);
+        board   = new Board(boardSize);
         checker = new BoardChecker(board);
+        size    = boardSize;
     }
 
     @Parameterized.Parameters
