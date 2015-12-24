@@ -10,7 +10,7 @@ import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class RobotPlayerTest {
+public class RobotPlayerTest3x3 {
 
     private Board board;
     private UserInterfaceSpy uiSpy;

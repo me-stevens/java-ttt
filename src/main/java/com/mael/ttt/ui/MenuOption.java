@@ -9,9 +9,9 @@ public enum MenuOption {
     private String id;
     private String text;
 
-    MenuOption(String menuOptionId, String menuOptionText) {
-        this.id   = menuOptionId;
-        this.text = menuOptionText;
+    MenuOption(String id, String text) {
+        this.id   = id;
+        this.text = text;
     }
 
     public String getId() {

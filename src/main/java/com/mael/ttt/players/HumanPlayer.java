@@ -9,8 +9,8 @@ public class HumanPlayer implements Player {
     private UserInterface gameUI;
     private Mark mark;
 
-    public HumanPlayer(UserInterface ui, Mark mark) {
-        this.gameUI = ui;
+    public HumanPlayer(UserInterface gameUI, Mark mark) {
+        this.gameUI = gameUI;
         this.mark   = mark;
     }
 
