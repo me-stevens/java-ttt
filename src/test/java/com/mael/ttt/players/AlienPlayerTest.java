@@ -9,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.Mark.PLAYER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
