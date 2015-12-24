@@ -14,8 +14,8 @@ public class RobotPlayer implements Player {
     private Mark mark;
     private Mark playerToOptimize;
 
-    public RobotPlayer(UserInterface ui, Mark mark) {
-        this.gameUI      = ui;
+    public RobotPlayer(UserInterface gameUI, Mark mark) {
+        this.gameUI      = gameUI;
         this.mark        = mark;
         playerToOptimize = mark;
     }

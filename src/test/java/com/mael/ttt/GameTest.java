@@ -25,7 +25,7 @@ public class GameTest {
 
     @Test
     public void endsTheGameIfWin() {
-        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+        game = new Game(new Turn(uiSpy, board, new BoardChecker(board)),
                 new FakePlayer(PLAYER, 1, 2, 3),
                 new FakePlayer(OPPONENT, 4, 5));
         game.play();
@@ -34,7 +34,7 @@ public class GameTest {
 
     @Test
     public void endsTheGameIfFull() {
-        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+        game = new Game(new Turn(uiSpy, board, new BoardChecker(board)),
                 new FakePlayer(PLAYER, 1, 2, 5, 6, 7),
                 new FakePlayer(OPPONENT, 4, 3, 9, 8));
         game.play();
@@ -43,7 +43,7 @@ public class GameTest {
 
     @Test
     public void playerIsSwappedInEveryTurn() {
-        game = new Game(new Turn(board, new BoardChecker(board), uiSpy),
+        game = new Game(new Turn(uiSpy, board, new BoardChecker(board)),
                 new FakePlayer(PLAYER, 1, 3, 5, 7),
                 new FakePlayer(OPPONENT, 2, 4, 6));
         game.play();

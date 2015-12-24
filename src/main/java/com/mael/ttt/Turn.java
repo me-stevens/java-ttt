@@ -12,7 +12,7 @@ public class Turn {
     private UserInterface gameUI;
     private BoardChecker boardChecker;
 
-    public Turn(Board board, BoardChecker boardChecker, UserInterface gameUI) {
+    public Turn(UserInterface gameUI, Board board, BoardChecker boardChecker) {
         this.board        = board;
         this.boardChecker = boardChecker;
         this.gameUI       = gameUI;

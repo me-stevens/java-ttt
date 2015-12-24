@@ -17,10 +17,10 @@ public class UserInterface {
     public static final String ALIENPROMPT  = "\nAlien chooses a cell\n";
     public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
     public static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
+    public static final String HASWINNER    = "\nCongratulations, ";
     public static final String ISFULL       = "\nIt's a draw!";
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
     public static final String REPLAY       = "\nReplay? (y/n): ";
-    public static final String HASWINNER    = "\nCongratulations, ";
 
     private Console console;
 
@@ -30,6 +30,10 @@ public class UserInterface {
 
     public void print(String message) {
         console.write(message);
+    }
+
+    public void printWelcomeMessage() {
+        print(WELCOME);
     }
 
     public void printMenuPrompt() {
@@ -49,6 +53,11 @@ public class UserInterface {
                option.getText() + "\n";
     }
 
+    public String getMenuOption(String menu) {
+        print(menu);
+        return console.read();
+    }
+
     public void printBoard(Board board) {
         int size = board.getSize();
         for (int index = 1; index <= size*size; index++) {
@@ -62,15 +71,6 @@ public class UserInterface {
 
     private String formatCell(int index, Mark cell) {
         return (cell == EMPTY) ? index + " " : cell.getString() + " ";
-    }
-
-    public void printWelcomeMessage() {
-        print(WELCOME);
-    }
-
-    public String getMenuOption(String menu) {
-        print(menu);
-        return console.read();
     }
 
     public String getInput() {

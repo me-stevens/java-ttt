@@ -22,7 +22,7 @@ public class TurnTest {
         board  = new Board(size);
         uiSpy  = new UserInterfaceSpy();
         player = new FakePlayer(1);
-        turn   = new Turn(board, new BoardChecker(board), uiSpy);
+        turn   = new Turn(uiSpy, board, new BoardChecker(board));
         X      = PLAYER;
         O      = OPPONENT;
         E      = EMPTY;
@@ -51,7 +51,7 @@ public class TurnTest {
         board = new Board(X, X, X,
                           O, O, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         assertFalse(turn.canBePlayed());
     }
 
@@ -60,7 +60,7 @@ public class TurnTest {
         board = new Board(X, O, X,
                           O, X, X,
                           O, X, O);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         assertFalse(turn.canBePlayed());
     }
 
@@ -69,7 +69,7 @@ public class TurnTest {
         board = new Board(X, X, X,
                           O, O, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
     }
@@ -79,7 +79,7 @@ public class TurnTest {
         board = new Board(X, O, X,
                           O, X, X,
                           O, X, O);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
     }
@@ -89,7 +89,7 @@ public class TurnTest {
         board = new Board(X, X, X,
                           O, O, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printHasWinnerMessageWasCalled());
         assertFalse(uiSpy.printIsFullMessageWasCalled());
@@ -100,7 +100,7 @@ public class TurnTest {
         board = new Board(X, O, X,
                           O, X, X,
                           O, X, O);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printIsFullMessageWasCalled());
         assertFalse(uiSpy.printHasWinnerMessageWasCalled());
@@ -111,7 +111,7 @@ public class TurnTest {
         board = new Board(X, X, E,
                           O, O, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertTrue(uiSpy.printBoardWasCalled());
         assertFalse(uiSpy.printHasWinnerMessageWasCalled());
@@ -123,7 +123,7 @@ public class TurnTest {
         board = new Board(X, X, X,
                           O, O, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(PLAYER);
         assertEquals(PLAYER, uiSpy.announcedWinner());
     }
@@ -134,7 +134,7 @@ public class TurnTest {
         board = new Board(O, O, O,
                           X, X, E,
                           E, E, E);
-        turn  = new Turn(board, new BoardChecker(board), uiSpy);
+        turn  = new Turn(uiSpy, board, new BoardChecker(board));
         turn.printResults(OPPONENT);
         assertEquals(OPPONENT, uiSpy.announcedWinner());
     }
