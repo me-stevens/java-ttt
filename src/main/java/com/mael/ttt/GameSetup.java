@@ -7,20 +7,14 @@ import com.mael.ttt.ui.UserInterface;
 
 public class GameSetup {
     private UserInterface gameUI;
-    private Menu menu;
     private Board board;
-    private Turn turn;
-    private PlayerCreator playerCreator;
 
-    public GameSetup(UserInterface gameUI, Menu menu, Board board, Turn turn, PlayerCreator playerCreator) {
+    public GameSetup(UserInterface gameUI, Board board) {
         this.gameUI        = gameUI;
-        this.menu          = menu;
         this.board         = board;
-        this.turn          = turn;
-        this.playerCreator = playerCreator;
     }
 
-    public void playGame() {
+    public void playGame(Menu menu, Turn turn, PlayerCreator playerCreator) {
         do {
             setUp();
             MenuOption option = menu.getUserOption();

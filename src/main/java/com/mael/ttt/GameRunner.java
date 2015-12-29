@@ -11,7 +11,7 @@ public class GameRunner {
     public static void main(String[] args) {
         UserInterface gameUI = new UserInterface(new GameConsole(System.in, System.out));
         Board board          = new Board(3);
-        GameSetup gameSetup  = new GameSetup(gameUI, new Menu(gameUI), board, new Turn(board, new BoardChecker(board), gameUI), new PlayerCreator(gameUI));
-        gameSetup.playGame();
+        GameSetup gameSetup  = new GameSetup(gameUI, board);
+        gameSetup.playGame(new Menu(gameUI), new Turn(gameUI, board, new BoardChecker(board)), new PlayerCreator(gameUI));
     }
 }
