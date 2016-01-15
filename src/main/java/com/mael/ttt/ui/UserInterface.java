@@ -49,7 +49,7 @@ public class UserInterface {
     }
 
     private String formatOption(MenuOption option) {
-        return option.getId()   + ") " +
+        return option.getInput()   + ") " +
                option.getText() + "\n";
     }
 

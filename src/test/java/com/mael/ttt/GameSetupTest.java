@@ -1,7 +1,7 @@
 package com.mael.ttt;
 
 import com.mael.ttt.players.PlayerCreator;
-import com.mael.ttt.ui.Menu;
+import com.mael.ttt.ui.PlayersMenu;
 import com.mael.ttt.ui.UserInterfaceSpy;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class GameSetupTest {
     private UserInterfaceSpy uiSpy;
     private Board board;
     private GameSetup gameSetup;
-    private Menu menu;
+    private PlayersMenu menu;
     private Turn turn;
     private PlayerCreator playerCreator;
 
@@ -23,7 +23,7 @@ public class GameSetupTest {
         uiSpy         = new UserInterfaceSpy();
         board         = new Board(size);
         gameSetup     = new GameSetup(uiSpy, board);
-        menu          = new Menu(uiSpy);
+        menu          = new PlayersMenu(uiSpy);
         turn          = new Turn(uiSpy, board, new BoardChecker(board));
         playerCreator = new PlayerCreator(uiSpy);
         uiSpy.setUserOptions("1", "1");

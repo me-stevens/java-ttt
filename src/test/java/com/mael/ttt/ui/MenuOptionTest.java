@@ -11,7 +11,7 @@ public class MenuOptionTest {
 
     @Test
     public void getsHumanVsHumanId() {
-        assertEquals("1", HUMAN_HUMAN.getId());
+        assertEquals("1", HUMAN_HUMAN.getInput());
     }
 
     @Test
@@ -21,17 +21,17 @@ public class MenuOptionTest {
 
     @Test
     public void returnsMenuOptionGivenAnId() {
-        assertEquals(HUMAN_HUMAN, MenuOption.idToOption("1"));
+        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption("1"));
     }
 
     @Test
     public void returnsHumanVsHumanIfInvalidOption() {
-        assertEquals(HUMAN_HUMAN, MenuOption.idToOption("asdfg"));
+        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption("asdfg"));
     }
 
     @Test
     public void returnsHumanVsHumanIfNullOption() {
-        assertEquals(HUMAN_HUMAN, MenuOption.idToOption(null));
+        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption(null));
     }
 
     @Test

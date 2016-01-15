@@ -6,34 +6,34 @@ public enum MenuOption {
     ROBOT_ROBOT("3", "Robot vs. Robot"),
     HUMAN_ALIEN("4", "Human vs. Alien");
 
-    private String id;
+    private String input;
     private String text;
 
-    MenuOption(String id, String text) {
-        this.id   = id;
-        this.text = text;
+    MenuOption(String input, String text) {
+        this.input = input;
+        this.text  = text;
     }
 
-    public String getId() {
-        return id;
+    public String getInput() {
+        return input;
     }
 
     public String getText() {
         return text;
     }
 
-    public static MenuOption idToOption(String id) {
+    public static MenuOption inputToOption(String input) {
         for (MenuOption menuOption : values()) {
-            if (menuOption.getId().equals(id)) {
+            if (menuOption.getInput().equals(input)) {
                 return menuOption;
             }
         }
         return HUMAN_HUMAN;
     }
 
-    public static boolean contains(String id) {
+    public static boolean contains(String input) {
         for (MenuOption menuOption : values()) {
-            if (menuOption.getId().equals(id)) {
+            if (menuOption.getInput().equals(input)) {
                 return true;
             }
         }

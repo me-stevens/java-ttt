@@ -1,7 +1,7 @@
 package com.mael.ttt;
 
 import com.mael.ttt.players.*;
-import com.mael.ttt.ui.Menu;
+import com.mael.ttt.ui.PlayersMenu;
 import com.mael.ttt.ui.MenuOption;
 import com.mael.ttt.ui.UserInterface;
 
@@ -14,7 +14,7 @@ public class GameSetup {
         this.board         = board;
     }
 
-    public void playGame(Menu menu, Turn turn, PlayerCreator playerCreator) {
+    public void playGame(PlayersMenu menu, Turn turn, PlayerCreator playerCreator) {
         do {
             setUp();
             MenuOption option = menu.getUserOption();
