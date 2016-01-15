@@ -36,6 +36,13 @@ public class UserInterfaceTest {
     }
 
     @Test
+    public void formatsSizeMenuOption() {
+        assertEquals("3) 3x3 Board\n" +
+                     "4) 4x4 Board\n", ui.formatSizeMenuOptions());
+
+    }
+
+    @Test
     public void printsCellNumberIfCellIsEmpty() {
         Board board = new Board(3);
         ui.printBoard(board);

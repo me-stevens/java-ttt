@@ -49,8 +49,21 @@ public class UserInterface {
     }
 
     private String formatOption(MenuOption option) {
-        return option.getInput()   + ") " +
-               option.getText() + "\n";
+        return option.getInput() + ") " +
+               option.getText()  + "\n";
+    }
+
+    public String formatSizeMenuOptions() {
+        String menu = "";
+        for (int i = 0; i < SizeOption.values().length; i++) {
+            menu += formatSizeOption(SizeOption.values()[i]);
+        }
+        return menu;
+    }
+
+    private String formatSizeOption(SizeOption option) {
+        return option.getInput() + ") " +
+                option.getText() + "\n";
     }
 
     public String getMenuOption(String menu) {
