@@ -21,30 +21,30 @@ public class MenuOptionTest {
 
     @Test
     public void returnsMenuOptionGivenAnId() {
-        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption("1"));
+        assertEquals(HUMAN_HUMAN, inputToOption("1"));
     }
 
     @Test
     public void returnsHumanVsHumanIfInvalidOption() {
-        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption("asdfg"));
+        assertEquals(HUMAN_HUMAN, inputToOption("asdfg"));
     }
 
     @Test
     public void returnsHumanVsHumanIfNullOption() {
-        assertEquals(HUMAN_HUMAN, MenuOption.inputToOption(null));
+        assertEquals(HUMAN_HUMAN, inputToOption(null));
     }
 
     @Test
     public void returnsTrueIfIdExistsInEnumConstants() {
-        assertTrue(MenuOption.contains("1"));
+        assertTrue(contains("1"));
     }
 
     @Test
     public void returnsFalseIfUnexistingIdInEnumConstants() {
-        assertFalse(MenuOption.contains("asdf"));
+        assertFalse(contains("asdf"));
     }
     @Test
     public void returnsFalseIfNullOption() {
-        assertFalse(MenuOption.contains(null));
+        assertFalse(contains(null));
     }
 }
