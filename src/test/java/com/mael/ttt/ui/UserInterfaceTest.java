@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.assertEquals;
@@ -29,17 +31,12 @@ public class UserInterfaceTest {
 
     @Test
     public void formatsMenuOptions() {
-        assertEquals("1) Human vs. Human\n" +
-                     "2) Human vs. Robot\n" +
-                     "3) Robot vs. Robot\n" +
-                     "4) Human vs. Alien\n", ui.formatMenuOptions());
-    }
+        Map<String, String> options = new HashMap<>();
+        options.put("a", "a value");
+        options.put("b", "b value");
 
-    @Test
-    public void formatsSizeMenuOption() {
-        assertEquals("3) 3x3 Board\n" +
-                     "4) 4x4 Board\n", ui.formatSizeMenuOptions());
-
+        assertEquals("a) a value\n" +
+                     "b) b value\n", ui.formatMenuOptions(options));
     }
 
     @Test

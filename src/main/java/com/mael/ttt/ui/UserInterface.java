@@ -5,6 +5,7 @@ import com.mael.ttt.Mark;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.mael.ttt.Mark.*;
 
@@ -40,30 +41,17 @@ public class UserInterface {
         print(MENUPROMPT);
     }
 
-    public String formatMenuOptions() {
+    public String formatMenuOptions(Map<String, String> options) {
         String menu = "";
-        for (int i = 0; i < MenuOption.values().length; i++) {
-            menu += formatOption(MenuOption.values()[i]);
+        for (Map.Entry<String, String> option : options.entrySet()) {
+            menu += formatOption(option);
         }
         return menu;
     }
 
-    private String formatOption(MenuOption option) {
-        return option.getOption() + ") " +
-               option.getText()  + "\n";
-    }
-
-    public String formatSizeMenuOptions() {
-        String menu = "";
-        for (int i = 0; i < SizeOption.values().length; i++) {
-            menu += formatSizeOption(SizeOption.values()[i]);
-        }
-        return menu;
-    }
-
-    private String formatSizeOption(SizeOption option) {
-        return option.getInput() + ") " +
-                option.getText() + "\n";
+    private String formatOption(Map.Entry<String, String> option) {
+        return option.getKey()   + ") " +
+               option.getValue() + "\n";
     }
 
     public String getMenuOption(String menu) {

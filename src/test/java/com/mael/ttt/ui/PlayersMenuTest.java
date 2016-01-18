@@ -13,8 +13,8 @@ public class PlayersMenuTest {
 
     @Before
     public void setUp() {
-        uiSpy     = new UserInterfaceSpy();
-        menu      = new PlayersMenu(uiSpy);
+        uiSpy = new UserInterfaceSpy();
+        menu  = new PlayersMenu(uiSpy);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PlayersMenuTest {
     @Test
     public void returnsTheRightOption() {
         uiSpy.setUserOptions("1");
-        assertEquals(MenuOption.inputToOption("1"), menu.getPlayersMenuOption());
+        assertEquals(MenuOption.convertToOption("1"), menu.getPlayersMenuOption());
     }
 
     @Test
