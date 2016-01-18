@@ -6,6 +6,7 @@ import com.mael.ttt.Mark;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static com.mael.ttt.Mark.*;
 
@@ -42,7 +43,7 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public String formatMenuOptions() {
+    public String formatMenuOptions(Map<String, String> options) {
         return "";
     }
 

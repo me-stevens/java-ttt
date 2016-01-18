@@ -2,11 +2,12 @@ package com.mael.ttt.ui;
 
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Map;
 
-import static com.mael.ttt.ui.MenuOption.*;
-import static java.util.Arrays.asList;
+import static com.mael.ttt.ui.MenuOption.HUMAN_HUMAN;
+import static com.mael.ttt.ui.MenuOption.convertToOption;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MenuOptionTest {
 
@@ -22,22 +23,23 @@ public class MenuOptionTest {
 
     @Test
     public void returnsMenuOptionGivenAnId() {
-        assertEquals(HUMAN_HUMAN, inputToOption("1"));
+        assertEquals(HUMAN_HUMAN, convertToOption("1"));
     }
 
     @Test
     public void returnsHumanVsHumanIfInvalidOption() {
-        assertEquals(HUMAN_HUMAN, inputToOption("asdfg"));
+        assertEquals(HUMAN_HUMAN, convertToOption("asdfg"));
     }
 
     @Test
     public void returnsHumanVsHumanIfNullOption() {
-        assertEquals(HUMAN_HUMAN, inputToOption(null));
+        assertEquals(HUMAN_HUMAN, convertToOption(null));
     }
 
     @Test
-    public void getsPlayersMenuValues() {
-        List<String> menuInputs = asList("1", "2", "3", "4");
-        assertEquals(menuInputs, getAllInputs());
+    public void getsPlayersMenuTexts() {
+        Map<String, String> playerOptions = MenuOption.getPlayerOptions();
+        assertTrue(playerOptions.containsKey("1"));
+        assertTrue(playerOptions.containsValue("Human vs. Human"));
     }
 }

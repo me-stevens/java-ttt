@@ -1,6 +1,6 @@
 package com.mael.ttt.ui;
 
-import java.util.List;
+import java.util.Map;
 
 public class PlayersMenu {
 
@@ -11,28 +11,20 @@ public class PlayersMenu {
     }
 
     public MenuOption getPlayersMenuOption() {
-        return MenuOption.inputToOption(askUntilRightOption(MenuOption.getAllInputs()));
+        String input = askUntilRightOption(MenuOption.getPlayerOptions());
+        return MenuOption.convertToOption(input);
     }
 
-    private String askUntilRightOption(List<String> allInputs) {
+    private String askUntilRightOption(Map<String, String> playerOptions) {
         String input = "";
-        while (isInvalidInput(input, allInputs)) {
+        while (isInvalidInput(input, playerOptions)) {
             gameUI.printMenuPrompt();
-            input = gameUI.getMenuOption(gameUI.formatMenuOptions());
+            input = gameUI.getMenuOption(gameUI.formatMenuOptions(playerOptions));
         }
         return input;
     }
 
-    private boolean isInvalidInput(String input, List<String> allInputs) {
-        return !contains(input, allInputs);
-    }
-
-    public boolean contains(String input, List<String> allInputs) {
-        for (String option : allInputs) {
-            if (option.equals(input)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isInvalidInput(String input, Map<String, String> playerOptions) {
+        return !playerOptions.containsKey(input);
     }
 }

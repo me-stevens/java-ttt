@@ -1,7 +1,7 @@
 package com.mael.ttt.ui;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum MenuOption {
     HUMAN_HUMAN("1", "Human vs. Human"),
@@ -11,11 +11,10 @@ public enum MenuOption {
 
     private String option;
     private String text;
-    private static List<String> allInputs = new ArrayList<>();
 
-    MenuOption(String input, String text) {
-        this.option = input;
-        this.text  = text;
+    MenuOption(String option, String text) {
+        this.option = option;
+        this.text   = text;
     }
 
     public String getOption() {
@@ -26,15 +25,17 @@ public enum MenuOption {
         return text;
     }
 
-    public static List<String> getAllInputs() {
-        allInputs.clear();
-        for (MenuOption menuOption : values()) {
-            allInputs.add(menuOption.getOption());
+    public static Map<String, String> getPlayerOptions() {
+        Map<String, String> playerOptions = new HashMap<>();
+
+        for (MenuOption option: values()) {
+            playerOptions.put(option.getOption(), option.getText());
         }
-        return allInputs;
+
+        return playerOptions;
     }
 
-    public static MenuOption inputToOption(String input) {
+    public static MenuOption convertToOption(String input) {
         for (MenuOption menuOption : values()) {
             if (menuOption.getOption().equals(input)) {
                 return menuOption;
