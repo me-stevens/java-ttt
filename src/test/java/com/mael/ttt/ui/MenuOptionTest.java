@@ -6,13 +6,13 @@ import java.util.List;
 
 import static com.mael.ttt.ui.MenuOption.*;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MenuOptionTest {
 
     @Test
     public void getsHumanVsHumanId() {
-        assertEquals("1", HUMAN_HUMAN.getInput());
+        assertEquals("1", HUMAN_HUMAN.getOption());
     }
 
     @Test
@@ -33,21 +33,6 @@ public class MenuOptionTest {
     @Test
     public void returnsHumanVsHumanIfNullOption() {
         assertEquals(HUMAN_HUMAN, inputToOption(null));
-    }
-
-    @Test
-    public void returnsTrueIfIdExistsInEnumConstants() {
-        assertTrue(contains("1"));
-    }
-
-    @Test
-    public void returnsFalseIfUnexistingIdInEnumConstants() {
-        assertFalse(contains("asdf"));
-    }
-
-    @Test
-    public void returnsFalseIfNullOption() {
-        assertFalse(contains(null));
     }
 
     @Test

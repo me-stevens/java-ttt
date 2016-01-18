@@ -1,5 +1,7 @@
 package com.mael.ttt.ui;
 
+import java.util.List;
+
 public class PlayersMenu {
 
     private UserInterface gameUI;
@@ -8,16 +10,29 @@ public class PlayersMenu {
         this.gameUI = gameUI;
     }
 
-    public MenuOption getUserOption() {
-        String option = "";
-        while (isInvalidOption(option)) {
-            gameUI.printMenuPrompt();
-            option = gameUI.getMenuOption(gameUI.formatMenuOptions());
-        }
-        return MenuOption.inputToOption(option);
+    public MenuOption getPlayersMenuOption() {
+        return MenuOption.inputToOption(askUntilRightOption(MenuOption.getAllInputs()));
     }
 
-    private boolean isInvalidOption(String option) {
-        return !MenuOption.contains(option);
+    private String askUntilRightOption(List<String> allInputs) {
+        String input = "";
+        while (isInvalidInput(input, allInputs)) {
+            gameUI.printMenuPrompt();
+            input = gameUI.getMenuOption(gameUI.formatMenuOptions());
+        }
+        return input;
+    }
+
+    private boolean isInvalidInput(String input, List<String> allInputs) {
+        return !contains(input, allInputs);
+    }
+
+    public boolean contains(String input, List<String> allInputs) {
+        for (String option : allInputs) {
+            if (option.equals(input)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

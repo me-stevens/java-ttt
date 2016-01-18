@@ -17,7 +17,7 @@ public class GameSetup {
     public void playGame(PlayersMenu menu, Turn turn, PlayerCreator playerCreator) {
         do {
             setUp();
-            MenuOption option = menu.getUserOption();
+            MenuOption option = menu.getPlayersMenuOption();
             Game game         = new Game(turn, playerCreator.createPlayer(option), playerCreator.createOpponent(option));
             game.play();
         } while (gameUI.replay());
