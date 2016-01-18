@@ -9,17 +9,17 @@ public enum MenuOption {
     ROBOT_ROBOT("3", "Robot vs. Robot"),
     HUMAN_ALIEN("4", "Human vs. Alien");
 
-    private String input;
+    private String option;
     private String text;
     private static List<String> allInputs = new ArrayList<>();
 
     MenuOption(String input, String text) {
-        this.input = input;
+        this.option = input;
         this.text  = text;
     }
 
-    public String getInput() {
-        return input;
+    public String getOption() {
+        return option;
     }
 
     public String getText() {
@@ -29,26 +29,17 @@ public enum MenuOption {
     public static List<String> getAllInputs() {
         allInputs.clear();
         for (MenuOption menuOption : values()) {
-            allInputs.add(menuOption.getInput());
+            allInputs.add(menuOption.getOption());
         }
         return allInputs;
     }
 
     public static MenuOption inputToOption(String input) {
         for (MenuOption menuOption : values()) {
-            if (menuOption.getInput().equals(input)) {
+            if (menuOption.getOption().equals(input)) {
                 return menuOption;
             }
         }
         return HUMAN_HUMAN;
-    }
-
-    public static boolean contains(String input) {
-        for (MenuOption menuOption : values()) {
-            if (menuOption.getInput().equals(input)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

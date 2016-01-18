@@ -50,7 +50,6 @@ public class SizeOptionTest {
         assertFalse(contains(null));
     }
 
-
     @Test
     public void getsPlayersMenuValues() {
         List<String> menuInputs = asList("3", "4");
