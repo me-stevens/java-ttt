@@ -12,7 +12,7 @@ public class SizeOptionTest {
 
     @Test
     public void gets3x3Size() {
-        assertEquals("3", THREE_BY_THREE.getInput());
+        assertEquals("3", THREE_BY_THREE.getOption());
     }
 
     @Test
@@ -41,5 +41,11 @@ public class SizeOptionTest {
 
         assertTrue(options.containsKey("3"));
         assertTrue(options.containsValue("3x3 Board"));
+    }
+
+    @Test
+    public void returnsBoardSize() {
+        assertEquals(3, THREE_BY_THREE.getBoardSize());
+        assertEquals(4, FOUR_BY_FOUR.getBoardSize());
     }
 }
