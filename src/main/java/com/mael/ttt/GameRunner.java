@@ -14,19 +14,20 @@ public class GameRunner {
     public void playGame(Menu menu, PlayerCreator playerCreator) {
         do {
             gameUI.printWelcomeMessage();
-            PlayerOption playerOption = menu.getPlayerOption();
-            SizeOption sizeOption     = menu.getSizeOption();
 
+            PlayerOption playerOption = menu.getPlayerOption();
             Player player             = playerCreator.createPlayer(playerOption);
             Player opponent           = playerCreator.createOpponent(playerOption);
 
-            Game game                 = new Game(createTurn(sizeOption), player, opponent);
+            SizeOption sizeOption = menu.getSizeOption();
+            Game game             = new Game(createTurn(sizeOption), player, opponent);
+
             game.play();
         } while (gameUI.replay());
     }
 
     private Turn createTurn(SizeOption sizeOption) {
-        Board board = new Board(sizeOption.getBoardSize());
+        Board board = new Board(sizeOption.getSize());
         return new Turn(gameUI, board, new BoardChecker(board));
     }
 

@@ -45,7 +45,7 @@ public class SizeOptionTest {
 
     @Test
     public void returnsBoardSize() {
-        assertEquals(3, THREE_BY_THREE.getBoardSize());
-        assertEquals(4, FOUR_BY_FOUR.getBoardSize());
+        assertEquals(3, THREE_BY_THREE.getSize());
+        assertEquals(4, FOUR_BY_FOUR.getSize());
     }
 }

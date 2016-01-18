@@ -12,7 +12,7 @@ public enum SizeOption {
 
     SizeOption(String option, String text) {
         this.option = option;
-        this.text  = text;
+        this.text   = text;
     }
 
     public String getOption() {
@@ -21,6 +21,10 @@ public enum SizeOption {
 
     public String getText() {
         return text;
+    }
+
+    public int getSize() {
+        return Integer.parseInt(option);
     }
 
     public static Map<String, String> getSizeOptions() {
@@ -38,9 +42,5 @@ public enum SizeOption {
             }
         }
         return THREE_BY_THREE;
-    }
-
-    public int getBoardSize() {
-        return Integer.parseInt(option);
     }
 }

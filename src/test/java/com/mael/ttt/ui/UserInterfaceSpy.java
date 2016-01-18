@@ -114,7 +114,7 @@ public class UserInterfaceSpy extends UserInterface {
         return printWelcomeMessageWasCalled;
     }
 
-    public void setUserOptions(String ... menuOptions) {
+    public void setMenuOptions(String ... menuOptions) {
         this.menuOptions.addAll(Arrays.asList(menuOptions));
     }
 

@@ -21,11 +21,11 @@ public class GameRunnerTest {
         gameSetup     = new GameRunner(uiSpy);
         menu          = new Menu(uiSpy);
         playerCreator = new PlayerCreator(uiSpy);
-        uiSpy.setUserOptions("1", "3", "1", "3");
     }
 
     @Test
     public void printsWelcomeMessage() {
+        uiSpy.setMenuOptions("1", "3");
         uiSpy.setUserInputs(1, 4, 2, 5, 3);
         uiSpy.setReplayAnswers(false);
         gameSetup.playGame(menu, playerCreator);
@@ -34,6 +34,7 @@ public class GameRunnerTest {
 
     @Test
     public void replaysUntilNo() {
+        uiSpy.setMenuOptions("1", "3", "1", "3");
         uiSpy.setUserInputs(1, 4, 2, 5, 3,
                             1, 2, 3, 4, 5, 7, 6, 9, 8);
         uiSpy.setReplayAnswers(true, false);
