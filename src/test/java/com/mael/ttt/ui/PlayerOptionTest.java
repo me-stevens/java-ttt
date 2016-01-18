@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static com.mael.ttt.ui.MenuOption.HUMAN_HUMAN;
-import static com.mael.ttt.ui.MenuOption.convertToOption;
+import static com.mael.ttt.ui.PlayerOption.HUMAN_HUMAN;
+import static com.mael.ttt.ui.PlayerOption.convertToOption;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class MenuOptionTest {
+public class PlayerOptionTest {
 
     @Test
     public void getsHumanVsHumanId() {
@@ -38,7 +38,7 @@ public class MenuOptionTest {
 
     @Test
     public void getsPlayersMenuTexts() {
-        Map<String, String> playerOptions = MenuOption.getPlayerOptions();
+        Map<String, String> playerOptions = PlayerOption.getPlayerOptions();
         assertTrue(playerOptions.containsKey("1"));
         assertTrue(playerOptions.containsValue("Human vs. Human"));
     }

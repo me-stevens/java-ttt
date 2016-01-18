@@ -3,7 +3,7 @@ package com.mael.ttt.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum MenuOption {
+public enum PlayerOption {
     HUMAN_HUMAN("1", "Human vs. Human"),
     HUMAN_ROBOT("2", "Human vs. Robot"),
     ROBOT_ROBOT("3", "Robot vs. Robot"),
@@ -12,7 +12,7 @@ public enum MenuOption {
     private String option;
     private String text;
 
-    MenuOption(String option, String text) {
+    PlayerOption(String option, String text) {
         this.option = option;
         this.text   = text;
     }
@@ -28,15 +28,15 @@ public enum MenuOption {
     public static Map<String, String> getPlayerOptions() {
         Map<String, String> playerOptions = new HashMap<>();
 
-        for (MenuOption option: values()) {
+        for (PlayerOption option: values()) {
             playerOptions.put(option.getOption(), option.getText());
         }
 
         return playerOptions;
     }
 
-    public static MenuOption convertToOption(String input) {
-        for (MenuOption menuOption : values()) {
+    public static PlayerOption convertToOption(String input) {
+        for (PlayerOption menuOption : values()) {
             if (menuOption.getOption().equals(input)) {
                 return menuOption;
             }

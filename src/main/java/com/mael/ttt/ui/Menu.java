@@ -2,17 +2,22 @@ package com.mael.ttt.ui;
 
 import java.util.Map;
 
-public class PlayersMenu {
+public class Menu {
 
     private UserInterface gameUI;
 
-    public PlayersMenu(UserInterface gameUI) {
+    public Menu(UserInterface gameUI) {
         this.gameUI = gameUI;
     }
 
-    public MenuOption getPlayersMenuOption() {
-        String input = askUntilRightOption(MenuOption.getPlayerOptions());
-        return MenuOption.convertToOption(input);
+    public PlayerOption getPlayerOption() {
+        String input = askUntilRightOption(PlayerOption.getPlayerOptions());
+        return PlayerOption.convertToOption(input);
+    }
+
+    public SizeOption getSizeOption() {
+        String input = askUntilRightOption(SizeOption.getSizeOptions());
+        return SizeOption.convertToOption(input);
     }
 
     private String askUntilRightOption(Map<String, String> playerOptions) {

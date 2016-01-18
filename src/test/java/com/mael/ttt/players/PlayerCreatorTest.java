@@ -5,7 +5,7 @@ import com.mael.ttt.ui.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mael.ttt.ui.MenuOption.*;
+import static com.mael.ttt.ui.PlayerOption.*;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerCreatorTest {

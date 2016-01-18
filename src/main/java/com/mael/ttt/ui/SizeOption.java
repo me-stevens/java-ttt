@@ -1,7 +1,7 @@
 package com.mael.ttt.ui;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum SizeOption {
     THREE_BY_THREE("3", "3x3 Board"),
@@ -9,7 +9,6 @@ public enum SizeOption {
 
     private final String input;
     private final String text;
-    private static List<String> allInputs = new ArrayList<>();
 
     SizeOption(String input, String text) {
         this.input = input;
@@ -24,29 +23,20 @@ public enum SizeOption {
         return text;
     }
 
-    public static List<String> getAllInputs() {
-        allInputs.clear();
+    public static Map<String, String> getSizeOptions() {
+        Map<String, String> sizeOptions = new HashMap<>();
         for (SizeOption sizeOption : values()) {
-            allInputs.add(sizeOption.getInput());
+            sizeOptions.put(sizeOption.getInput(), sizeOption.getText());
         }
-        return allInputs;
+        return sizeOptions;
     }
 
-    public static SizeOption inputToOption(String input) {
+    public static SizeOption convertToOption(String input) {
         for (SizeOption sizeOption : values()) {
             if (sizeOption.getInput().equals(input)) {
                 return sizeOption;
             }
         }
         return THREE_BY_THREE;
-    }
-
-    public static boolean contains(String input) {
-        for (SizeOption sizeOption : values()) {
-            if (sizeOption.getInput().equals(input)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
