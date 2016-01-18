@@ -2,11 +2,11 @@ package com.mael.ttt.ui;
 
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Map;
 
 import static com.mael.ttt.ui.SizeOption.*;
-import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SizeOptionTest {
 
@@ -22,37 +22,24 @@ public class SizeOptionTest {
 
     @Test
     public void returnsValidSizeGivenAnInput() {
-        assertEquals(FOUR_BY_FOUR, inputToOption("4"));
+        assertEquals(FOUR_BY_FOUR, convertToOption("4"));
     }
 
     @Test
     public void returns3x3IfInvalidOption() {
-        assertEquals(THREE_BY_THREE, inputToOption("dfasda"));
+        assertEquals(THREE_BY_THREE, convertToOption("dfasda"));
     }
 
     @Test
     public void returns3x3IfNullOption() {
-        assertEquals(THREE_BY_THREE, inputToOption(null));
+        assertEquals(THREE_BY_THREE, convertToOption(null));
     }
 
     @Test
-    public void returnsTrueIdInputExistsInEnum() {
-        assertTrue(contains("3"));
-    }
+    public void knowsAllOptions() {
+        Map<String, String> options = SizeOption.getSizeOptions();
 
-    @Test
-    public void returnsFalseIfUnexistingInputInEnum() {
-        assertFalse(contains("asda"));
-    }
-
-    @Test
-    public void returnsFalseIfNullInput() {
-        assertFalse(contains(null));
-    }
-
-    @Test
-    public void getsPlayersMenuValues() {
-        List<String> menuInputs = asList("3", "4");
-        assertEquals(menuInputs, getAllInputs());
+        assertTrue(options.containsKey("3"));
+        assertTrue(options.containsValue("3x3 Board"));
     }
 }
