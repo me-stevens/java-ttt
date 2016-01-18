@@ -2,7 +2,7 @@ package com.mael.ttt.ui;
 
 public class SizeMenu {
 
-    private final UserInterface gameUI;
+    private UserInterface gameUI;
 
     public SizeMenu(UserInterface gameUI) {
         this.gameUI = gameUI;

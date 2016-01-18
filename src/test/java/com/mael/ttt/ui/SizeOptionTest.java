@@ -2,10 +2,11 @@ package com.mael.ttt.ui;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static com.mael.ttt.ui.SizeOption.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static java.util.Arrays.asList;
+import static org.junit.Assert.*;
 
 public class SizeOptionTest {
 
@@ -47,5 +48,12 @@ public class SizeOptionTest {
     @Test
     public void returnsFalseIfNullInput() {
         assertFalse(contains(null));
+    }
+
+
+    @Test
+    public void getsPlayersMenuValues() {
+        List<String> menuInputs = asList("3", "4");
+        assertEquals(menuInputs, getAllInputs());
     }
 }
