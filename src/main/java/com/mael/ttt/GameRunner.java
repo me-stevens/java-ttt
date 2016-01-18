@@ -1,39 +1,38 @@
 package com.mael.ttt;
 
-import com.mael.ttt.players.*;
-import com.mael.ttt.ui.GameConsole;
-import com.mael.ttt.ui.Menu;
-import com.mael.ttt.ui.PlayerOption;
-import com.mael.ttt.ui.UserInterface;
+import com.mael.ttt.players.Player;
+import com.mael.ttt.players.PlayerCreator;
+import com.mael.ttt.ui.*;
 
 public class GameRunner {
     private UserInterface gameUI;
-    private Board board;
 
-    public GameRunner(UserInterface gameUI, Board board) {
+    public GameRunner(UserInterface gameUI) {
         this.gameUI = gameUI;
-        this.board  = board;
     }
 
-    public void playGame(Menu menu, Turn turn, PlayerCreator playerCreator) {
+    public void playGame(Menu menu, PlayerCreator playerCreator) {
         do {
-            setUp();
-            PlayerOption option = menu.getPlayerOption();
+            gameUI.printWelcomeMessage();
+            PlayerOption playerOption = menu.getPlayerOption();
+            SizeOption sizeOption     = menu.getSizeOption();
 
-            Game game         = new Game(turn, playerCreator.createPlayer(option), playerCreator.createOpponent(option));
+            Player player             = playerCreator.createPlayer(playerOption);
+            Player opponent           = playerCreator.createOpponent(playerOption);
+
+            Game game                 = new Game(createTurn(sizeOption), player, opponent);
             game.play();
         } while (gameUI.replay());
     }
 
-    private void setUp() {
-        board.reset();
-        gameUI.printWelcomeMessage();
+    private Turn createTurn(SizeOption sizeOption) {
+        Board board = new Board(sizeOption.getBoardSize());
+        return new Turn(gameUI, board, new BoardChecker(board));
     }
 
     public static void main(String[] args) {
         UserInterface gameUI = new UserInterface(new GameConsole(System.in, System.out));
-        Board board          = new Board(3);
-        GameRunner gameSetup = new GameRunner(gameUI, board);
-        gameSetup.playGame(new Menu(gameUI), new Turn(gameUI, board, new BoardChecker(board)), new PlayerCreator(gameUI));
+        GameRunner gameSetup = new GameRunner(gameUI);
+        gameSetup.playGame(new Menu(gameUI), new PlayerCreator(gameUI));
     }
 }

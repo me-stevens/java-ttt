@@ -7,16 +7,16 @@ public enum SizeOption {
     THREE_BY_THREE("3", "3x3 Board"),
     FOUR_BY_FOUR(  "4", "4x4 Board");
 
-    private final String input;
+    private final String option;
     private final String text;
 
-    SizeOption(String input, String text) {
-        this.input = input;
+    SizeOption(String option, String text) {
+        this.option = option;
         this.text  = text;
     }
 
-    public String getInput() {
-        return input;
+    public String getOption() {
+        return option;
     }
 
     public String getText() {
@@ -26,17 +26,21 @@ public enum SizeOption {
     public static Map<String, String> getSizeOptions() {
         Map<String, String> sizeOptions = new HashMap<>();
         for (SizeOption sizeOption : values()) {
-            sizeOptions.put(sizeOption.getInput(), sizeOption.getText());
+            sizeOptions.put(sizeOption.getOption(), sizeOption.getText());
         }
         return sizeOptions;
     }
 
     public static SizeOption convertToOption(String input) {
         for (SizeOption sizeOption : values()) {
-            if (sizeOption.getInput().equals(input)) {
+            if (sizeOption.getOption().equals(input)) {
                 return sizeOption;
             }
         }
         return THREE_BY_THREE;
+    }
+
+    public int getBoardSize() {
+        return Integer.parseInt(option);
     }
 }
