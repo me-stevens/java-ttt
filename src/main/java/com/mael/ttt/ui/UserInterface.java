@@ -110,11 +110,11 @@ public class UserInterface {
         return console.read().equals("y");
     }
 
-    public List<String> getBoardIndexesAsStrings(int size) {
-        List<String> boardCellIndexes = new ArrayList<>();
+    public List<String> getValidIndexes(int size) {
+        List<String> indexes = new ArrayList<>();
         for (int i = 1; i <= size*size; i++) {
-            boardCellIndexes.add(Integer.toString(i));
+            indexes.add(Integer.toString(i));
         }
-        return boardCellIndexes;
+        return indexes;
     }
 }
