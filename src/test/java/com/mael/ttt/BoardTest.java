@@ -1,5 +1,6 @@
 package com.mael.ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,13 +10,15 @@ import java.util.List;
 import static com.mael.ttt.Mark.*;
 import static org.junit.Assert.*;
 
-public class BoardTest extends ParentTest {
+public class BoardTest {
 
+    private Board board;
     private int size;
 
-    public BoardTest(int boardSize) {
-        super(boardSize);
-        size  = boardSize;
+    @Before
+    public void setUp() {
+        size  = 3;
+        board = new Board (size);
     }
 
     @Test

@@ -1,20 +1,24 @@
 package com.mael.ttt.players;
 
-import com.mael.ttt.ParentTest;
+import com.mael.ttt.Board;
 import com.mael.ttt.ui.UserInterfaceSpy;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.mael.ttt.Mark.PLAYER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AlienPlayerTest extends ParentTest {
+public class AlienPlayerTest {
 
+    private Board board;
     private UserInterfaceSpy uiSpy;
     private AlienPlayer alienPlayer;
 
-    public AlienPlayerTest(int boardSize) {
-        super(boardSize);
+    @Before
+    public void setUp() {
+        int size    = 3;
+        board       = new Board (size);
         uiSpy       = new UserInterfaceSpy();
         alienPlayer = new AlienPlayer(uiSpy, PLAYER);
     }
