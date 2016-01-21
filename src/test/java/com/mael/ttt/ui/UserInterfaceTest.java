@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.ui.UserInterface.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +28,18 @@ public class UserInterfaceTest {
     public void anyMessageIsPrinted() {
         ui.print("hi");
         assertEquals("hi", spy.printedMessage());
+    }
+
+    @Test
+    public void welcomeMessageIsPrinted() {
+        ui.printWelcomeMessage();
+        assertEquals(WELCOME, spy.printedMessage());
+    }
+
+    @Test
+    public void menuPromptIsPrinted() {
+        ui.printMenuPrompt();
+        assertEquals(MENUPROMPT, spy.printedMessage());
     }
 
     @Test
@@ -64,7 +77,7 @@ public class UserInterfaceTest {
     public void promptsTheUserForInput() {
         spy.setInput("");
         ui.getInput();
-        assertEquals(ui.HUMANPROMPT, spy.lastPrintedMessage());
+        assertEquals(HUMANPROMPT, spy.lastPrintedMessage());
     }
 
     @Test
@@ -75,24 +88,48 @@ public class UserInterfaceTest {
     }
 
     @Test
+    public void printsNotValidCellMessage() {
+        ui.printNotValidCellMessage();
+        assertEquals(NOTVALIDCELL, spy.printedMessage());
+    }
+
+    @Test
+    public void printsCellIsBusyMessage() {
+        ui.printCellIsBusyMessage();
+        assertEquals(CELLISBUSY, spy.printedMessage());
+    }
+
+    @Test
+    public void printsRobotPrompt() {
+        ui.printRobotPrompt();
+        assertEquals(ROBOTPROMT, spy.printedMessage());
+    }
+
+    @Test
+    public void printsAlienPrompt() {
+        ui.printAlienPrompt();
+        assertEquals(ALIENPROMPT, spy.printedMessage());
+    }
+
+    @Test
     public void printsWinnerMessage() {
         ui.printHasWinnerMessage(PLAYER);
-        assertEquals(UserInterface.HASWINNER + PLAYER.getString(), spy.firstPrintedMessage());
-        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
+        assertEquals(HASWINNER + PLAYER.getString(), spy.firstPrintedMessage());
+        assertEquals(GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void printsIsFullMessage() {
         ui.printIsFullMessage();
-        assertEquals(UserInterface.ISFULL, spy.firstPrintedMessage());
-        assertEquals(UserInterface.GAMEOVER, spy.lastPrintedMessage());
+        assertEquals(ISFULL, spy.firstPrintedMessage());
+        assertEquals(GAMEOVER, spy.lastPrintedMessage());
     }
 
     @Test
     public void printsReplayMessage() {
         spy.setInput("");
         ui.replay();
-        assertEquals(ui.REPLAY, spy.lastPrintedMessage());
+        assertEquals(REPLAY, spy.lastPrintedMessage());
     }
 
     @Test
