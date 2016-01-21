@@ -3,11 +3,9 @@ package com.mael.ttt.ui;
 import com.mael.ttt.Board;
 import com.mael.ttt.Mark;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-import static com.mael.ttt.Mark.*;
+import static com.mael.ttt.Mark.EMPTY;
 
 public class UserInterface {
 
@@ -108,13 +106,5 @@ public class UserInterface {
     public boolean replay() {
         print(REPLAY);
         return console.read().equals("y");
-    }
-
-    public List<String> getValidIndexes(int size) {
-        List<String> indexes = new ArrayList<>();
-        for (int i = 1; i <= size*size; i++) {
-            indexes.add(Integer.toString(i));
-        }
-        return indexes;
     }
 }

@@ -77,4 +77,12 @@ public class Board {
     public boolean isCellBusy(int index) {
         return !(board[getRowFromIndex(index)][getColFromIndex(index)] == EMPTY);
     }
+
+    public List<String> getValidIndexes() {
+        List<String> indexes = new ArrayList<>();
+        for (int i = 1; i <= SIZE*SIZE; i++) {
+            indexes.add(Integer.toString(i));
+        }
+        return indexes;
+    }
 }

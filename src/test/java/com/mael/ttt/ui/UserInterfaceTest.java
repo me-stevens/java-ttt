@@ -138,11 +138,4 @@ public class UserInterfaceTest {
         assertTrue(ui.replay());
         assertTrue(spy.readMethodWasCalled());
     }
-
-    @Test
-    public void getsTheBoardIndexesAsString() {
-        int size = 3;
-        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"),
-                     ui.getValidIndexes(size));
-    }
 }

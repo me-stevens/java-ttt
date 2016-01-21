@@ -42,7 +42,7 @@ public class HumanPlayer implements Player {
     }
 
     private boolean isNotValidCellIndex(Board board, String cellIndex) {
-        return !gameUI.getValidIndexes(board.getSize()).contains(cellIndex);
+        return !board.getValidIndexes().contains(cellIndex);
     }
 
     private boolean isCellBusy(Board board, String cellIndex) {
