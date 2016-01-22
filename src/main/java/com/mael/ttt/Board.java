@@ -78,11 +78,14 @@ public class Board {
         return !(board[getRowFromIndex(index)][getColFromIndex(index)] == EMPTY);
     }
 
-    public List<String> getValidIndexes() {
-        List<String> indexes = new ArrayList<>();
-        for (int i = 1; i <= SIZE*SIZE; i++) {
-            indexes.add(Integer.toString(i));
+    public List<String> getEmptiesAsStrings() {
+        List<String> toString = new ArrayList<>();
+        List<Integer> empties = getEmptyCellIndexes();
+
+        for (Integer i : empties) {
+            toString.add(Integer.toString(i));
         }
-        return indexes;
+
+        return toString;
     }
 }

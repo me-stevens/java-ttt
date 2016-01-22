@@ -94,12 +94,6 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void printsCellIsBusyMessage() {
-        ui.printCellIsBusyMessage();
-        assertEquals(CELLISBUSY, spy.printedMessage());
-    }
-
-    @Test
     public void printsRobotPrompt() {
         ui.printRobotPrompt();
         assertEquals(ROBOTPROMT, spy.printedMessage());

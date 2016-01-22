@@ -15,7 +15,6 @@ public class UserInterface {
     public static final String ROBOTPROMT   = "\nComputer chooses a cell...\n";
     public static final String ALIENPROMPT  = "\nAlien chooses a cell\n";
     public static final String NOTVALIDCELL = "\nPlease enter a valid cell number.";
-    public static final String CELLISBUSY   = "\nPlease enter an empty cell number.";
     public static final String HASWINNER    = "\nCongratulations, ";
     public static final String ISFULL       = "\nIt's a draw!";
     public static final String GAMEOVER     = "\n\n --- GAME OVER --- \n";
@@ -79,10 +78,6 @@ public class UserInterface {
 
     public void printNotValidCellMessage() {
         print(NOTVALIDCELL);
-    }
-
-    public void printCellIsBusyMessage() {
-        print(CELLISBUSY);
     }
 
     public void printRobotPrompt() {

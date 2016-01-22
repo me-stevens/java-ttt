@@ -50,12 +50,4 @@ public class HumanPlayerTest {
         humanPlayer.getMove(board);
         assertTrue(uiSpy.printNotValidCellMessageWasCalled());
     }
-
-    @Test
-    public void printsCellIsBusyMessage() {
-        board.setCell(1, PLAYER);
-        uiSpy.setUserInputs(1, 2);
-        humanPlayer.getMove(board);
-        assertTrue(uiSpy.printCellIsBusyMessageWasCalled());
-    }
 }

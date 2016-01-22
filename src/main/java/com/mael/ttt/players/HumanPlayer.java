@@ -27,7 +27,7 @@ public class HumanPlayer implements Player {
         String cellIndex = gameUI.getInput();
 
         while (invalidInput(board, cellIndex)) {
-            printFeedback(board, cellIndex);
+            gameUI.printNotValidCellMessage();
             cellIndex = gameUI.getInput();
         }
 
@@ -35,22 +35,6 @@ public class HumanPlayer implements Player {
     }
 
     private boolean invalidInput(Board board, String cellIndex) {
-        return isNotValidCellIndex(board, cellIndex) || isCellBusy(board, cellIndex);
-    }
-
-    private boolean isNotValidCellIndex(Board board, String cellIndex) {
-        return !board.getValidIndexes().contains(cellIndex);
-    }
-
-    private boolean isCellBusy(Board board, String cellIndex) {
-        return board.isCellBusy(Integer.parseInt(cellIndex));
-    }
-
-    private void printFeedback(Board board, String cellIndex) {
-        if (isNotValidCellIndex(board, cellIndex)) {
-            gameUI.printNotValidCellMessage();
-        } else if (isCellBusy(board, cellIndex)) {
-            gameUI.printCellIsBusyMessage();
-        }
+        return !board.getEmptiesAsStrings().contains(cellIndex);
     }
 }

@@ -97,6 +97,6 @@ public class BoardTest {
     @Test
     public void getsTheBoardIndexesAsString() {
         board = new Board(3);
-        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"), board.getValidIndexes());
+        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"), board.getEmptiesAsStrings());
     }
 }
