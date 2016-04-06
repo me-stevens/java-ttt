@@ -15,7 +15,7 @@ public class HumanPlayer implements Player {
     }
 
     public int getMove(Board board) {
-        String cellIndex = checkThatCellIsEmpty(board, getValidCellIndex(board));
+        String cellIndex = getValidCellIndex(board);
         return Integer.parseInt(cellIndex);
     }
 
@@ -26,26 +26,15 @@ public class HumanPlayer implements Player {
     private String getValidCellIndex(Board board) {
         String cellIndex = gameUI.getInput();
 
-        while (isNotValidCellIndex(board, cellIndex)) {
+        while (invalidInput(board, cellIndex)) {
             gameUI.printNotValidCellMessage();
             cellIndex = gameUI.getInput();
         }
+
         return cellIndex;
     }
 
-    private String checkThatCellIsEmpty(Board board, String cellIndex) {
-        while (isCellBusy(board, cellIndex)) {
-            gameUI.printCellIsBusyMessage();
-            cellIndex = gameUI.getInput();
-        }
-        return cellIndex;
-    }
-
-    private boolean isNotValidCellIndex(Board board, String cellIndex) {
-        return !gameUI.getValidIndexes(board.getSize()).contains(cellIndex);
-    }
-
-    private boolean isCellBusy(Board board, String cellIndex) {
-        return board.isCellBusy(Integer.parseInt(cellIndex));
+    private boolean invalidInput(Board board, String cellIndex) {
+        return !board.getEmptiesAsStrings().contains(cellIndex);
     }
 }

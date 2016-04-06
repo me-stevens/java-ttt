@@ -94,12 +94,6 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void printsCellIsBusyMessage() {
-        ui.printCellIsBusyMessage();
-        assertEquals(CELLISBUSY, spy.printedMessage());
-    }
-
-    @Test
     public void printsRobotPrompt() {
         ui.printRobotPrompt();
         assertEquals(ROBOTPROMT, spy.printedMessage());
@@ -137,12 +131,5 @@ public class UserInterfaceTest {
         spy.setInput("y");
         assertTrue(ui.replay());
         assertTrue(spy.readMethodWasCalled());
-    }
-
-    @Test
-    public void getsTheBoardIndexesAsString() {
-        int size = 3;
-        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"),
-                     ui.getValidIndexes(size));
     }
 }

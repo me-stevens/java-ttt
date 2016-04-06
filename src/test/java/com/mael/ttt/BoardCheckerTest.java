@@ -1,5 +1,6 @@
 package com.mael.ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -7,15 +8,17 @@ import static org.junit.Assert.assertTrue;
 import static com.mael.ttt.Mark.*;
 
 
-public class BoardCheckerTest extends ParentTest {
+public class BoardCheckerTest {
 
-    private BoardChecker checker;
     private int size;
+    private Board board;
+    private BoardChecker checker;
 
-    public BoardCheckerTest(int boardSize) {
-        super(boardSize);
+    @Before
+    public void setUp() {
+        size    = 3;
+        board   = new Board (size);
         checker = new BoardChecker(board);
-        size    = boardSize;
     }
 
     @Test
